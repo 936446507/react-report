@@ -1,0 +1,208 @@
+@import '../../assets/scss/reset.scss';
+@import '../../assets/scss/_function.scss';
+@import '../../assets/scss/typography.scss';
+
+$imgBaseurl: "../../assets/images/";
+
+.login-page.view {
+  top: 0px;
+  background: url("https://www.goldexhk.com/soruce/bg_about_1.jpg") no-repeat top center;
+  background-size: 100% 100%;
+  &::before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.38);
+    content: '';
+    z-index: 0;
+  }
+}
+.login-page-top{
+  width:100%;
+  overflow: hidden;
+  position: absolute;
+  padding-top: 102px;
+  padding-bottom: 50px;
+  &-in {
+    position: relative;
+  }
+}
+.login-page-companyname{
+  width:100%;
+  line-height: 45px;
+  text-align: center;
+  color:#FFF;
+  font-size: $fontSize9;
+  text-shadow: 0.781px 1.841px 1px rgba(0, 0, 0, 0.61);
+
+}
+.login-page-welcome{
+  display: block;
+  width:100%;
+  height:45px;
+  line-height: 45px;
+  background:imgurl("login/WELCOME.png") no-repeat center center;
+  background-size: 105px 18.5px 
+}
+.login-page {
+  width:100%;
+  height:100%;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+}
+.login-head{
+  width:100%;
+  height: 17.5px;
+  padding:0 19px;
+  &-content{
+    width:100%;
+    height: 17.5px;
+    background: #FFF;
+    border-radius: 15px 15px 0 0;
+  }
+}
+
+.login-form {
+  width:100%;
+  min-width: 329.5px;
+  max-width:589px;
+  padding: 0 22.5px;
+  margin: 0 auto;
+  position: absolute;
+  bottom: 0px;
+  left:50%;
+  transform: translateX(-50%);
+  &-list {
+    width: 100%;
+    height:100%;
+    background: #fff;
+    border-radius: 15px 15px 0 0;
+    box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.42);
+    overflow: hidden;
+    &--logo{
+      width:100%;
+      height: 24px;
+      background: imgurl("login/login-logo.png") no-repeat center center;
+      background-size: 97.5px 24px;
+      margin-top: 18px;
+      margin-bottom: 30px;
+      float:left;
+    }
+    &--label {
+      display: block;
+      position: relative;
+      width: 100%;
+      height: 48px;
+      float:left;
+      padding: 0 48px;
+      margin-bottom:22px;
+      -webkit-tap-highlight-cnpmolor: #fff;
+      h3{
+        width:100%;
+        height: 23px;
+        line-height: 23px;
+        font-size: $fontSize2;
+        padding-left: 20px;
+        color:#cccccc;
+      }
+      span{
+        display: block;
+        width:100%;
+        height: 25px;
+        @include mobile-border((border-bottom:1px solid #cccccc))
+      }
+    }
+    &--label:active{
+      background: none;
+    }
+    &--input {
+      width: 100%;
+      height: 100%;
+      border: none;
+      // @include mobile-border2(bottom,1px solid #cccccc);
+      @include placeholderColor(#999);
+      background: #fff;
+      font-size: $fontSize2;
+      font-size: 14px;
+      outline: none;
+    }
+    .icon-username {
+      background:imgurl("login/username-icon.png")no-repeat 4px center;
+      background-size:auto 13px;
+    }
+    .icon-password {
+      background:#fff imgurl("login/password-icon.png") no-repeat 4px center;
+      background-size:auto 13px;
+    }
+  }
+}
+
+.login-href {
+  width: 231px;
+  height: 29px;
+  line-height: 29px;
+  margin: 0 auto;
+  &-register {
+    float: left;
+  }
+  &-forgetpassword {
+    float: right;
+  }
+}
+.login-btn-wrap {
+  width:100%;
+  text-align: center;
+  padding: 0 58px;
+  float:left;
+  margin-top:45px;
+  margin-bottom:79px;
+}
+.login-btn {
+  display: block;
+  width: 100%;
+  height: 100%;
+  font-size: $fontSize4;
+  text-align: center;
+  color: #000;
+  border-radius: 18px;
+  font-size: 15px;
+}
+.login-btn-out{
+  width: 100%;
+  height: 37px;
+  line-height: 37px;
+  @include mobile-border((border:1px solid #000,border-radius: 18px));
+}
+@media screen and (max-width: 361px) {
+  .login-btn-wrap{
+    margin-bottom: 86px;
+  }
+}
+@media screen and (max-width: 321px) {
+  .logo {
+    margin-top:0px;
+  }
+  .login-btn-wrap{
+    margin-bottom: 81px;
+  }
+}
+@media screen and (max-height: 568px) {
+  .login-btn-wrap{
+    margin-top: 20px;
+    margin-bottom: 30px;
+  }
+}
+// .login-btn-wrap span.login-btn{
+//   overflow:	visible!important;
+// }
+// .mb-ripple-container{
+//   overflow: hidden;
+// }
+.login-to-comeputer{
+  font-size: 12px;
+  color:#4093ff;
+  margin-top:16px;
+}

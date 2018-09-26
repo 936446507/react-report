@@ -1,0 +1,14 @@
+.list-cell--comment {
+  max-width: 120px;
+  word-wrap: break-word;
+  padding: 8px;
+}
+body {
+  background: rgb(238,238,238);
+}
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-smoothing: antialiased;
+}

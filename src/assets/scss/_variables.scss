@@ -1,0 +1,30 @@
+
+//图片目录
+$imgBaseurl: "../../assets/images/";
+
+$primaryColor: #f4b21c;
+$duration: .3s;
+
+$font-color: #1b2752;
+$bottomHeight: 80px;
+$min-width: 1000px;
+
+//是否有电话
+$isHavetel: none;
+
+$active-bg-color: #1f3474;
+$border-color: rgb(238, 238, 238);
+$font-size: 14px;
+
+$th-font-size: 14px;
+$th-color: #4d4d4d;
+$td-font-size: 14px;
+$td-color: #808080;
+
+@import "./_function.scss";
+$imgBaseurl: "../../assets/images/";
+
+$head-height: 180px;
+$logo-url: imgurl("public/logo.png") no-repeat center;
+// 是否显示图形验证码（设置display）
+$is-show-imgcode: none;
