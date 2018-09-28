@@ -1,22 +1,25 @@
 import React, { Component } from 'react'
-import {
-  BrowserRouter as Router,
-  Route
-} from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 
-import Home from './page/home/index'
-import Login from './page/login/index'
+import AppHeader from './components/app-header/index'
+import RouteComponent from './components/route-component/index'
+
+import { routes } from './routes/index'
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div className="app">
-          <Route path="/" component={Home} exact />
-          <Route path="/login" component={Login} exact />
+          <AppHeader />
+          {
+            routes.map((route, i) => (
+              <RouteComponent key={ i } { ...route } />
+            ))
+          }
         </div>
       </Router>
-    );
+    )
   }
 }
 
