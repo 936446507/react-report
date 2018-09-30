@@ -5,7 +5,7 @@ class AppHeader extends Component {
   render() {
     return (
       <div className="app-header">
-        <NavLink to="/">home</NavLink>
+        <NavLink to="/" exact >home</NavLink>
         <NavLink to="/report">report</NavLink>
         <NavLink to="/memberManager">memberManager</NavLink>
       </div>

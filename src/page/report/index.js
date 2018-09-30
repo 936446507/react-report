@@ -14,7 +14,7 @@ class Report extends Component {
         <NavLink to="/report/monthly">monthly</NavLink>
         {
           this.props.routes.map((route, i) => (
-            <RouteComponent key={ i } { ...route } />
+            <RouteComponent key={ i } route={{ ...route }} />
           ))
         }
       </div>

@@ -1,18 +1,37 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 
+import { setDocTitle } from '../../utils/routes/index'
+
 class RouteComponent extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {}
+
+    this.setDocTitle = this.setDocTitle.bind(this)
+    this.enterRouteHandle = this.enterRouteHandle.bind(this)
+  }
+  setDocTitle() {
+    let docTitle = this.props.route.meta.title || window.baseName
+    setDocTitle(docTitle)
+  }
+  enterRouteHandle() {
+    this.setDocTitle()
+  }
   render() {
+    let route = this.props.route
     return (
       <Route
-        path={ this.props.path }
+        path={ route.path }
         render={ props => (
-          <this.props.component
+          <this.props.route.component
             { ...props }
-            routes={ this.props.children }
-            exact />
-        )}
-      />
+            routes={ route.children }
+            onEnter={ this.enterRouteHandle() }
+            exact={ route.path === '/' } />
+        )} >
+      </Route>
     )
   }
 }

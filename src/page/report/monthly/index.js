@@ -6,7 +6,7 @@ class MonthlyReport extends Component {
       <div className="monthly-report">
         MonthlyReport
       </div>
-    );
+    )
   }
 }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, Switch } from 'react-router-dom'
 
 import AppHeader from './components/app-header/index'
 import RouteComponent from './components/route-component/index'
@@ -12,11 +12,13 @@ class App extends Component {
       <Router>
         <div className="app">
           <AppHeader />
+          
           {
             routes.map((route, i) => (
-              <RouteComponent key={ i } { ...route } />
+              <RouteComponent key={ i } route={{ ...route }} />
             ))
           }
+          
         </div>
       </Router>
     )
