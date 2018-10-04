@@ -7,7 +7,8 @@ export const routes = [
     name: 'report',
     component: Report,
     meta: {
-      title: window.baseName + '-报表'
+      title: window.baseName + '-报表',
+      isRequiedLogin: true
     },
     children: [
       {
@@ -15,7 +16,8 @@ export const routes = [
         name: 'monthly',
         component: MonthlyReport,
         meta: {
-          title: window.baseName + '-月结报表'
+          title: window.baseName + '-月结报表',
+          isRequiedLogin: true
         }
       }
     ]

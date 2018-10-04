@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Route } from 'react-router-dom'
+import { Route, Redirect } from 'react-router-dom'
 
 import { setDocTitle } from '../../utils/routes/index'
 
@@ -25,13 +25,15 @@ class RouteComponent extends Component {
       <Route
         path={ route.path }
         render={ props => (
+          !route.meta.isRequiedLogin ?
+          <Redirect to='/login' /> :
           <this.props.route.component
             { ...props }
             routes={ route.children }
-            onEnter={ this.enterRouteHandle() }
-            exact={ route.path === '/' } />
-        )} >
-      </Route>
+            onEnter={ this.enterRouteHandle() } />
+        )}
+        exact={route.path === '/'} />
+
     )
   }
 }

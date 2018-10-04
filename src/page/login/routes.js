@@ -6,7 +6,8 @@ export const routes = [
     name: 'lgoin',
     component: Login,
     meta: {
-      title: window.baseName + '-登录'
+      title: window.baseName + '-登录',
+      isRequiedLogin: false
     }
   }
 ]

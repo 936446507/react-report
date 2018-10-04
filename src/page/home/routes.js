@@ -6,7 +6,8 @@ export const routes = [
     name: 'home',
     component: Home,
     meta: {
-      title: window.baseName + '-首页'
+      title: window.baseName + '-首页',
+      isRequiedLogin: true
     }
   }
 ]

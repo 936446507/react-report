@@ -9,7 +9,7 @@ export const routes = [
       title: window.baseName + '-管理账号',
       requirePermission: true,
       agentField: 'AgentInfo',
-      requireAuth: true
+      isRequiedLogin: true
     }
   }
 ]
