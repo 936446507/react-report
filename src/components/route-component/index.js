@@ -25,8 +25,6 @@ class RouteComponent extends Component {
       <Route
         path={ route.path }
         render={ props => (
-          !route.meta.isRequiedLogin ?
-          <Redirect to='/login' /> :
           <this.props.route.component
             { ...props }
             routes={ route.children }

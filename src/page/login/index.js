@@ -72,53 +72,58 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="login">
+      <div className="login-page-container">
         <div className="view login-page">
           <div className="login-page-top">
-            <div className="login-page-top-in">
-              <h3 className="login-page-companyname">高晟金業集團有限公司</h3>
-              <span className="login-page-welcome"></span>
+            <div className="login-page-top-upper">
+              <span className="login-page-logo">
+                <img src="../../assets/images/login/logo.png" alt="" />
+              </span>
+              <span className="login-page-company">
+                <img src="../../assets/images/login/logo-word.png" alt="" />
+              </span>
             </div>
           </div>
-          <div className="login-form">
-            <div className="login-form-list">
-              <div className="login-form-list--logo"></div>
-              <div className="login-form-list--label">
-                <h3 className="icon-username">用户名</h3>
-                <span>
-                  <input
-                  className="login-form-list--input"
-                  type="text"
-                  placeholder="请输入您的用户名"
-                  name="username"
-                  value={ this.state.username }
-                  onChange={ this.handleInput } />
-                </span>
-              </div>
-              <div className="login-form-list--label mb0">
-                <h3 className="icon-password">密码</h3>
-                <span>
-                  <input
-                  className="login-form-list--input"
-                  type="password"
-                  name="password"
-                  placeholder="请输入您的密码"
-                  value={this.state.password}
-                  onChange={ this.handleInput } />
-                </span>
+          <div className="login-form-out">
+            <div className="login-form">
+              <div className="login-form-account">
+                <div className="login-form-list">
+                  <div className="login-form-list--label">
+                    <i className="icon-username"></i>
+                    <span>
+                      <input
+                      className="login-form-list--input"
+                      type="text"
+                      placeholder="请输入您的用户名" />
+                    </span>
+                  </div>
+                  <div className="login-form-list--label mb0">
+                    <i className="icon-password"></i>
+                    <span>
+                      <input
+                      className="login-form-list--input"
+                      type="password"
+                      placeholder="请输入您的密码" />
+                    </span>
+                  </div>
+                </div>
               </div>
               <div className="login-btn-wrap">
+                <div className="login-btn-out">
+                { this.state.isSubmit ? '登录中...' : '登 录' }
+                </div>
                 <div
-                  className="login-btn-out"
-                  onClick={ _ => this.login()}>
-                  { this.state.isSubmit ? '登录中' : '登录'}
+                  className="login-to-computer">
+                  <div className="take-computer">
+                    前往电脑版
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-    );
+    )
   }
 }
 

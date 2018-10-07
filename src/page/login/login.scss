@@ -4,57 +4,53 @@
 
 $imgBaseurl: "../../assets/images/";
 
+.login-page-container {
+  height: 100%;
+}
 .login-page.view {
-  top: 0px;
-  background: url("https://www.goldexhk.com/soruce/bg_about_1.jpg") no-repeat top center;
-  background-size: 100% 100%;
-  &::before {
-    position: absolute;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.38);
-    content: '';
-    z-index: 0;
-  }
+  background: #fff url("../../assets/images/login/login-bg-top.png") no-repeat top center;
+  background-size: 100%;
+  position: relative;
 }
-.login-page-top{
-  width:100%;
-  overflow: hidden;
-  position: absolute;
-  padding-top: 102px;
-  padding-bottom: 50px;
-  &-in {
-    position: relative;
-  }
-}
-.login-page-companyname{
-  width:100%;
-  line-height: 45px;
-  text-align: center;
-  color:#FFF;
-  font-size: $fontSize9;
-  text-shadow: 0.781px 1.841px 1px rgba(0, 0, 0, 0.61);
-
-}
-.login-page-welcome{
+.login-page-logo {
   display: block;
-  width:100%;
-  height:45px;
-  line-height: 45px;
-  background:imgurl("login/WELCOME.png") no-repeat center center;
-  background-size: 105px 18.5px 
+  margin-bottom: 10px;
+  width: 100%;
+  overflow: hidden;
+  font-size: 0;
+  text-align: center;
+  img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 18%;
+    max-width: 134px;
+  }
 }
+.login-page-company{
+  display: block;
+  width: 100%;
+  font-size: 0;
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+  img {
+    display: inline-block;
+    vertical-align: middle;
+    width: 48%;
+    max-width: 329px;
+  }
+}
+
 .login-page {
   width:100%;
   height:100%;
+  font-size: 0;
   position: absolute;
   top: 0px;
   left: 0px;
 }
 .login-head{
-  width:100%;
+  width: 100%;
   height: 17.5px;
   padding:0 19px;
   &-content{
@@ -64,82 +60,91 @@ $imgBaseurl: "../../assets/images/";
     border-radius: 15px 15px 0 0;
   }
 }
-
-.login-form {
-  width:100%;
-  min-width: 329.5px;
-  max-width:589px;
-  padding: 0 22.5px;
-  margin: 0 auto;
-  position: absolute;
-  bottom: 0px;
-  left:50%;
-  transform: translateX(-50%);
-  &-list {
+.login-page-top{
+  width: 100%;
+  height: 50%;
+  min-height: 250px;
+  overflow: hidden;
+  background: transparent;
+  background-size: 100% 100%;
+  padding-top: 0.1px;
+  &-upper {
     width: 100%;
+    margin-top: 4%;
+  }
+}
+.login-form {
+  padding-top: 15px;
+  width: 100%;
+  &-out {
+    width: 100%;
+    height: 50%;
+    min-height: 250px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &-account {
+    width: 100%;
+    min-width: 208px;
+    max-width: 320px;
+    margin: 0 auto;
+  }
+  &-list {
+    width: 80%;
     height:100%;
-    background: #fff;
-    border-radius: 15px 15px 0 0;
-    box-shadow: 0px 0px 24px 0px rgba(0, 0, 0, 0.42);
-    overflow: hidden;
-    &--logo{
-      width:100%;
-      height: 24px;
-      background: imgurl("login/login-logo.png") no-repeat center center;
-      background-size: 97.5px 24px;
-      margin-top: 18px;
-      margin-bottom: 30px;
-      float:left;
-    }
+    margin: 0 auto;
     &--label {
       display: block;
       position: relative;
       width: 100%;
-      height: 48px;
-      float:left;
-      padding: 0 48px;
-      margin-bottom:22px;
+      height: 36px;
+      font-size: 0;
+      margin-bottom:25px;
       -webkit-tap-highlight-cnpmolor: #fff;
+      @include mobile-border((border-bottom:1px solid #000));
       h3{
-        width:100%;
-        height: 23px;
-        line-height: 23px;
-        font-size: $fontSize2;
-        padding-left: 20px;
-        color:#cccccc;
+        display: inline-block;
+        vertical-align: top;
+        width:  45px;
+        height: 35px;
       }
       span{
-        display: block;
-        width:100%;
-        height: 25px;
-        @include mobile-border((border-bottom:1px solid #cccccc))
+        display: inline-block;
+        vertical-align: top;
+        width: calc(100% - 45px);
+        height: 35px;
+        line-height: 35px;
       }
     }
     &--label:active{
       background: none;
     }
     &--input {
+      -webkit-appearance: none;
       width: 100%;
       height: 100%;
+      padding-left: 12px;
       border: none;
       // @include mobile-border2(bottom,1px solid #cccccc);
       @include placeholderColor(#999);
-      background: #fff;
+      background: transparent;
       font-size: $fontSize2;
       font-size: 14px;
+      line-height: 1;
       outline: none;
     }
     .icon-username {
-      background:imgurl("login/username-icon.png")no-repeat 4px center;
-      background-size:auto 13px;
+      background: url("../../assets/images/login/user-agent-icon.png") no-repeat center;
+      background-size: 18px;
     }
     .icon-password {
-      background:#fff imgurl("login/password-icon.png") no-repeat 4px center;
-      background-size:auto 13px;
+      background: url("../../assets/images/login/password-icon.png") no-repeat center;
+      background-size: 18px;
     }
   }
 }
-
 .login-href {
   width: 231px;
   height: 29px;
@@ -154,11 +159,10 @@ $imgBaseurl: "../../assets/images/";
 }
 .login-btn-wrap {
   width:100%;
+  height: 55%;
   text-align: center;
-  padding: 0 58px;
-  float:left;
-  margin-top:45px;
-  margin-bottom:79px;
+  margin: 0 auto;
+  position: relative;
 }
 .login-btn {
   display: block;
@@ -171,38 +175,307 @@ $imgBaseurl: "../../assets/images/";
   font-size: 15px;
 }
 .login-btn-out{
+  width: 77%;
+  max-width: 240px;
+  height: 36px;
+  line-height: 36px;
+  border-radius: 18px;
+  z-index: 8;
+  margin: 0 auto;
+  background-image: linear-gradient( 90deg, rgb(236,187,31) 0%, rgb(255,228,78) 100%);
+  background-image: -moz-linear-gradient( 90deg, rgb(236,187,31) 0%, rgb(255,228,78) 100%);
+  background-image: -webkit-linear-gradient( 90deg, rgb(236,187,31) 0%, rgb(255,228,78) 100%);
+  background-image: -ms-linear-gradient( 90deg, rgb(236,187,31) 0%, rgb(255,228,78) 100%);
+  box-shadow: 3.18px 5.088px 10px 0px rgba(208, 162, 5, 0.43);
+}
+.login-to-computer{
   width: 100%;
-  height: 37px;
-  line-height: 37px;
-  @include mobile-border((border:1px solid #000,border-radius: 18px));
-}
-@media screen and (max-width: 361px) {
-  .login-btn-wrap{
-    margin-bottom: 86px;
-  }
-}
-@media screen and (max-width: 321px) {
-  .logo {
-    margin-top:0px;
-  }
-  .login-btn-wrap{
-    margin-bottom: 81px;
-  }
-}
-@media screen and (max-height: 568px) {
-  .login-btn-wrap{
-    margin-top: 20px;
-    margin-bottom: 30px;
-  }
-}
-// .login-btn-wrap span.login-btn{
-//   overflow:	visible!important;
-// }
-// .mb-ripple-container{
-//   overflow: hidden;
-// }
-.login-to-comeputer{
   font-size: 12px;
-  color:#4093ff;
-  margin-top:16px;
+  color:#ccc;
+  margin: 70px 0 15px;
+  .take-computer {
+    width: 77px;
+    height: 20px;
+    line-height: 20px;
+    margin: 0 auto;
+  }
+}
+@media screen and (max-height: 400px) {
+  .login-form {
+    width: 100%;
+    &-out {
+      float: left;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    &-account {
+      width: 100%;
+      min-width: 208px;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    &-list {
+      width: 80%;
+      height:100%;
+      margin: 0 auto;
+      &--label {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 36px;
+        font-size: 0;
+        margin-bottom:25px;
+        -webkit-tap-highlight-cnpmolor: #fff;
+        @include mobile-border((border-bottom:1px solid #000));
+        h3{
+          display: inline-block;
+          vertical-align: top;
+          width:  45px;
+          height: 35px;
+        }
+        span{
+          display: inline-block;
+          vertical-align: top;
+          width: calc(100% - 45px);
+          height: 35px;
+          line-height: 35px;
+        }
+      }
+      &--label:active{
+        background: none;
+      }
+      &--input {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 100%;
+        padding-left: 12px;
+        border: none;
+        // @include mobile-border2(bottom,1px solid #cccccc);
+        @include placeholderColor(#999);
+        background: transparent;
+        font-size: $fontSize2;
+        font-size: 14px;
+        line-height: 1;
+        outline: none;
+      }
+      .icon-username {
+        background: url("../../assets/images/login/user-agent-icon.png") no-repeat center;
+        background-size: 18px;
+      }
+      .icon-password {
+        background: url("../../assets/images/login/password-icon.png") no-repeat center;
+        background-size: 18px;
+      }
+    }
+  }
+}
+@media screen and (max-height: 550px) {
+  .login-page-top{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    float: left;
+    width: 50%;
+    height: 100%;
+    min-height: 250px;
+    overflow: hidden;
+    background: transparent;
+    background-size: 100% 100%;
+    padding-top: 0.1px;
+    &-upper {
+      width: 100%;
+      margin-top: -20%;
+    }
+  }
+  .login-form {
+    width: 100%;
+    padding-top: 15px;
+    &-out {
+      float: left;
+      width: 50%;
+      height: 100%;
+      display: flex;
+      // flex-direction: column-reverse;
+      justify-content: center;
+      align-items: center;
+    }
+    &-account {
+      width: 100%;
+      min-width: 208px;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    &-list {
+      width: 80%;
+      height:100%;
+      margin: 0 auto;
+      &--label {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 36px;
+        font-size: 0;
+        margin-bottom:25px;
+        -webkit-tap-highlight-cnpmolor: #fff;
+        @include mobile-border((border-bottom:1px solid #000));
+        h3{
+          display: inline-block;
+          vertical-align: top;
+          width:  45px;
+          height: 35px;
+        }
+        span{
+          display: inline-block;
+          vertical-align: top;
+          width: calc(100% - 45px);
+          height: 35px;
+          line-height: 35px;
+        }
+      }
+      &--label:active{
+        background: none;
+      }
+      &--input {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 100%;
+        padding-left: 12px;
+        border: none;
+        // @include mobile-border2(bottom,1px solid #cccccc);
+        @include placeholderColor(#999);
+        background: transparent;
+        font-size: $fontSize2;
+        font-size: 14px;
+        line-height: 1;
+        outline: none;
+      }
+      .icon-username {
+        background: url("../../assets/images/login/user-agent-icon.png") no-repeat center;
+        background-size: 18px;
+      }
+      .icon-password {
+        background: url("../../assets/images/login/password-icon.png") no-repeat center;
+        background-size: 18px;
+      }
+    }
+  }
+  .login-page-logo {
+    display: block;
+    margin-bottom: 10px;
+    width: 100%;
+    overflow: hidden;
+    font-size: 0;
+    text-align: center;
+    img {
+      display: inline-block;
+      vertical-align: middle;
+      width: 22%;
+      max-width: 134px;
+    }
+  }
+  .login-page-company{
+    display: block;
+    width: 100%;
+    font-size: 0;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+    img {
+      display: inline-block;
+      vertical-align: middle;
+      width: 66%;
+      max-width: 329px;
+    }
+  }
+}
+@media screen and (max-width: 450px) {
+  .login-page-top{
+    width: 100%;
+    height: 50%;
+    min-height: 250px;
+    overflow: hidden;
+    background: transparent;
+    background-size: 100% 100%;
+    padding-top: 0.1px;
+    &-upper {
+      width: 100%;
+      margin-top: 4%;
+    }
+  }
+  .login-form {
+    width: 100%;
+    &-out {
+      width: 100%;
+      height: 50%;
+      min-height: 250px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column-reverse;
+      justify-content: flex-start;
+      align-items: center;
+    }
+    &-account {
+      width: 100%;
+      min-width: 208px;
+      max-width: 320px;
+      margin: 0 auto;
+    }
+    &-list {
+      width: 80%;
+      height:100%;
+      margin: 0 auto;
+      &--label {
+        display: block;
+        position: relative;
+        width: 100%;
+        height: 36px;
+        font-size: 0;
+        margin-bottom:25px;
+        -webkit-tap-highlight-cnpmolor: #fff;
+        @include mobile-border((border-bottom:1px solid #000));
+        h3{
+          display: inline-block;
+          vertical-align: top;
+          width:  45px;
+          height: 35px;
+        }
+        span{
+          display: inline-block;
+          vertical-align: top;
+          width: calc(100% - 45px);
+          height: 35px;
+          line-height: 35px;
+        }
+      }
+      &--label:active{
+        background: none;
+      }
+      &--input {
+        -webkit-appearance: none;
+        width: 100%;
+        height: 100%;
+        padding-left: 12px;
+        border: none;
+        // @include mobile-border2(bottom,1px solid #cccccc);
+        @include placeholderColor(#999);
+        background: transparent;
+        font-size: $fontSize2;
+        font-size: 14px;
+        line-height: 1;
+        outline: none;
+      }
+      .icon-username {
+        background: url("../../assets/images/login/user-agent-icon.png") no-repeat center;
+        background-size: 18px;
+      }
+      .icon-password {
+        background: url("../../assets/images/login/password-icon.png") no-repeat center;
+        background-size: 18px;
+      }
+    }
+  }
 }
