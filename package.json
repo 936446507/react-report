@@ -6,6 +6,7 @@
     "axios": "^0.18.0",
     "element-react": "^1.4.21",
     "element-theme-default": "^1.4.13",
+    "normalize.css": "^8.0.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
     "react-router": "^4.3.1",

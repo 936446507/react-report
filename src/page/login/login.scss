@@ -1,10 +1,12 @@
-@import '../../assets/scss/reset.scss';
 @import '../../assets/scss/_function.scss';
 @import '../../assets/scss/typography.scss';
 
-$imgBaseurl: "../../assets/images/";
-
 .login-page-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
   height: 100%;
 }
 .login-page.view {
@@ -188,6 +190,7 @@ $imgBaseurl: "../../assets/images/";
   background-image: -ms-linear-gradient( 90deg, rgb(236,187,31) 0%, rgb(255,228,78) 100%);
   box-shadow: 3.18px 5.088px 10px 0px rgba(208, 162, 5, 0.43);
   font-size: 14px;
+  cursor: pointer;
 }
 .login-to-computer{
   width: 100%;
@@ -415,7 +418,6 @@ $imgBaseurl: "../../assets/images/";
       min-height: 250px;
       margin: 0 auto;
       display: flex;
-      flex-direction: column-reverse;
       justify-content: flex-start;
       align-items: center;
     }

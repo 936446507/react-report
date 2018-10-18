@@ -1,4 +1,4 @@
-import { Message } from 'element-react';
+import { Message } from 'element-react'
 import { checkDataType } from '../check-data-type/index'
 
 export function showMessage({
