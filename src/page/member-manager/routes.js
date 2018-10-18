@@ -1,4 +1,4 @@
-import MemberManager from './index'
+import MemberManager from './member-manager'
 
 export const routes = [
   {

@@ -1,5 +1,5 @@
-import Report from './index'
-import MonthlyReport from './monthly/index'
+import Report from './report'
+import MonthlyReport from './monthly/monthly'
 
 export const routes = [
   {

@@ -110,13 +110,7 @@ class Login extends Component {
               </div>
               <div className="login-btn-wrap">
                 <div className="login-btn-out">
-                { this.state.isSubmit ? '登录中...' : '登 录' }
-                </div>
-                <div
-                  className="login-to-computer">
-                  <div className="take-computer">
-                    前往电脑版
-                  </div>
+                  { this.state.isSubmit ? '登录中...' : '登 录' }
                 </div>
               </div>
             </div>
