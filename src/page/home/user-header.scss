@@ -1,0 +1,49 @@
+@import '../../assets/scss/_variables.scss';
+  $imgBaseurl: '../../assets/images/';
+  $FSize15: 15px;
+  $FSize12: 12px;
+  .head {
+    width: 100%;
+    height: 35px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 4;
+  }
+  .user-info {
+    width: 100%;
+    height: 100%;
+    padding: 0 10px;
+    background-color: #f7d23a;
+    background: imgurl('index/home-head-top-bg.png') no-repeat top center;
+    background-size: cover;
+    background-size: 100% 45px;
+    .user-username,
+    .user-login {
+      float: left;
+      width: auto;
+      line-height: 35px;
+      height: 35px;
+      font-size: $FSize12;
+      color: #000;
+    }
+    .user-username {
+      min-width: 53px;
+      padding-left: 25px;
+      background: imgurl('public/headimg.png') no-repeat left center;
+      background-size: 18px 18px;
+      margin-right: 12px;
+    }
+    .user-login {
+      font-size: $FSize12;
+      text-align: right;
+    }
+    .user-logout {
+      float: right;
+      color: #000;
+      width: 14px;
+      height: 35px;
+      background: imgurl('public/out-button.png') no-repeat center;
+      background-size: 14px 15.5px;
+    }
+  }

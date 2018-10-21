@@ -1,0 +1,40 @@
+.home-page {
+  padding-top: 35px;
+  background: url(../../assets/images/index/home-head-bg.png) no-repeat top center;
+  background-position: 0 35px;
+  background-size: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.user-pannel-out {
+  // min-width: 315px;
+  max-width: 600px;
+  padding: 0 25px;
+  margin: 12px auto 26px;
+}
+.history {
+  margin: 0 auto;
+  max-width: 600px;
+  padding: 0 25px 56px;
+}
+
+.user-info-error-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 40px;
+  margin-bottom: 14px;
+  background: white;
+  .user-info-error-tip {
+    font-size: 14px;
+  }
+  .user-info-reload-btn {
+    width: 80px;
+    height: 30px;
+    margin-left: 25px;
+  }
+}

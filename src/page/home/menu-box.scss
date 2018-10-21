@@ -1,0 +1,90 @@
+.menu-box--content{
+  width: 65px;
+  &.right-border--item {
+    border-right: none
+  }
+  &.bottom-border--item {
+    border-bottom: none
+  }
+}
+.menu {
+  &-box {
+    margin: 0 0 10px;
+    font-size: 0;
+    &-out {
+      margin-top: 10px;
+      width: 100%;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      -webkit-overflow-scrolling: touch;
+      &::-webkit-scrollbar {
+        display: none;
+      }
+    }
+    &--content {
+      display: inline-block;
+      margin: 0 5px;
+    }
+    &--item {
+      display: block;
+      font-size: 12px;
+      padding-top: 30px;
+      width: 100%;
+      text-align: center;
+    }
+    &--agentInfo {
+      background: url(../../assets/images/menu/menuicon1.png) no-repeat center top;
+      background-size: 43%;
+    }
+    &--monthly {
+      background: url(../../assets/images/menu/forms-icon/fomsicon7.png)
+        no-repeat center top;
+      background-size: 43%;
+    }
+    &--profit-loss {
+      background: url(../../assets/images/menu/forms-icon/fomsicon8.png)
+        no-repeat center top;
+      background-size: 43%;
+    }
+    &--equity {
+      background: url(../../assets/images/menu/forms-icon/fomsicon6.png)
+        no-repeat center top;
+      background-size: 43%;
+    }
+    &--transaction {
+      background: url(../../assets/images/menu/forms-icon/fomsicon3.png)
+        no-repeat center top;
+      background-size: 43%;
+    }
+    &--open {
+      background: url(../../assets/images/menu/forms-icon/fomsicon1.png)
+        no-repeat center top;
+      background-size: 43%;
+    }
+    &--close {
+      background: url(../../assets/images/menu/forms-icon/fomsicon2.png)
+        no-repeat center top;
+      background-size: 43%;
+    }
+    &--deposit {
+      background: url(../../assets/images/menu/forms-icon/fomsicon5.png)
+        no-repeat center top;
+      background-size: 43%;
+    }
+    &--turnover {
+      background: url(../../assets/images/menu/forms-icon/fomsicon3.png)
+        no-repeat center top;
+      background-size: 43%;
+    }
+    &--settle {
+      background: url(../../assets/images/menu/forms-icon/fomsicon4.png)
+        no-repeat center top;
+      background-size: 43%;
+    }
+    &--intermedie {
+      background: url(../../assets/images/menu/forms-icon/fomsicon2.png)
+        no-repeat top center;
+      background-size: 43%;
+    }
+  }
+}
