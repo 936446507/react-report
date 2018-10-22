@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 
 import './user-header.scss'
-import * as api from '../../api/api'
-import http from '../../api/http'
+import * as api from '../../../api/api'
+import http from '../../../api/http'
 
 class UserHeader extends Component {
   constructor(props) {

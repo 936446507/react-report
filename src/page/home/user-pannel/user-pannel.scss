@@ -1,0 +1,108 @@
+$FSize12: 12px;
+  $FSize13: 13px;
+  $FSize14: 14px;
+  $bigTitleColor: #666;
+  $titleColor: #777;
+  $digitColor: #333;
+  .user {
+    &-pannel {
+      width: 100%;
+      background-color: #fff;
+      margin: 0 auto;
+      border-radius: 16px;
+      box-shadow: 0px 5px 38px 0px rgba(17, 17, 17, 0.25);
+      padding: 18px 25px 5px;
+    }
+    &-floatpl {
+      &--title {
+        height: 30px;
+        line-height: 30px;
+        font-size: $FSize13;
+        color: $bigTitleColor;
+      }
+      &--digit {
+        height: 40px;
+        position: relative;
+        font-size: 0;
+        color: #000;
+        .bold {
+          display: inline-block;
+          vertical-align: middle;
+          font-size: 33px;
+          height: 40px;
+          line-height: 37px;
+        }
+        .is-float {
+          color: $digitColor;
+        }
+      }
+    }
+    &-dashboard {
+      margin-top: 15px;
+      width: 100%;
+      &--item {
+        height: 40px;
+        margin: 10px 0;
+        font-size: 0;
+        &-cell {
+          display: inline-block;
+          width: 50%;
+        }
+      }
+      &--digit {
+        height: 20px;
+        line-height: 20px;
+        font-size: 15px;
+        color: #000;
+        background: url(../../../assets/images/index/number-bg.png) no-repeat
+          left center;
+        background-size: 13px;
+        padding-left: 17px;
+        white-space:nowrap;
+      }
+      &--title {
+        height: 20px;
+        line-height: 20px;
+        font-size: $FSize14;
+        color: $digitColor;
+        padding-left: 17px;
+        white-space:nowrap;
+      }
+    }
+  }
+  .floatpl-refresh-wrap {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 12px;
+    bottom: 25%;
+    width: 25px;
+    height: 25px;
+    border-radius: 50% 50%;
+  }
+  .floatpl-refresh {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    border-radius: 50% 50%;
+    background: url(../../../assets/images/index/Refresh.png) no-repeat center center;
+    background-color: transparent;
+    background-size: 55%;
+    // &::after {
+    //   color: rgba(0, 0, 0, 0);
+    //   content: '.';
+    //   width: 43px;
+    //   height: 43px;
+    //   background: url(../../assets/images/index/Refresh.png) no-repeat center center;
+    // }
+    &.refreshing {
+      animation: refresh 1.5s infinite ease-in-out;
+    }
+  }
+  @keyframes refresh {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
