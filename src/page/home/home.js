@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import UserHeader from './user-header/user-header'
 import MenuBox from './menu-box/menu-box'
 import UserPannel from './user-pannel/user-pannel'
+import HistoryList from './history-list/history-list'
 
 import menuList from './menu-list-data'
 import './home.scss'
@@ -18,6 +19,7 @@ class Home extends Component {
         <UserHeader />
         <MenuBox menuItemList={ menuList } />
         <UserPannel />
+        <HistoryList />
       </div>
     );
   }

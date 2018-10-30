@@ -1,0 +1,85 @@
+.history-now-time-out {
+  width: 80%;
+  height: 25px;
+  margin: 5px auto 0;
+}
+.history-now-time {
+  width: 100%;
+  height: 25px;
+  line-height: 25px;
+  color: #777;
+  text-align: left;
+  padding-left: 22px;
+  background: url(../../../assets/images/index/time-bg.png) no-repeat center left;
+  background-size: 15px 13.5px;
+}
+.history-list-part {
+  padding: 18px 0 35px;
+  background: #fff;
+  box-shadow: 0px 12px 24px 0px rgba(17, 17, 17, 0.22);
+  border-radius: 25px;
+  margin: 18px auto 25px;
+  position: relative;
+  &-out {
+    position: relative;
+  }
+  &-refresh {
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+    width: 25px;
+    height: 25px;
+    border-radius: 50% 50%;
+    background: url(../../../assets/images/index/Refresh.png) no-repeat center center;
+    background-color: transparent;
+    background-size: 55%;
+    &.refreshing {
+      animation: refresh 1.5s infinite ease-in-out;
+    }
+  }
+}
+.tab-list {
+  display: flex;
+  width: 100%;
+  max-width: 387px;
+  background: #eee;
+  border-radius: 15px;
+  margin: 0 auto;
+  &-out {
+    padding: 0 15px;
+    margin: 0 auto;
+  }
+  .tab-cell {
+    flex-grow: 1;
+    height: 33px;
+    line-height: 33px;
+    font-size: 13px;
+    color: #333;
+    text-align: center;
+    background-color: transparent;
+    border-radius: 19px;
+  }
+  .tab-cell-active {
+    background-image: linear-gradient( 90deg, rgb(236,187,31) 0%, rgb(255,228,78) 100%);
+    background-image: -moz-linear-gradient( 90deg, rgb(236,187,31) 0%, rgb(255,228,78) 100%);
+    background-image: -webkit-linear-gradient( 90deg, rgb(236,187,31) 0%, rgb(255,228,78) 100%);
+    background-image: -ms-linear-gradient( 90deg, rgb(236,187,31) 0%, rgb(255,228,78) 100%);
+  }
+}
+.history-list-contain-out {
+  position: relative;
+}
+.error-page {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 18px;
+  z-index: 5;
+  position: absolute;
+  top: 0;
+  left: 0;
+  background: #fff;
+  padding: 15px;
+}

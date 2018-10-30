@@ -13,7 +13,6 @@ function formateNum({num, isSeparate = true, decPlace, isSymbol}) {
   let stringNum = typeof num === 'number' ? num : Number(num)
   // 判断是否是数字
   if (isNaN(stringNum)) {
-    // console.log(stringNum)
     console.log('Error: 数字格式错误！')
     return 0
   }
