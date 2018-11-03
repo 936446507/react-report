@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
 import { MessageBox  } from 'element-react'
-import qs from 'qs'
 
-import { http } from '../../api/http'
-import * as api from '../../api/api'
+import * as request from './request'
 
 import './login.scss'
 
@@ -120,10 +118,8 @@ class Login extends Component {
         isSubmit: true
       })
       let { username, password } = this.state
-      http.post(
-        api.login,
-        qs.stringify({ username, password })
-      )
+
+      request.login({ username, password })
       .then(e => {
         this.setState({
           isSubmit: false
