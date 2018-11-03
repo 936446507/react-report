@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import formateNum from '../../../utils/formate-num'
 import integerNum from '../../../utils/integer-num'
-import './user-pannel.scss'
+// import './user-pannel.scss'
 
 class UserPannel extends Component {
   static propTypes = {

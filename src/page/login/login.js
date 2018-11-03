@@ -2,7 +2,6 @@ import React, { Component } from 'react'
 import { MessageBox  } from 'element-react'
 
 import * as request from './request'
-
 import './login.scss'
 
 class Login extends Component {
@@ -33,7 +32,7 @@ class Login extends Component {
                         placeholder="请输入您的用户名"
                         name="username"
                         value={ this.state.username }
-                        onChange={this.handleInput}
+                        onChange={ this.handleInput }
                         onKeyUp={ this.keyUpHandle } />
                     </span>
                   </div>

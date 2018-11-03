@@ -6,7 +6,7 @@ import UserPannel from './user-pannel/user-pannel'
 import HistoryList from './history-list/history-list'
 
 import menuList from './menu-list-data'
-import './home.scss'
+import './style.scss'
 
 class Home extends Component {
   constructor(props) {

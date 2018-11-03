@@ -4,13 +4,19 @@ import PropTypes from 'prop-types'
 import { Loading } from 'element-react'
 import HistoryDataList from './history-data-list'
 
-import './history-list-item.scss'
+// import './history-list-item.scss'
 import formateDate from '../../../utils/formate-date'
 
 class HistroyListItem extends Component {
   static propTypes = {
     listMap: PropTypes.object.isRequired,
-    day: PropTypes.string.isRequired
+    day: PropTypes.string,
+    isDetails: PropTypes.bool,
+    animateSpeed: PropTypes.number
+  }
+  static defaultProps = {
+    isDetails: false,
+    animateSpeed: 1.2
   }
   constructor(props) {
     super(props)

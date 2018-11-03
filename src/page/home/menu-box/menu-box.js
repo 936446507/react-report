@@ -2,7 +2,7 @@ import React, { Component } from'react'
 import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import './menu-box.scss'
+// import './menu-box.scss'
 
 class MenuBox extends Component {
   static propTypes = {

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import { Switch } from 'element-react'
 
-import HistorListItem from './history-list-item'
+import HistoryListItem from './history-list-item'
 
-import './history-list.scss'
+// import './history-list.scss'
 
 class HistroyList extends Component {
   constructor(props) {
@@ -29,11 +29,31 @@ class HistroyList extends Component {
           }
         })
         return listMap
+      })(),
+      listMapLast: (() => {
+        const listMap = {}
+        ;['yesterday', 'lastweek', 'lastmonth'].forEach(key => {
+          listMap[key] = {
+            // #init, #loading, #timeout, #nodata, #finished
+            isLoading: 'init',
+            cancelSource: null,
+            data: (_ => ({
+              deposit: 0,
+              gold: 0,
+              netDeposit: 0,
+              profitloss: 0,
+              siviler: 0,
+              turnover: 0,
+              withdr: 0
+            }))()
+          }
+        })
+        return listMap
       })()
     }
   }
   render() {
-    const { listMapNow } = this.state
+    const { listMapNow, isDetails, listMapLast } = this.state
     return (
       <div className="history">
         <div className="historyLists">
@@ -42,7 +62,7 @@ class HistroyList extends Component {
             <div className="details-button">
               <span>详情</span>
               <Switch
-                value={ this.state.isDetails }
+                value={ isDetails }
                 onText=""
                 offText=""
                 onColor="#f2c127"
@@ -52,9 +72,14 @@ class HistroyList extends Component {
                 onChange={(value)=>{this.setState({isDetails: value})}} />
             </div>
           </div>
-          <HistorListItem
+          <HistoryListItem
             day="today"
+            isDetails={ isDetails }
             listMap={ listMapNow }/>
+          <HistoryListItem
+            day="yesterday"
+            isDetails={ isDetails }
+            listMap={ listMapLast } />
         </div>
       </div>
     )
