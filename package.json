@@ -7,11 +7,15 @@
     "element-react": "^1.4.21",
     "element-theme-default": "^1.4.13",
     "normalize.css": "^8.0.0",
+    "prop-types": "^15.6.1",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-redux": "^5.0.7",
+    "redux": "^3.5.2",
     "react-router": "^4.3.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "1.1.5"
+    "react-scripts": "1.1.5",
+    "redux-thunk": "^2.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -22,6 +26,7 @@
   "devDependencies": {
     "babel-plugin-module-resolver": "^3.1.1",
     "node-sass": "^4.9.3",
+    "redux-logger": "^3.0.6",
     "sass-loader": "^7.1.0"
   },
   "proxy": {

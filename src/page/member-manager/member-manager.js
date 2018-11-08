@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
+
+import { fetchUserInfo } from '../../actions'
 
 class MemberManager extends Component {
   constructor(props) {
@@ -12,6 +15,16 @@ class MemberManager extends Component {
       </div>
     );
   }
+
+  componentDidMount() {
+    const { dispatch, userInfo } = this.props
+    dispatch(fetchUserInfo(userInfo))
+  }
 }
 
-export default MemberManager
+const mapStateToProps = state => {
+  const { userInfo } = state
+  return { userInfo }
+}
+
+export default connect(mapStateToProps)(MemberManager)

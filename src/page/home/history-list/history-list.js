@@ -84,6 +84,9 @@ class HistroyList extends Component {
       </div>
     )
   }
+
+  componentDidMount() {
+  }
 }
 
 export default HistroyList

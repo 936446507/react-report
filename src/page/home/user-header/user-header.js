@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 
-// import './user-header.scss'
-import * as api from '../../../api/api'
-import http from '../../../api/http'
+import * as request from '../request'
 
 class UserHeader extends Component {
   constructor(props) {
@@ -38,8 +36,8 @@ class UserHeader extends Component {
     this.setState({
       isLogoutting: true
     })
-    http
-      .get(api.logout)
+
+    request.logout()
       .then(e => {
         this.setState({
           isLogoutting: false
