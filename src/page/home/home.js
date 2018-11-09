@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import UserHeader from './user-header/user-header'
+import UserHeader from '../../containers/user-header'
 import MenuBox from './menu-box/menu-box'
 import UserPannel from './user-pannel/user-pannel'
 import HistoryList from './history-list/history-list'
@@ -20,7 +20,7 @@ class Home extends Component {
         <UserPannel />
         <HistoryList />
       </div>
-    );
+    )
   }
 }
 

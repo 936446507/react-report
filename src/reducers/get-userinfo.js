@@ -8,7 +8,6 @@ const initState = {
   data: {}
 }
 const getData = (state = initState, action) => {
-  console.log('getData', state, action)
   switch (action.type) {
     case REQUEST_USERINFO:
       return {

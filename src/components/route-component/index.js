@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
+import { connect } from 'react-redux'
 
+import * as userInfoActions from '../../actions/get-userinfo'
 import { setDocTitle } from '../../utils/routes/index'
 
 class RouteComponent extends Component {
@@ -10,7 +12,13 @@ class RouteComponent extends Component {
     this.state = {}
 
     this.setDocTitle = this.setDocTitle.bind(this)
+    this.getUserInfo = this.getUserInfo.bind(this)
     this.enterRouteHandle = this.enterRouteHandle.bind(this)
+  }
+
+  getUserInfo() {
+    const { userInfo, dispatch } = this.props
+    dispatch(userInfoActions.fetchUserInfo(userInfo))
   }
   setDocTitle() {
     let docTitle = this.props.route.meta.title || window.baseName
@@ -18,6 +26,7 @@ class RouteComponent extends Component {
   }
   enterRouteHandle() {
     this.setDocTitle()
+    this.getUserInfo()
   }
   render() {
     let route = this.props.route
@@ -31,9 +40,8 @@ class RouteComponent extends Component {
             onEnter={ this.enterRouteHandle() } />
         )}
         exact={route.path === '/'} />
-
     )
   }
 }
 
-export default RouteComponent
+export default connect()(RouteComponent)
