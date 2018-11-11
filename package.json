@@ -31,7 +31,7 @@
   },
   "proxy": {
     "/api": {
-      "target": "https://demo-report-app.goldexhk.com/",
+      "target": "https://demo-report-app.hkctg.com.hk/",
       "changeOrigin": true,
       "pathRewrite": {
         "^/api": ""

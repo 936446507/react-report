@@ -22,6 +22,7 @@ axios.interceptors.response.use(function (response) {
     response.data &&
     (response.data.state === 'nologin' || response.data.state === 'userEnable')
   ) {
+    window.location.href = window.location.origin + '/login'
     // const userEnable = response.data.state === 'userEnable'
     // const msg = response.data.msg || response.data.state
     // store.commit(types.SET_IS_LOGIN, {

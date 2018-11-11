@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { MessageBox  } from 'element-react'
 
-import * as request from './request'
+import * as request from '../../request/login'
 import './login.scss'
 
 class Login extends Component {
@@ -112,6 +112,7 @@ class Login extends Component {
   }
 
   submit() {
+    if (this.state.isSubmit) return
     if (this.checkLoginInfo()) {
       this.setState({
         isSubmit: true
@@ -124,7 +125,7 @@ class Login extends Component {
           isSubmit: false
         })
         if (e.state === 'ok') {
-          this.props.history.push('/')
+          this.props.history.push('/memberManager')
         } else {
           MessageBox.alert(e.msg, '提示')
         }

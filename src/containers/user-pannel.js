@@ -2,15 +2,16 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
-import UserHeader from '../page/home/user-header/user-header'
+import UserPannel from '../page/home/user-pannel/user-pannel'
 import * as userInfoActions from '../actions/get-userinfo'
 
-class UserHeaderContainer extends Component {
+class UserPannelContainer extends Component {
   render() {
     const { userInfo, dispatch } = this.props
     return (
-      <UserHeader
+      <UserPannel
         userInfo={ userInfo.data }
+        isFetching={ userInfo.isFetching }
         { ...bindActionCreators(userInfoActions, dispatch) } />
     )
   }
@@ -21,4 +22,4 @@ const mapStateToProps = state => {
   return { userInfo }
 }
 
-export default connect(mapStateToProps)(UserHeaderContainer)
+export default connect(mapStateToProps)(UserPannelContainer)

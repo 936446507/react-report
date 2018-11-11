@@ -1,23 +1,27 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
+import { showMessageBox } from '../../../utils/message'
 import * as request from '../request'
 
 class UserHeader extends Component {
+  static propTypes = {
+    userInfo: PropTypes.shape({
+      username: PropTypes.string,
+      agentNumber: PropTypes.string
+    }).isRequired
+  }
   constructor(props) {
     super(props)
     this.state = {
-      isLogoutting: false,
-      userInfo: {
-        username: '123',
-        agentNumber: 123
-      }
+      isLogoutting: false
     }
 
     this.logout = this.logout.bind(this)
   }
 
   render() {
-    const { userInfo } = this.state
+    const { userInfo } = this.props
     return (
       <div className="head">
         <div className="user-info">
@@ -42,16 +46,9 @@ class UserHeader extends Component {
         this.setState({
           isLogoutting: false
         })
-        if (e.state === 'ok') {
-          // todo deal success
-          // this.$mbDialogs.show({
-          //   content: '正在跳转...'
-          // })
-        } else {
-          // this.$mbDialogs.show({
-          //   content: e.msg || '退出失败，请重试'
-          // })
-        }
+        const msg = e.state === 'ok' ? '正在跳转...' : e.msg || '退出失败，请重试'
+        showMessageBox({ message: msg })
+        window.location.href = window.location.origin + '/login'
       })
       .catch(err => {
         this.setState({

@@ -1,5 +1,6 @@
 import { Message } from 'element-react'
-import { checkDataType } from '../check-data-type/index'
+import { MessageBox } from 'element-react'
+import { checkDataType } from './check-data-type'
 
 export function showMessage({
   message = '',
@@ -7,7 +8,7 @@ export function showMessage({
   duration = 3000,
   isShowClose = false,
   closeCB
-  }) {
+}) {
     let params = {
       message,
       type,
@@ -22,4 +23,21 @@ export function showMessage({
       params.onClose = closeCB
     }
     Message(params)
+}
+
+export function showMessageBox({
+  title = '提示',
+  message,
+  confirmCb,
+  cancelCb
+}) {
+  MessageBox.msgbox({
+    title,
+    message,
+    showCancelButton: !!cancelCb
+  }).then(() => {
+    confirmCb && confirmCb()
+  }).catch(() => {
+    cancelCb && cancelCb()
+  })
 }
