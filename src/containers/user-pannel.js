@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import UserPannel from '../page/home/user-pannel/user-pannel'
-import * as userInfoActions from '../actions/get-userinfo'
+import * as userInfoActions from '../redux/actions/get-userinfo'
 
 class UserPannelContainer extends Component {
   render() {

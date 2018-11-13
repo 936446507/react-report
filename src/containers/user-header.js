@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux'
 import { connect } from 'react-redux'
 
 import UserHeader from '../page/home/user-header/user-header'
-import * as userInfoActions from '../actions/get-userinfo'
+import * as userInfoActions from '../redux/actions/get-userinfo'
 
 class UserHeaderContainer extends Component {
   render() {

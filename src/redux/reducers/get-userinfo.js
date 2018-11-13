@@ -3,7 +3,7 @@ import {
   REQUEST_USERINFO
 } from '../constants/action-typs'
 
-import creatUserInfo from '../config/user-info-config'
+import creatUserInfo from '../../config/user-info-config'
 
 const initState = {
   isFetching: false,

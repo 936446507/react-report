@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 
-import * as userInfoActions from '../../actions/get-userinfo'
+import * as userInfoActions from '../../redux/actions/get-userinfo'
 import { setDocTitle } from '../../utils/routes/index'
 
 class RouteComponent extends Component {

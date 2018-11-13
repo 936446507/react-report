@@ -9,7 +9,7 @@ import './assets/scss/index.scss'
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-import configureStore from './store/configure-store'
+import configureStore from './redux/store/configure-store'
 
 const store = configureStore()
 

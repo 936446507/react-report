@@ -125,7 +125,8 @@ class Login extends Component {
           isSubmit: false
         })
         if (e.state === 'ok') {
-          this.props.history.push('/')
+          // this.props.history.push('/')
+          window.location.href = window.location.origin + '/'
         } else {
           MessageBox.alert(e.msg, '提示')
         }

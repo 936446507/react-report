@@ -17,7 +17,9 @@ class App extends Component {
             ))
           }
           {
-            process.env.NODE_ENV !== 'production' && <ReduxDevTools />
+            process.env.NODE_ENV !== 'production' &&
+            window.isShowReduxDevTools &&
+            <ReduxDevTools />
           }
         </div>
       </Router>
