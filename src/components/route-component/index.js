@@ -18,7 +18,7 @@ class RouteComponent extends Component {
 
   getUserInfo() {
     const { userInfo, dispatch, route } = this.props
-    route.meta.isRequiedLogin && dispatch(userInfoActions.fetchUserInfo(userInfo))
+    route.name === 'home' && dispatch(userInfoActions.fetchUserInfo(userInfo))
   }
   setDocTitle() {
     let docTitle = this.props.route.meta.title || window.baseName
@@ -26,7 +26,7 @@ class RouteComponent extends Component {
   }
   enterRouteHandle() {
     this.setDocTitle()
-    this.getUserInfo()
+    // this.getUserInfo()
   }
   render() {
     let route = this.props.route

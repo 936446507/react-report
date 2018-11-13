@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux'
 
 import TheButton from '../../components/button/the-button'
 import UserHeader from '../../containers/user-header'
@@ -6,6 +7,7 @@ import MenuBox from './menu-box/menu-box'
 import UserPannel from '../../containers/user-pannel'
 import HistoryList from './history-list/history-list'
 
+import * as userInfoActions from '../../actions/get-userinfo'
 import menuList from './menu-list-data'
 import './style.scss'
 
@@ -32,6 +34,15 @@ class Home extends Component {
       </div>
     )
   }
+  componentWillMount() {
+    console.log(this.props)
+    let { dispatch, userInfo } = this.props
+    dispatch(userInfoActions.fetchUserInfo(userInfo))
+  }
+}
+const mapStateToProps = state => {
+  const { userInfo }  = state
+  return { userInfo }
 }
 
-export default Home
+export default connect(mapStateToProps)(Home)
