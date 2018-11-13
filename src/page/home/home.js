@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from "react-router"
 import { connect } from 'react-redux'
 
 import TheButton from '../../components/button/the-button'
@@ -45,4 +46,4 @@ const mapStateToProps = state => {
   return { userInfo }
 }
 
-export default connect(mapStateToProps)(Home)
+export default withRouter(connect(mapStateToProps)(Home))

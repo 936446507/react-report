@@ -125,7 +125,7 @@ class Login extends Component {
           isSubmit: false
         })
         if (e.state === 'ok') {
-          this.props.history.push('/memberManager')
+          this.props.history.push('/')
         } else {
           MessageBox.alert(e.msg, '提示')
         }
