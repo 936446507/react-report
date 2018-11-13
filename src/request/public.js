@@ -1,7 +1,7 @@
 import { http } from '../api/http'
 import * as api from '../api/api'
 
-export const getUserinfo = () => {
+export const getUserInfo = () => {
   return http.get(api.getUserInfo)
 }
 

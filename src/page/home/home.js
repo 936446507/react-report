@@ -17,6 +17,8 @@ class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {}
+
+    this.getUserInfo = this.getUserInfo.bind(this)
   }
   render() {
     return (
@@ -31,15 +33,20 @@ class Home extends Component {
           <div className="user-info-reload-btn">
             <TheButton type="small">重新加载</TheButton>
           </div>
-          </div>
+        </div>
+        <button onClick={ this.getUserInfo }>加载</button>
         <HistoryList />
       </div>
     )
   }
-  componentWillMount() {
-    console.log(this.props)
+
+  getUserInfo() {
     let { dispatch, userInfo } = this.props
     dispatch(userInfoActions.fetchUserInfo(userInfo))
+  }
+
+  componentWillMount() {
+    this.getUserInfo()
   }
 }
 

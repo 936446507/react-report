@@ -3,25 +3,30 @@ import {
   RECEIVE_USERINFO
 } from '../constants/action-typs'
 
-import { getUserinfo } from '../../request/public'
+import { getUserInfo } from '../../request/public'
 
-export const requestUserInfo = data => ({
+export const requestUserInfo = info => ({
   type: REQUEST_USERINFO,
   state: '',
-  data
+  data: info
 })
 
-export const reveiveUserInfo = (res) => {
+export const reveiveUserInfo = info => {
   return {
     type: RECEIVE_USERINFO,
-    state: res.state,
-    data: res.data
+    state: info.state,
+    data: info.data
   }
 }
 
 export const fetchUserInfo = data => dispatch => {
   dispatch(requestUserInfo(data))
-  return getUserinfo()
-            .then(res => res)
-            .then(res => dispatch(reveiveUserInfo(res)))
+  return (
+    getUserInfo()
+      .then(res => dispatch(reveiveUserInfo(res)))
+      .catch(err => {
+        dispatch(reveiveUserInfo({ state: 'error', data: {} }))
+        throw err
+      })
+  )
 }

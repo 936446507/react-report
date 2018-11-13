@@ -29,8 +29,12 @@ export const reveivePermission = (res) => {
 
 export const fetchPermission = data => dispatch => {
   dispatch(requestUserInfo(data))
-  return getPermission()
-            .then(res => res)
-            .then(res => dispatch(reveivePermission(res)))
-            .catch(err => { throw err })
+  return (
+    getPermission()
+      .then(res => dispatch(reveivePermission(res)))
+      .catch(err => {
+        dispatch(reveivePermission({ state: 'error', data: {} }))
+        throw err
+      })
+  )
 }
