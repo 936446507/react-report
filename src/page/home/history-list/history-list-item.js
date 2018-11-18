@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import { Loading } from 'element-react'
 import HistoryDataList from './history-data-list'
 
-// import './history-list-item.scss'
 import formateDate from '../../../utils/formate-date'
+import { dateConfig } from '../../../config'
 
 class HistroyListItem extends Component {
   static propTypes = {
@@ -43,7 +43,7 @@ class HistroyListItem extends Component {
                 ((obj) => {
                   let arr = []
                   for (let key in obj) {
-                    let keyVal = this.formateDay(key)
+                    let keyVal = dateConfig[key].chinese
                     arr.push((
                       <div
                         className={ dayType === key ? 'tab-cell tab-cell-active' : 'tab-cell'}
@@ -79,25 +79,6 @@ class HistroyListItem extends Component {
         <div className="history-list-part-refresh"></div>
       </div>
     )
-  }
-
-  formateDay(day) {
-    switch(day) {
-      case 'today':
-        return '今日'
-      case 'yesterday':
-        return '昨日'
-      case 'week':
-        return '本周'
-      case 'month':
-        return '本月'
-      case 'lastweek':
-        return '上周'
-      case 'lastmonth':
-        return '上月'
-      default:
-        return '今日'
-    }
   }
 }
 

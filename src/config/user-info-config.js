@@ -21,6 +21,7 @@ const userInfoConfig = {
   phone: 'phone',
   id: 'AgentID'       // 代理id
 }
+
 export const creatDefaultUserinfo = () => {
   const data = {}
   for (let key in userInfoConfig) {
@@ -28,7 +29,8 @@ export const creatDefaultUserinfo = () => {
   }
   return data
 }
-export default function creatUserInfo(originData) {
+
+export const creatUserInfo = (originData) => {
   let data = creatDefaultUserinfo()
   if (!originData) {
     return data
@@ -38,3 +40,5 @@ export default function creatUserInfo(originData) {
   }
   return data
 }
+
+export default creatUserInfo

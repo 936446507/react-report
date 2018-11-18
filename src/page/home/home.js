@@ -10,7 +10,7 @@ import UserPannel from '../../containers/user-pannel'
 import HistoryList from './history-list/history-list'
 
 import * as userInfoActions from '../../redux/actions/get-userinfo'
-import menuList from '../../config/menu-list-config'
+import { menuListConfig } from '../../config'
 import './style.scss'
 
 class Home extends Component {
@@ -24,7 +24,7 @@ class Home extends Component {
     return (
       <div className="home-page">
         <UserHeader />
-        <MenuList menuItemList={ menuList } />
+        <MenuList menuItemList={ menuListConfig } />
         <UserPannel />
         <div className="user-info-error-wrap" style={{ display:  'none'}}>
           <div className="user-info-error-tip">

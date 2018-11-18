@@ -26,15 +26,7 @@
       You need to enable JavaScript to run this app.
     </noscript>
     <div id="root"></div>
-    <script>
-    // 加载base.js
-    const baseUrl = window.location.origin + '/base.js'
-    const scriptDom = document.createElement('script')
-    const bodyDom = document.documentElement || document.body
-    scriptDom.type = 'text/javascript'
-    scriptDom.src = baseUrl
-    bodyDom.appendChild(scriptDom)
-    </script>
+    <script src="http://localhost:3000/base.js"></script>
     <script>
     window.isShowReduxDevTools = false
     </script>

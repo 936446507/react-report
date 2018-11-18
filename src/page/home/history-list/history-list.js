@@ -3,7 +3,9 @@ import { Switch } from 'element-react'
 
 import HistoryListItem from './history-list-item'
 
-// import './history-list.scss'
+import { getHistoryData } from '../../../request/home'
+import { getCancelSource } from '../../../api/http'
+import { dateConfig, define } from '../../../config'
 
 class HistroyList extends Component {
   constructor(props) {
@@ -51,6 +53,8 @@ class HistroyList extends Component {
         return listMap
       })()
     }
+
+    this.getHistoryData = this.getHistoryData.bind(this)
   }
   render() {
     const { listMapNow, isDetails, listMapLast } = this.state
@@ -69,7 +73,7 @@ class HistroyList extends Component {
                 offColor="#ccc"
                 onValue={ true }
                 offValue={ false }
-                onChange={(value)=>{this.setState({isDetails: value})}} />
+                onChange={ value => {this.setState({isDetails: value})} } />
             </div>
           </div>
           <HistoryListItem
@@ -85,6 +89,24 @@ class HistroyList extends Component {
     )
   }
 
+  getHistoryData(type, refresh) {
+    if (!type) return
+    const { listMapNow, listMapLast } = this.state
+    const isNow = dateConfig[type].isNow || false
+    let listMap = isNow ? listMapNow : listMapLast
+    let item
+
+    Object.keys(listMap).forEach(key => {
+      // 取消此次请求的以外请求
+      if (key !== type && listMap[key].cancelSource) {
+
+      }
+    })
+
+    const params = { dataType: type }
+    const source = getCancelSource()
+    getHistoryData(params, source.cancelToken)
+  }
   componentDidMount() {
   }
 }

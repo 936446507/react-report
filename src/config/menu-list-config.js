@@ -1,4 +1,4 @@
-export const menuList = [
+export const menuListConfig = [
   {
     parentRouteName: 'memberManager',
     menuRouteName: 'agentInfo',
@@ -84,4 +84,4 @@ export const menuList = [
   }
 ]
 
-export default menuList
+export default menuListConfig
