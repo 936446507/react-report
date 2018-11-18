@@ -1,10 +1,7 @@
 import React, { Component } from'react'
-import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-// import './menu-box.scss'
-
-class MenuBox extends Component {
+class MenuList extends Component {
   static propTypes = {
     menuItemList: PropTypes.array
   }
@@ -12,26 +9,28 @@ class MenuBox extends Component {
     super(props)
     this.state = {}
   }
+
   render() {
     const boxItemWidth = 75
-    const menuItemList = this.props.menuItemList
+    const menuItemList = this.props.menuItemList.filter(item => item.isShow)
     const boxWidth = menuItemList.length * boxItemWidth
-    const permissionList = menuItemList
+    const locationOrigin = window.location.origin
+
     return (
       <div className="menu-box-out">
         <div
           className="menu-box"
-          style={{ width: boxWidth + 'px'}}>
+          style={{ width: boxWidth + 'px' }}>
           {
-            permissionList.map((item, index) => (
+            menuItemList.map((item, index) => (
               <div
                 className="menu-box--content"
                 key={ index }>
-                <NavLink
-                  className={ 'menu-box--item menu-box--' + item.menuRouteName }
-                  to="/">
+                <a
+                  className={ `menu-box--item menu-box--${item.menuRouteName}` }
+                  href={ `${locationOrigin}/${item.parentRouteName}/${item.menuRouteName}` }>
                   <span>{ item.menuText }</span>
-                </NavLink>
+                </a>
               </div>
             ))
           }
@@ -41,4 +40,4 @@ class MenuBox extends Component {
   }
 }
 
-export default MenuBox
+export default MenuList

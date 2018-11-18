@@ -1,5 +1,6 @@
 import axios from 'axios'
 import errorHandeler from './error.js'
+import { routePush } from '../utils/routes'
 
 axios.defaults.withCredentials = true
 axios.defaults.timeout = 90000
@@ -22,7 +23,8 @@ axios.interceptors.response.use(function (response) {
     response.data &&
     (response.data.state === 'nologin' || response.data.state === 'userEnable')
   ) {
-    window.location.href = window.location.origin + '/login'
+    // window.location.href = window.location.origin + '/login'
+    routePush({ name: 'login' })
     // const userEnable = response.data.state === 'userEnable'
     // const msg = response.data.msg || response.data.state
     // store.commit(types.SET_IS_LOGIN, {

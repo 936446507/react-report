@@ -2,7 +2,7 @@ import MemberManager from './member-manager'
 
 export const routes = [
   {
-    path: '/memberManager',
+    path: '/memberManager/agentInfo',
     name: 'memberManager',
     component: MemberManager,
     meta: {

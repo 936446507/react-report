@@ -5,7 +5,7 @@ import { compose } from 'redux'
 
 import TheButton from '../../components/button/the-button'
 import UserHeader from '../../containers/user-header'
-import MenuBox from './menu-box/menu-box'
+import MenuList from './menu-box/menu-box'
 import UserPannel from '../../containers/user-pannel'
 import HistoryList from './history-list/history-list'
 
@@ -24,7 +24,7 @@ class Home extends Component {
     return (
       <div className="home-page">
         <UserHeader />
-        <MenuBox menuItemList={ menuList } />
+        <MenuList menuItemList={ menuList } />
         <UserPannel />
         <div className="user-info-error-wrap" style={{ display:  'none'}}>
           <div className="user-info-error-tip">
