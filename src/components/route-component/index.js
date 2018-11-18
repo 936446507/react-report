@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 
 import * as userInfoActions from '../../redux/actions/get-userinfo'
 import { setDocTitle } from '../../utils/routes/index'
+import { scrollToUp } from '../../utils/scroll-to-up'
 
 class RouteComponent extends Component {
   constructor(props) {
@@ -12,21 +13,26 @@ class RouteComponent extends Component {
     this.state = {}
 
     this.setDocTitle = this.setDocTitle.bind(this)
+    this.scrollToUp = this.scrollToUp.bind(this)
     this.getUserInfo = this.getUserInfo.bind(this)
     this.enterRouteHandle = this.enterRouteHandle.bind(this)
   }
 
   getUserInfo() {
-    const { userInfo, dispatch, route } = this.props
-    route.name === 'home' && dispatch(userInfoActions.fetchUserInfo(userInfo))
+    const { userInfo, dispatch } = this.props
+    dispatch(userInfoActions.fetchUserInfo(userInfo))
   }
   setDocTitle() {
     let docTitle = this.props.route.meta.title || window.baseName
     setDocTitle(docTitle)
   }
+  scrollToUp() {
+    this.props.route.meta.isScrollTop && scrollToUp()
+  }
   enterRouteHandle() {
+    this.scrollToUp()
     this.setDocTitle()
-    // this.getUserInfo()
+    // this.props.route.name === 'home' && this.getUserInfo()
   }
   render() {
     let route = this.props.route

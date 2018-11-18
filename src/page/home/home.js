@@ -10,7 +10,7 @@ import UserPannel from '../../containers/user-pannel'
 import HistoryList from './history-list/history-list'
 
 import * as userInfoActions from '../../redux/actions/get-userinfo'
-import menuList from './menu-list-data'
+import menuList from '../../config/user-info-config'
 import './style.scss'
 
 class Home extends Component {
@@ -34,7 +34,6 @@ class Home extends Component {
             <TheButton type="small">重新加载</TheButton>
           </div>
         </div>
-        <button onClick={ this.getUserInfo }>加载</button>
         <HistoryList />
       </div>
     )

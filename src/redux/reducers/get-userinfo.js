@@ -8,7 +8,7 @@ import creatUserInfo from '../../config/user-info-config'
 const initState = {
   isFetching: false,
   state: '',
-  data: {}
+  data: creatUserInfo()
 }
 
 const getUserInfo = (state = initState, action) => {
@@ -18,7 +18,7 @@ const getUserInfo = (state = initState, action) => {
         ...state,
         isFetching: true,
         state: '',
-        data: {}
+        data: creatUserInfo()
       }
       case RECEIVE_USERINFO:
         return {
@@ -32,7 +32,7 @@ const getUserInfo = (state = initState, action) => {
   }
 }
 
-export const userInfo = (state = {}, action) => {
+export const userInfo = (state = initState, action) => {
   switch (action.type) {
     case REQUEST_USERINFO:
     case RECEIVE_USERINFO:

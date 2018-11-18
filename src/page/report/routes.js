@@ -8,6 +8,7 @@ export const routes = [
     component: Report,
     meta: {
       title: window.baseName + '-报表',
+      isScrollTop: true,
       isRequiedLogin: true
     },
     children: [
@@ -17,6 +18,7 @@ export const routes = [
         component: MonthlyReport,
         meta: {
           title: window.baseName + '-月结报表',
+          isScrollTop: true,
           isRequiedLogin: true
         }
       }

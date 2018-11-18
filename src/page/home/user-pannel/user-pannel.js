@@ -12,10 +12,10 @@ class UserPannel extends Component {
     isRefreshing: PropTypes.bool,
     isFetching: PropTypes.bool,
     userInfo: PropTypes.shape({
-      balance: PropTypes.number,
-      equity: PropTypes.number,
-      formalUserSum: PropTypes.number,
-      userSum: PropTypes.number
+      balance: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
+      equity: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
+      formalUserSum: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
+      userSum: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ])
     }).isRequired,
     fetchUserInfo: PropTypes.func.isRequired
   }
@@ -47,35 +47,35 @@ class UserPannel extends Component {
         <Loading loading={ isFetching }>
           <div className="user-pannel">
             <div className="user-floatpl">
-            <div className="user-floatpl--digit">
-              <p className={ digit === '待结算金额' ? 'bold is-float' : 'bold' }> { digit }</p>
-              <div className="floatpl-refresh-wrap" onClick={ fetchUserInfo }>
-                <span className="floatpl-refresh"></span>
+              <div className="user-floatpl--digit">
+                <p className={ digit === '待结算金额' ? 'bold is-float' : 'bold' }> { digit }</p>
+                <div className="floatpl-refresh-wrap" onClick={ fetchUserInfo }>
+                  <span className="floatpl-refresh"></span>
+                </div>
               </div>
-            </div>
-            <div className="user-floatpl--title">{ pannelTitle }</div>
-            </div>
-            <div className="user-dashboard">
-            <div className="user-dashboard--item">
-              <div className="user-dashboard--item-cell">
-                <div className="user-dashboard--digit">{ balance }</div>
-                <div className="user-dashboard--title">可用金额</div>
+              <div className="user-floatpl--title">{ pannelTitle }</div>
               </div>
-              <div className="user-dashboard--item-cell">
-                <div className="user-dashboard--digit">{ equity }</div>
-                <div className="user-dashboard--title">净值</div>
+              <div className="user-dashboard">
+              <div className="user-dashboard--item">
+                <div className="user-dashboard--item-cell">
+                  <div className="user-dashboard--digit">{ balance }</div>
+                  <div className="user-dashboard--title">可用金额</div>
+                </div>
+                <div className="user-dashboard--item-cell">
+                  <div className="user-dashboard--digit">{ equity }</div>
+                  <div className="user-dashboard--title">净值</div>
+                </div>
               </div>
-            </div>
-            <div className="user-dashboard--item">
-              <div className="user-dashboard--item-cell">
-                <div className="user-dashboard--digit">{ agentSum }</div>
-                <div className="user-dashboard--title">总代理数</div>
+              <div className="user-dashboard--item">
+                <div className="user-dashboard--item-cell">
+                  <div className="user-dashboard--digit">{ agentSum }</div>
+                  <div className="user-dashboard--title">总代理数</div>
+                </div>
+                <div className="user-dashboard--item-cell">
+                  <div className="user-dashboard--digit">{ formalUserSum }/{ userSum }</div>
+                  <div className="user-dashboard--title">正式用户/总用户数 </div>
+                </div>
               </div>
-              <div className="user-dashboard--item-cell">
-                <div className="user-dashboard--digit">{ formalUserSum }/{ userSum }</div>
-                <div className="user-dashboard--title">正式用户/总用户数 </div>
-              </div>
-            </div>
             </div>
           </div>
         </Loading>

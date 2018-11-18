@@ -7,6 +7,7 @@ export const routes = [
     component: Login,
     meta: {
       title: window.baseName + '-登录',
+      isScrollTop: true,
       isRequiedLogin: false
     }
   }

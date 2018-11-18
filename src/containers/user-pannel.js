@@ -17,8 +17,27 @@ class UserPannelContainer extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  const { userInfo }  = state
+const mapStateToProps = stateData => {
+  const { userInfo }  = stateData
+  // const {
+  //   isFetching,
+  //   state,
+  //   data
+  // } = userInfo || {
+  //   isFetching: true,
+  //   state: '',
+  //   data: {
+  //     balance: 0,
+  //     equity: 0,
+  //     formalUserSum: 0,
+  //     userSum: 0
+  //   }
+  // }
+  // return {
+  //   isFetching,
+  //   state,
+  //   data
+  // }
   return { userInfo }
 }
 

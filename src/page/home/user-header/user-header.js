@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import { showMessageBox } from '../../../utils/message'
-import * as request from '../request'
+import * as request from '../../../request/home'
 
 class UserHeader extends Component {
   static propTypes = {

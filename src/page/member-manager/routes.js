@@ -7,6 +7,7 @@ export const routes = [
     component: MemberManager,
     meta: {
       title: window.baseName + '-管理账号',
+      isScrollTop: true,
       requirePermission: true,
       agentField: 'AgentInfo',
       isRequiedLogin: true
