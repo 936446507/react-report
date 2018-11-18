@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { MessageBox  } from 'element-react'
 
 import * as request from '../../request/login'
+import { routePush } from '../../utils/routes'
 import './login.scss'
 
 class Login extends Component {
@@ -125,8 +126,7 @@ class Login extends Component {
           isSubmit: false
         })
         if (e.state === 'ok') {
-          // this.props.history.push('/')
-          window.location.href = window.location.origin + '/'
+          routePush({ name: 'home' })
         } else {
           MessageBox.alert(e.msg, '提示')
         }

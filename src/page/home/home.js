@@ -10,7 +10,7 @@ import UserPannel from '../../containers/user-pannel'
 import HistoryList from './history-list/history-list'
 
 import * as userInfoActions from '../../redux/actions/get-userinfo'
-import menuList from '../../config/user-info-config'
+import menuList from '../../config/menu-list-config'
 import './style.scss'
 
 class Home extends Component {

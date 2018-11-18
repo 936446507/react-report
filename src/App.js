@@ -5,6 +5,7 @@ import RouteComponent from './components/route-component/index'
 import ReduxDevTools from './containers/redux-dev-tools'
 
 import { routes } from './routes/index'
+import { isDev } from './api/api'
 
 class App extends Component {
   render() {
@@ -17,7 +18,7 @@ class App extends Component {
             ))
           }
           {
-            process.env.NODE_ENV !== 'production' &&
+            isDev &&
             window.isShowReduxDevTools &&
             <ReduxDevTools />
           }
