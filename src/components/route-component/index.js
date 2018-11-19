@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 import * as userInfoActions from '../../redux/actions/get-userinfo'
-import { setDocTitle, scrollToUp } from '../../utils/routes/index'
+import { setDocTitle, scrollToUp } from '../../utils'
 
 class RouteComponent extends Component {
   constructor(props) {

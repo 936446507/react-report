@@ -1,4 +1,4 @@
-export const dateConfig = {
+const dateConfig = {
   'today': {
     chinese: '今日',
     isNow: true
@@ -23,4 +23,8 @@ export const dateConfig = {
     chinese: '上月',
     isNow: false
   }
+}
+
+export {
+  dateConfig
 }

@@ -3,9 +3,7 @@ import PropTypes from 'prop-types'
 
 import { Loading } from 'element-react'
 
-import formateNum from '../../../utils/formate-num'
-import integerNum from '../../../utils/integer-num'
-// import './user-pannel.scss'
+import { formateNum, integerNum } from '../../../utils'
 
 class UserPannel extends Component {
   static propTypes = {

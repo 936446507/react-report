@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 import HistoryDataItem from './history-data-item'
 
-import formateNum from '../../../utils/formate-num'
+import { formateNum } from '../../../utils'
 
 class HistoryDataList extends Component {
   static propTypes = {

@@ -5,7 +5,7 @@ import HistoryListItem from './history-list-item'
 
 import { getHistoryData } from '../../../request/home'
 import { getCancelSource } from '../../../api/http'
-import { dateConfig, define } from '../../../config'
+import { dateConfig, CANCEL_MSG } from '../../../config'
 
 class HistroyList extends Component {
   constructor(props) {

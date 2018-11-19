@@ -1,5 +1,5 @@
 import { dateConfig } from './date-config'
-import { define } from './define'
+import { CANCEL_MSG } from './define'
 import { menuListConfig } from './menu-list-config'
 import {
   userInfoConfig,
@@ -9,7 +9,7 @@ import {
 
 export {
   dateConfig,
-  define,
+  CANCEL_MSG,
   menuListConfig,
   userInfoConfig,
   creatDefaultUserinfo,

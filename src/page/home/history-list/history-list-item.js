@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import { Loading } from 'element-react'
 import HistoryDataList from './history-data-list'
 
-import formateDate from '../../../utils/formate-date'
+import { formateDate } from '../../../utils'
 import { dateConfig } from '../../../config'
 
 class HistroyListItem extends Component {

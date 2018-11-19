@@ -2,13 +2,13 @@ import { Message } from 'element-react'
 import { MessageBox } from 'element-react'
 import { checkDataType } from './check-data-type'
 
-export function showMessage({
+const showMessage = ({
   message = '',
   type = 'info',
   duration = 3000,
   isShowClose = false,
   closeCB
-}) {
+}) => {
     let params = {
       message,
       type,
@@ -25,12 +25,12 @@ export function showMessage({
     Message(params)
 }
 
-export function showMessageBox({
+const showMessageBox = ({
   title = '提示',
   message,
   confirmCb,
   cancelCb
-}) {
+}) => {
   MessageBox.msgbox({
     title,
     message,
@@ -40,4 +40,9 @@ export function showMessageBox({
   }).catch(() => {
     cancelCb && cancelCb()
   })
+}
+
+export {
+  showMessage,
+  showMessageBox
 }
