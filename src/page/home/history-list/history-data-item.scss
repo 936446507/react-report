@@ -1,0 +1,64 @@
+.history-list {
+  &-block {
+    width: 80%;
+    height: 50px;
+    position: relative;
+    font-size: 0;
+    margin: 0 auto;
+  }
+  &-title {
+    display: inline-block;
+    vertical-align: top;
+    width: 20%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 13px;
+    font-weight: bold;
+    color: #000;
+    text-align: left;
+  }
+  &-content {
+    display: inline-block;
+    vertical-align: top;
+    width: 80%;
+    height: 50px;
+    line-height: 50px;
+    font-size: 15px;
+    color: #333;
+    text-align: center;
+    position: relative;
+    .content {
+      height: 50px;
+      line-height: 50px;
+      .have-settle {
+        font-size: 24px;
+        color: #333;
+      }
+    }
+    .add-content {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-wrap: wrap;
+      width: 100%;
+      font-size: 13px;
+      color: #999;
+      position: absolute;
+      top: 38px;
+      left: 0;
+      padding: 0 10px;
+      span {
+        display: block;
+        height: 24px;
+        line-height: 24px;
+        white-space:nowrap;
+      }
+      span:first-child {
+        padding-right: 10px;
+      }
+    }
+    .remove-content {
+      display: none;
+    }
+  }
+}

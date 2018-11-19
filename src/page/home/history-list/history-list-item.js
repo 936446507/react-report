@@ -10,9 +10,10 @@ import { dateConfig } from '../../../config'
 class HistroyListItem extends Component {
   static propTypes = {
     listMap: PropTypes.object.isRequired,
-    day: PropTypes.string,
+    day: PropTypes.string,  // 默认选中
     isDetails: PropTypes.bool,
-    animateSpeed: PropTypes.number
+    animateSpeed: PropTypes.number,
+    getHistoryData: PropTypes.func
   }
   static defaultProps = {
     isDetails: false,
@@ -23,6 +24,9 @@ class HistroyListItem extends Component {
     this.state = {
       dayType: this.props.day
     }
+
+    this.getHistoryData = this.getHistoryData.bind(this)
+    this.getCurHistoryData = this.getCurHistoryData.bind(this)
   }
   render() {
     const { listMap } = this.props
@@ -47,7 +51,8 @@ class HistroyListItem extends Component {
                     arr.push((
                       <div
                         className={ dayType === key ? 'tab-cell tab-cell-active' : 'tab-cell'}
-                        key={ key }>{ keyVal }
+                        key={ key }
+                        onClick={ _ => { this.getHistoryData(key) } }>{ keyVal }
                       </div>
                     ))
                   }
@@ -64,7 +69,7 @@ class HistroyListItem extends Component {
             }
           </div>
           <div className="history-list-contain-out">
-            <Loading loading={ loading === 'loading' }>
+            <Loading loading={ this.getLoadingState() === 'loading' }>
               <HistoryDataList data={ currentData.data } />
             </Loading>
             {
@@ -79,6 +84,28 @@ class HistroyListItem extends Component {
         <div className="history-list-part-refresh"></div>
       </div>
     )
+  }
+
+  getHistoryData(day, refresh) {
+    const { dayType } = this.state
+    if (
+      this.getLoadingState() === 'loading' &&
+      dayType === day
+    ) {
+      return
+    }
+    if (day) {
+      this.setState({
+        dayType: day
+      })
+    }
+    this.props.getHistoryData(day, refresh)
+  }
+  getCurHistoryData() {
+    return this.props.listMap[this.state.dayType]
+  }
+  getLoadingState() {
+    return this.getCurHistoryData().isLoading
   }
 }
 

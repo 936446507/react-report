@@ -1,0 +1,47 @@
+@import '../../../assets/scss/_variables.scss';
+.history-list {
+  width: 100%;
+  margin: 25px auto 0;
+  &-contain {
+    padding-bottom: 10px;
+    width: 100%;
+  }
+  &-top-title {
+    position: absolute;
+    left: 4%;
+    top: -5px;
+    width: 65px;
+    height: 40px;
+    font-size: 18px;
+    color: #666;
+    text-align: center;
+    line-height: 40px;
+    background: url(../../assets/images/index/daybg.png) no-repeat center;
+    background-size: 65px 40px;
+  }
+  &-time-font {
+    height: 33px;
+    position: relative;
+  }
+  &-time {
+    display: block;
+    position: absolute;
+    margin-left: 5%;
+    left: 70px;
+    bottom: 0;
+    font-size: 12px;
+    color: #666;
+    line-height: 12px;
+  }
+  &-font {
+    display: block;
+    position: absolute;
+    right: 5%;
+    bottom: 0;
+    font-size: 14px;
+    color: #AB9717;
+    line-height: 14px;
+    -webkit-tap-highlight-color: transparent;
+    cursor: pointer;
+  }
+}
