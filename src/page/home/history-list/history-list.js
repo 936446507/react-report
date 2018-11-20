@@ -7,7 +7,6 @@ import { getHistoryData } from '../../../request/home'
 import { getCancelSource } from '../../../api/http'
 import { dateConfig, CANCEL_MSG } from '../../../config'
 import { objectUtils } from '../../../utils'
-import { Object } from 'core-js';
 
 class HistroyList extends Component {
   constructor(props) {
@@ -19,7 +18,7 @@ class HistroyList extends Component {
         ;['today', 'week', 'month'].forEach(key => {
           listMap[key] = {
             // #init, #loading, #timeout, #nodata, #finished
-            isLoading: 'init',
+            loadingState: 'init',
             cancelSource: null,
             data: (_ => ({
               deposit: 0,
@@ -39,7 +38,7 @@ class HistroyList extends Component {
         ;['yesterday', 'lastweek', 'lastmonth'].forEach(key => {
           listMap[key] = {
             // #init, #loading, #timeout, #nodata, #finished
-            isLoading: 'init',
+            loadingState: 'init',
             cancelSource: null,
             data: (_ => ({
               deposit: 0,
@@ -86,55 +85,69 @@ class HistroyList extends Component {
           <HistoryListItem
             day="yesterday"
             isDetails={ isDetails }
-            listMap={ listMapLast } />
+            listMap={ listMapLast }
+            getHistoryData={ this.getHistoryData } />
         </div>
       </div>
     )
   }
 
   getHistoryData(type, refresh) {
-    if (!dateConfig[type].chinese) return
-    const { listMapNow, listMapLast } = this.state
+    if (!!!dateConfig[type] || !!!dateConfig[type].chinese) return
     const isNow = dateConfig[type].isNow || false
     const listMapName = isNow ? 'listMapNow' : 'listMapLast'
-    const listMap = isNow ? listMapNow : listMapLast
+    const listMap = this.state[listMapName]
     let item
 
     Object.keys(listMap).forEach(key => {
       // 取消此次请求的以外请求
       if (key !== type && listMap[key].cancelSource) {
-        this.state[listMapName].cancelSource.cancel(CANCEL_MSG)
+        this.state[listMapName][key].cancelSource.cancel(CANCEL_MSG)
         const newItem = objectUtils.modifyItem(
           {}, this.state[listMapName][type], {cancelSource: null}
         )
         this.setState({
-          [listMapName]: objectUtils.modifyItem(this.state[listMapName], {[type]: newItem})
+          [listMapName]: objectUtils.modifyItem(
+            this.state[listMapName], { [type]: newItem }
+          )
         })
       }
     })
-    item = this.state[listMapName][type]
 
+    item = this.state[listMapName][type]
     // 昨日 上周 上月只请求一次数据，所以‘fineshed’状态后将不再请求
+    // loading状态时都不再发起请求
     if (
-      !isNow &&
-      (item.isLoading === 'loading' || item.isLoading === 'finished') && refresh !== 'refresh'
+      item.loadingState === 'loading' ||
+      (
+        !isNow &&
+        item.loadingState === 'finished' &&
+        refresh !== 'refresh'
+      )
     ) {
       return
     }
+    item.loadingState = 'loading'
+    this.setState({
+      [listMapName]: objectUtils.modifyItem(
+        this.state[listMapName], { [type]: item }
+      )
+    })
 
     const params = { dateType: type }
     const source = getCancelSource()
+    item.cancelSource = source
     getHistoryData(
       params,
       source.cancelToken
     ).then(e => {
       if (e.state === 'ok') {
         item.data = e.data
-        item.isLoading = 'finished'
+        item.loadingState = 'finished'
       } else if (e.state === 'error') {
-        item.isLoading = 'timeout'
+        item.loadingState = 'timeout'
       } else {
-        item.isLoading = 'nodata'
+        item.loadingState = 'nodata'
       }
       this.setState({
         [listMapName]: objectUtils.modifyItem(

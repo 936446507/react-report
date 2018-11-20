@@ -42,7 +42,7 @@ const formateDate = ({date = new Date(), fmt = 'yyyy-MM-dd HH:mm:ss'}) => {
 
 /**
   * num           {number||string}       需要转换的数字
-  * isSeparate    {boolean}              是否需要分隔符 默认false
+  * isSeparate    {boolean}              是否需要分隔符 默认true
   * decPlace      {number}               小数位数 默认保留两位
   * isSymbol      {boolean}              是否需要正号
 */

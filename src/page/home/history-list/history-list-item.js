@@ -29,10 +29,10 @@ class HistroyListItem extends Component {
     this.getCurHistoryData = this.getCurHistoryData.bind(this)
   }
   render() {
-    const { listMap } = this.props
+    const { listMap, isDetails } = this.props
     const { dayType } = this.state
     const currentData = listMap[dayType]
-    const loading = currentData.isLoading
+    const loading = currentData.loadingState
     const nowTime = formateDate({fmt: 'HH:mm:ss'})
     const isShowErrorTip =
             loading === 'init' ||
@@ -44,20 +44,13 @@ class HistroyListItem extends Component {
           <div className="tab-list-out">
             <div className="tab-list">
               {
-                ((obj) => {
-                  let arr = []
-                  for (let key in obj) {
-                    let keyVal = dateConfig[key].chinese
-                    arr.push((
-                      <div
-                        className={ dayType === key ? 'tab-cell tab-cell-active' : 'tab-cell'}
-                        key={ key }
-                        onClick={ _ => { this.getHistoryData(key) } }>{ keyVal }
-                      </div>
-                    ))
-                  }
-                  return arr
-                })(listMap)
+                Object.keys(listMap).map((key, index) => (
+                  <div
+                    className={ dayType === key ? 'tab-cell tab-cell-active' : 'tab-cell'}
+                    key={ index }
+                    onClick={ _ => { this.getHistoryData(key) } }>{ dateConfig[key].chinese }
+                  </div>
+                ))
               }
             </div>
           </div>
@@ -70,7 +63,9 @@ class HistroyListItem extends Component {
           </div>
           <div className="history-list-contain-out">
             <Loading loading={ this.getLoadingState() === 'loading' }>
-              <HistoryDataList data={ currentData.data } />
+              <HistoryDataList
+                isDetails={ isDetails }
+                data={ currentData.data } />
             </Loading>
             {
               isShowErrorTip && (
@@ -105,7 +100,11 @@ class HistroyListItem extends Component {
     return this.props.listMap[this.state.dayType]
   }
   getLoadingState() {
-    return this.getCurHistoryData().isLoading
+    return this.getCurHistoryData().loadingState
+  }
+
+  componentDidMount() {
+    this.getHistoryData(this.props.day)
   }
 }
 

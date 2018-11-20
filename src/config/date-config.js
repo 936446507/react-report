@@ -13,7 +13,7 @@ const dateConfig = {
   },
   'month': {
     chinese: '本月',
-    isNow: false
+    isNow: true
   },
   'lastweek': {
     chinese: '上周',
