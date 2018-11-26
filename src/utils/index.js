@@ -22,6 +22,8 @@ import {
   arrayUtils
 } from './operate-uitl-methods'
 
+import { setClassName } from './set-class-name'
+
 export {
   setDocTitle,
   scrollToUp,
@@ -33,5 +35,6 @@ export {
   showMessage,
   showMessageBox,
   objectUtils,
-  arrayUtils
+  arrayUtils,
+  setClassName
 }

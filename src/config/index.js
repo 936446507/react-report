@@ -1,5 +1,5 @@
 import { dateConfig } from './date-config'
-import { CANCEL_MSG } from './define'
+import { CANCEL_MSG, FLOATTING_BUTTON_SHOW_HEIGHT } from './define'
 import { menuListConfig } from './menu-list-config'
 import {
   userInfoConfig,
@@ -10,6 +10,7 @@ import {
 export {
   dateConfig,
   CANCEL_MSG,
+  FLOATTING_BUTTON_SHOW_HEIGHT,
   menuListConfig,
   userInfoConfig,
   creatDefaultUserinfo,

@@ -4,21 +4,26 @@ import { connect } from 'react-redux'
 import { compose } from 'redux'
 
 import TheButton from '../../components/button/the-button'
+import GoBackButton from '../../components/button/go-back-button'
 import UserHeader from '../../containers/user-header'
 import MenuList from './menu-box/menu-box'
 import UserPannel from '../../containers/user-pannel'
 import HistoryList from './history-list/history-list'
 
 import * as userInfoActions from '../../redux/actions/get-userinfo'
-import { menuListConfig } from '../../config'
+import { menuListConfig, FLOATTING_BUTTON_SHOW_HEIGHT } from '../../config'
 import './style.scss'
 
 class Home extends Component {
   constructor(props) {
     super(props)
-    this.state = {}
+    this.state = {
+      isShowScrollTop: false
+    }
 
     this.getUserInfo = this.getUserInfo.bind(this)
+    this.backTop = this.backTop.bind(this)
+    this.scrollEvent = this.scrollEvent.bind(this)
   }
   render() {
     return (
@@ -35,6 +40,10 @@ class Home extends Component {
           </div>
         </div>
         <HistoryList />
+        {
+          this.state.isShowScrollTop &&
+          <GoBackButton click={ this.backTop }></GoBackButton>
+        }
       </div>
     )
   }
@@ -44,8 +53,25 @@ class Home extends Component {
     dispatch(userInfoActions.fetchUserInfo(userInfo))
   }
 
+  backTop() {}
+
+  // 滚动触发的事件
+  scrollEvent() {
+    const top = document.documentElement.scrollTop < document.body.scrollTop
+      ? document.body.scrollTop
+      : document.documentElement.scrollTop
+    this.setState({
+      isShowScrollTop: top > FLOATTING_BUTTON_SHOW_HEIGHT
+    })
+  }
+
   componentWillMount() {
     this.getUserInfo()
+    window.addEventListener('scroll', this.scrollEvent, false)
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.scrollEvent)
   }
 }
 
