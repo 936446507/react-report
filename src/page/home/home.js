@@ -28,14 +28,14 @@ class Home extends Component {
   render() {
     return (
       <div className="home-page">
-        <UserHeader />
+        {/* <UserHeader /> */}
         <MenuList menuItemList={ menuListConfig } />
-        <UserPannel />
+        {/* <UserPannel /> */}
         <div className="user-info-error-wrap" style={{ display:  'none'}}>
           <div className="user-info-error-tip">
             用户信息加载失败
           </div>
-          <div className="user-info-reload-btn">
+          <div className="user-info-reload-btn" onClick={ this.getUserInfo }>
             <TheButton type="small">重新加载</TheButton>
           </div>
         </div>
@@ -66,7 +66,7 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    this.getUserInfo()
+    // this.getUserInfo()
     window.addEventListener('scroll', this.scrollEvent, false)
   }
 
@@ -81,4 +81,5 @@ const mapStateToProps = state => {
 }
 
 // export default withRouter(connect(mapStateToProps)(Home))
-export default compose(withRouter, connect(mapStateToProps))(Home)
+// export default compose(withRouter, connect(mapStateToProps))(Home)
+export default Home

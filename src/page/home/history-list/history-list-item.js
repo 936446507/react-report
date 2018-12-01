@@ -76,16 +76,18 @@ class HistroyListItem extends Component {
             }
           </div>
         </div>
-        <div className="history-list-part-refresh"></div>
+        <div
+          className="history-list-part-refresh"
+          onClick={ _ => { this.getHistoryData('', 'refresh') }}>
+        </div>
       </div>
     )
   }
 
   getHistoryData(day, refresh) {
-    const { dayType } = this.state
     if (
       this.getLoadingState() === 'loading' &&
-      dayType === day
+      this.state.dayType === day
     ) {
       return
     }
@@ -94,7 +96,8 @@ class HistroyListItem extends Component {
         dayType: day
       })
     }
-    this.props.getHistoryData(day, refresh)
+    const dayType = day ? day : this.state.dayType
+    this.props.getHistoryData(dayType, refresh)
   }
   getCurHistoryData() {
     return this.props.listMap[this.state.dayType]

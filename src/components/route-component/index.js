@@ -49,4 +49,5 @@ class RouteComponent extends Component {
   }
 }
 
-export default connect()(RouteComponent)
+// export default connect()(RouteComponent)
+export default RouteComponent

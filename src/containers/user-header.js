@@ -21,4 +21,5 @@ const mapStateToProps = state => {
   return { userInfo }
 }
 
-export default connect(mapStateToProps)(UserHeaderContainer)
+// export default connect(mapStateToProps)(UserHeaderContainer)
+export default UserHeaderContainer
