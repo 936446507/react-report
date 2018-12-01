@@ -1,9 +1,9 @@
 import { action, observable } from 'mobx'
 
 class UserInfo {
-  // @observable usernamne = ''
+  @observable usernamne = ''
 
-  // @action
+  @action
   getUserInfo() {}
 }
 
