@@ -1,16 +1,13 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import { inject, observer } from 'mobx-react'
+import { toJS } from 'mobx'
 
 import { showMessageBox } from '../../../utils'
 import * as request from '../../../request/home'
 
+@inject('UserInfoStore')
+@observer
 class UserHeader extends Component {
-  static propTypes = {
-    userInfo: PropTypes.shape({
-      username: PropTypes.string,
-      agentNumber: PropTypes.string
-    }).isRequired
-  }
   constructor(props) {
     super(props)
     this.state = {
@@ -21,7 +18,7 @@ class UserHeader extends Component {
   }
 
   render() {
-    const { userInfo } = this.props
+    const userInfo = toJS(this.props.UserInfoStore.userInfo)
     return (
       <div className="head">
         <div className="user-info">

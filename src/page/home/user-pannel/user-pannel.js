@@ -1,26 +1,30 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import { inject, observer } from 'mobx-react'
+import { toJS } from 'mobx'
 
 import { Loading } from 'element-react'
 
 import { formateNum, integerNum } from '../../../utils'
 
+@inject('UserInfoStore')
+@observer
 class UserPannel extends Component {
-  static propTypes = {
-    isRefreshing: PropTypes.bool,
-    isFetching: PropTypes.bool,
-    userInfo: PropTypes.shape({
-      balance: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-      equity: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-      formalUserSum: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-      userSum: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ])
-    }).isRequired,
-    fetchUserInfo: PropTypes.func.isRequired
-  }
-  static defaultProps  = {
-    isRefreshing: false,
-    isFetching: false
-  }
+  // static propTypes = {
+  //   isRefreshing: PropTypes.bool,
+  //   isFetching: PropTypes.bool,
+  //   userInfo: PropTypes.shape({
+  //     balance: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
+  //     equity: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
+  //     formalUserSum: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
+  //     userSum: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ])
+  //   }).isRequired,
+  //   fetchUserInfo: PropTypes.func.isRequired
+  // }
+  // static defaultProps  = {
+  //   isRefreshing: false,
+  //   isFetching: false
+  // }
   constructor(props) {
     super(props)
     this.state = {}
@@ -29,7 +33,10 @@ class UserPannel extends Component {
   }
 
   render() {
-    const { userInfo, isFetching, fetchUserInfo } = this.props
+    // const { userInfo, isFetching, fetchUserInfo } = this.props
+    const userInfo = toJS(this.props.UserInfoStore.userInfo)
+    const isFetching = this.props.UserInfoStore.isLoadingUserInfo
+    const fetchUserInfo = this.props.UserInfoStore.getUserInfo
     const isSettleAgent = userInfo.isSettleAgent
     // userInfo.totalProfitloss -> 数据应该为home/index接口中的profitloss
     const digit = formateNum({ num: isSettleAgent ? userInfo.totalSettling : userInfo.totalProfitloss })

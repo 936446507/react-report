@@ -1,13 +1,10 @@
 import React, { Component } from 'react'
-import { withRouter } from "react-router"
-import { connect } from 'react-redux'
-import { compose } from 'redux'
 
 import TheButton from '../../components/button/the-button'
 import GoBackButton from '../../components/button/go-back-button'
-import UserHeader from '../../containers/user-header'
+import UserHeader from './user-header/user-header'
 import MenuList from './menu-box/menu-box'
-import UserPannel from '../../containers/user-pannel'
+import UserPannel from './user-pannel/user-pannel'
 import HistoryList from './history-list/history-list'
 
 import * as userInfoActions from '../../redux/actions/get-userinfo'
@@ -28,9 +25,9 @@ class Home extends Component {
   render() {
     return (
       <div className="home-page">
-        {/* <UserHeader /> */}
+        <UserHeader />
         <MenuList menuItemList={ menuListConfig } />
-        {/* <UserPannel /> */}
+        <UserPannel />
         <div className="user-info-error-wrap" style={{ display:  'none'}}>
           <div className="user-info-error-tip">
             用户信息加载失败
@@ -75,11 +72,4 @@ class Home extends Component {
   }
 }
 
-const mapStateToProps = state => {
-  const { userInfo }  = state
-  return { userInfo }
-}
-
-// export default withRouter(connect(mapStateToProps)(Home))
-// export default compose(withRouter, connect(mapStateToProps))(Home)
 export default Home

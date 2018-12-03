@@ -32,6 +32,7 @@
     "jest": "20.0.4",
     "mobx": "^5.0.3",
     "mobx-react": "^5.2.3",
+    "mobx-react-devtools": "^4.2.15",
     "normalize.css": "^8.0.0",
     "object-assign": "4.1.1",
     "postcss-flexbugs-fixes": "3.2.0",

@@ -1,5 +1,5 @@
-import userInfoStore from './userInfo'
+import UserInfoStore from './userInfo'
 
 export default {
-  userInfoStore
+  UserInfoStore
 }

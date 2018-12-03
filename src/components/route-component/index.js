@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Route } from 'react-router-dom'
-import { connect } from 'react-redux'
+import { inject, observer } from "mobx-react"
 
-import * as userInfoActions from '../../redux/actions/get-userinfo'
 import { setDocTitle, scrollToUp } from '../../utils'
 
+@inject('UserInfoStore')
+@observer
 class RouteComponent extends Component {
   constructor(props) {
     super(props)
@@ -18,8 +19,8 @@ class RouteComponent extends Component {
   }
 
   getUserInfo() {
-    const { userInfo, dispatch } = this.props
-    dispatch(userInfoActions.fetchUserInfo(userInfo))
+    this.props.route.meta.isRequiedLogin &&
+    this.props.UserInfoStore.getUserInfo()
   }
   setDocTitle() {
     let docTitle = this.props.route.meta.title || window.baseName
@@ -31,7 +32,7 @@ class RouteComponent extends Component {
   enterRouteHandle() {
     this.scrollToUp()
     this.setDocTitle()
-    // this.props.route.name === 'home' && this.getUserInfo()
+    this.getUserInfo()
   }
   render() {
     let route = this.props.route
@@ -49,5 +50,4 @@ class RouteComponent extends Component {
   }
 }
 
-// export default connect()(RouteComponent)
 export default RouteComponent

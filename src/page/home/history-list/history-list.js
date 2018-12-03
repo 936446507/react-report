@@ -61,7 +61,7 @@ class HistroyList extends Component {
     let item
 
     await this.cancelRequest({ listMap, listMapName, type })
-    console.log(this.state[listMapName])
+    // console.log(this.state[listMapName])
     item = this.state[listMapName][type]
     // 昨日 上周 上月只请求一次数据，所以‘fineshed’状态后将不再请求
     // loading状态时都不再发起请求
@@ -81,7 +81,7 @@ class HistroyList extends Component {
         this.state[listMapName], { [type]: item }
       )
     })
-    console.log(this.state[listMapName])
+    // console.log(this.state[listMapName])
     const params = { dateType: type }
     const source = getCancelSource()
     item.cancelSource = source
@@ -102,7 +102,7 @@ class HistroyList extends Component {
           state[listMapName], { [type]: item }
         )
       }))
-      console.log(this.state[listMapName])
+      // console.log(this.state[listMapName])
     }).catch(err => {
       throw err
     })
