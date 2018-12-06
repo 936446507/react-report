@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import PropTypes from 'prop-types'
 import { inject, observer } from 'mobx-react'
 import { toJS } from 'mobx'
 
@@ -10,21 +9,6 @@ import { formateNum, integerNum } from '../../../utils'
 @inject('UserInfoStore')
 @observer
 class UserPannel extends Component {
-  // static propTypes = {
-  //   isRefreshing: PropTypes.bool,
-  //   isFetching: PropTypes.bool,
-  //   userInfo: PropTypes.shape({
-  //     balance: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  //     equity: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  //     formalUserSum: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ]),
-  //     userSum: PropTypes.oneOfType([ PropTypes.number, PropTypes.string ])
-  //   }).isRequired,
-  //   fetchUserInfo: PropTypes.func.isRequired
-  // }
-  // static defaultProps  = {
-  //   isRefreshing: false,
-  //   isFetching: false
-  // }
   constructor(props) {
     super(props)
     this.state = {}

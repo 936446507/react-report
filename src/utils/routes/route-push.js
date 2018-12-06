@@ -26,3 +26,6 @@ export function routePush({ name }) {
   }
   return 'not find route'
 }
+
+export function getRoutePath({ name }) {
+}

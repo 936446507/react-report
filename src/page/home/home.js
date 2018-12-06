@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { inject, observer } from "mobx-react"
 
 import TheButton from '../../components/button/the-button'
 import GoBackButton from '../../components/button/go-back-button'
@@ -7,15 +8,20 @@ import MenuList from './menu-box/menu-box'
 import UserPannel from './user-pannel/user-pannel'
 import HistoryList from './history-list/history-list'
 
-import * as userInfoActions from '../../redux/actions/get-userinfo'
-import { menuListConfig, FLOATTING_BUTTON_SHOW_HEIGHT } from '../../config'
+import { FLOATTING_BUTTON_SHOW_HEIGHT } from '../../config'
 import './style.scss'
 
+@inject('UserInfoStore', 'PermissionStore')
+@observer
 class Home extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isShowScrollTop: false
+      isShowScrollTop: false,
+      isLoadingUserInfo: false,
+      isHadPermissionInfo: false,
+      isHadSuccLoadUserInfo: false,
+      isErrLoadUserInfo: false
     }
 
     this.getUserInfo = this.getUserInfo.bind(this)
@@ -23,19 +29,23 @@ class Home extends Component {
     this.scrollEvent = this.scrollEvent.bind(this)
   }
   render() {
+    const { isHadSuccLoadUserInfo, isErrLoadUserInfo } = this.state
     return (
       <div className="home-page">
         <UserHeader />
-        <MenuList menuItemList={ menuListConfig } />
+        <MenuList />
         <UserPannel />
-        <div className="user-info-error-wrap" style={{ display:  'none'}}>
-          <div className="user-info-error-tip">
-            用户信息加载失败
+        {
+          isErrLoadUserInfo && !isHadSuccLoadUserInfo &&
+          <div className="user-info-error-wrap">
+            <div className="user-info-error-tip">
+              用户信息加载失败
+            </div>
+            <div className="user-info-reload-btn" onClick={ this.getUserInfo }>
+              <TheButton type="small">重新加载</TheButton>
+            </div>
           </div>
-          <div className="user-info-reload-btn" onClick={ this.getUserInfo }>
-            <TheButton type="small">重新加载</TheButton>
-          </div>
-        </div>
+        }
         <HistoryList />
         {
           this.state.isShowScrollTop &&
@@ -45,9 +55,40 @@ class Home extends Component {
     )
   }
 
-  getUserInfo() {
-    let { dispatch, userInfo } = this.props
-    dispatch(userInfoActions.fetchUserInfo(userInfo))
+  async getUserInfo(type = '') {
+    const { isLoadingUserInfo, isHadPermissionInfo, isHadSuccLoadUserInfo } = this.state
+    if (isLoadingUserInfo) return
+    if (!isHadPermissionInfo) {
+      await this.props.PermissionStore.getPermission()
+      await this.setState({
+        isHadPermissionInfo: true
+      })
+    }
+    if (!isHadSuccLoadUserInfo || type === 'reload') {
+      try {
+        this.setState({
+          isLoadingUserInfo: true
+        })
+        const e = await this.props.UserInfoStore.getUserInfo()
+        this.setState({
+          isLoadingUserInfo: false
+        })
+        if (e.state === 'ok') {
+          this.setState({
+            isHadSuccLoadUserInfo: true
+          })
+        } else if (e.state === 'error') {
+          this.setState({
+            isErrLoadUserInfo: true
+          })
+        }
+      } catch (err) {
+        this.setState({
+          isLoadingUserInfo: false
+        })
+        throw err
+      }
+    }
   }
 
   backTop() {}
@@ -63,7 +104,7 @@ class Home extends Component {
   }
 
   componentWillMount() {
-    // this.getUserInfo()
+    this.getUserInfo()
     window.addEventListener('scroll', this.scrollEvent, false)
   }
 
