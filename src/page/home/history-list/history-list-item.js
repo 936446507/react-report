@@ -105,10 +105,6 @@ class HistroyListItem extends Component {
   getLoadingState() {
     return this.getCurHistoryData().loadingState
   }
-
-  componentDidMount() {
-    this.getHistoryData(this.props.day)
-  }
 }
 
 export default HistroyListItem

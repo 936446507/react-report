@@ -9,6 +9,7 @@ import UserPannel from './user-pannel/user-pannel'
 import HistoryList from './history-list/history-list'
 
 import { FLOATTING_BUTTON_SHOW_HEIGHT } from '../../config'
+import { scrollToUp } from '../../utils'
 import './style.scss'
 
 @inject('UserInfoStore', 'PermissionStore')
@@ -21,15 +22,16 @@ class Home extends Component {
       isLoadingUserInfo: false,
       isHadPermissionInfo: false,
       isHadSuccLoadUserInfo: false,
-      isErrLoadUserInfo: false
+      isErrLoadUserInfo: false,
+      isFetchHistoryList: false
     }
 
     this.getUserInfo = this.getUserInfo.bind(this)
-    this.backTop = this.backTop.bind(this)
+    this.setFetchHistoryListState = this.setFetchHistoryListState.bind(this)
     this.scrollEvent = this.scrollEvent.bind(this)
   }
   render() {
-    const { isHadSuccLoadUserInfo, isErrLoadUserInfo } = this.state
+    const { isHadSuccLoadUserInfo, isErrLoadUserInfo, isFetchHistoryList } = this.state
     return (
       <div className="home-page">
         <UserHeader />
@@ -46,10 +48,12 @@ class Home extends Component {
             </div>
           </div>
         }
-        <HistoryList />
+        <HistoryList
+          isFetchHistoryList={ isFetchHistoryList }
+          setFetchHistoryListState={ this.setFetchHistoryListState } />
         {
           this.state.isShowScrollTop &&
-          <GoBackButton click={ this.backTop }></GoBackButton>
+          <GoBackButton click={ scrollToUp }></GoBackButton>
         }
       </div>
     )
@@ -71,7 +75,8 @@ class Home extends Component {
         })
         const e = await this.props.UserInfoStore.getUserInfo()
         this.setState({
-          isLoadingUserInfo: false
+          isLoadingUserInfo: false,
+          isFetchHistoryList: true
         })
         if (e.state === 'ok') {
           this.setState({
@@ -91,7 +96,11 @@ class Home extends Component {
     }
   }
 
-  backTop() {}
+  setFetchHistoryListState(state = false) {
+    this.setState({
+      isFetchHistoryList: state
+    })
+  }
 
   // 滚动触发的事件
   scrollEvent() {

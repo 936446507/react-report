@@ -56,7 +56,6 @@ class PermissionStore {
             if (data.report) {
               this.report = data.report
             }
-            console.log(this.agent, this.report)
           }
           resolve(e)
         })

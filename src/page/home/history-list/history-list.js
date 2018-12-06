@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import { Switch } from 'element-react'
 
 import HistoryListItem from './history-list-item'
@@ -9,7 +10,17 @@ import { getCancelSource } from '../../../api/http'
 import { dateConfig, CANCEL_MSG } from '../../../config'
 import { objectUtils } from '../../../utils'
 
+const defaultListNowDay = 'today'
+const defaultListLastDay = 'yesterday'
+
 class HistroyList extends Component {
+  static propTypes = {
+    isFetchHistoryList: PropTypes.bool,
+    setFetchHistoryListState: PropTypes.func
+  }
+  static defaultProps = {
+    isFetchHistoryList: false
+  }
   constructor(props) {
     super(props)
     this.state = { ...historyListState }
@@ -20,6 +31,7 @@ class HistroyList extends Component {
   }
   render() {
     const { listMapNow, isDetails, listMapLast } = this.state
+
     return (
       <div className="history">
         <div className="historyLists">
@@ -39,12 +51,12 @@ class HistroyList extends Component {
             </div>
           </div>
           <HistoryListItem
-            day="today"
+            day={ defaultListNowDay }
             isDetails={ isDetails }
             listMap={ listMapNow }
             getHistoryData={ this.getHistoryData } />
           <HistoryListItem
-            day="yesterday"
+            day={ defaultListLastDay }
             isDetails={ isDetails }
             listMap={ listMapLast }
             getHistoryData={ this.getHistoryData } />
@@ -143,7 +155,13 @@ class HistroyList extends Component {
       this.state[listMapName][key].cancelSource.cancel()
     })
   }
-  componentDidMount() {
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.isFetchHistoryList) {
+      this.getHistoryData(defaultListNowDay)
+      this.getHistoryData(defaultListLastDay)
+      this.props.setFetchHistoryListState(false)
+    }
   }
 }
 

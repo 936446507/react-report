@@ -19,7 +19,6 @@ class FloatingButton extends Component {
       'floating-button': true,
       [size]: true
     })
-    console.log(buttonClassName)
     return (
       <div
         className={ buttonClassName }
