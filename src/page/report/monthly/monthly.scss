@@ -1,0 +1,76 @@
+.monthly-out {
+  background: #fff;
+}
+.monthly-out .el-pagination {
+  box-sizing: content-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  padding-bottom: 30px;
+}
+.monthly-last-show {
+  text-align: right;
+  font-size: 12px;
+  color: #777;
+  line-height: 30px;
+  padding-right: 2%;
+}
+.monthly {
+  width: 100%;
+  position: relative;
+  padding-top: 0.1px;
+}
+.monthly-scroll {
+  width: calc(100% - 100px);
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  margin-left: 100px;
+  margin-top: 5px;
+}
+.monthly-contain {
+  min-width: 100%;
+  display: table;
+  font-size: 0;
+  background-color: #fff;
+  .monthly-list--cell {
+    display: table-cell;
+    div {
+      display: block;
+      height: 40px;
+      line-height: 40px;
+      font-size: 14px;
+      color: #000;
+      text-align: center;
+      padding: 0 20px;
+      white-space:nowrap;
+    }
+    div:nth-child(odd) {
+      background-color: #f3f3f3;
+    }
+  }
+}
+.monthly-out .monthly-contain div:first-of-type{
+  font-weight: bold;
+  background-color: #fff;
+}
+.monthly-list--header {
+  position: absolute;
+  left: 0;
+  top: 45px;
+  div {
+    display: block;
+    width: 100px;
+    height: 40px;
+    line-height: 40px;
+    font-size: 14px;
+    color: #000;
+    text-align: left;
+    padding-left: 10px;
+  }
+  div:nth-child(even) {
+    background-color: #f3f3f3;
+  }
+}

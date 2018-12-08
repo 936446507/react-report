@@ -1,0 +1,38 @@
+.tip {
+  padding: 35px 0;
+  font-size: 18px;
+  font-weight: 800;
+  color: rgb(205, 205, 205);
+  text-align: center;
+}
+.list-nodata{
+  height:200px;
+  background: url("../../assets/images/public/nodata.png")no-repeat center 40px;
+  background-size:80px auto;
+}
+.list-nodata--msg {
+  display: block;
+  padding-top:99px;
+  margin:0 auto;
+}
+.list-error{
+    height:200px;
+  background: url("../../assets/images/public/error.png")no-repeat center 40px;
+  background-size:80px auto;
+}
+.list-error--msg {
+  display: block;
+  padding-top:99px;
+  margin:0 auto;
+}
+.list-error--button {
+  width: 120px;
+  height: 32px;
+  line-height: 32px;
+  background-color: #e5d35c;
+  color: #666;
+  padding: 0 16px;
+  text-align: center;
+  font-size: 14px;
+  border-radius: 32px;
+}

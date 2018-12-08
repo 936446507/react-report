@@ -36,7 +36,7 @@ class RouteComponent extends Component {
             throw err
           })
       } else {
-        this.goHome(routeMeta)
+        // this.goHome(routeMeta)
       }
     }
     this.setDocTitle()
@@ -70,16 +70,21 @@ class RouteComponent extends Component {
   }
 
   render() {
-    let route = this.props.route
+    const { route, Breadcrumb } = this.props
     return (
       <Route
         path={ route.path }
-        render={ props => (
-          <this.props.route.component
-            { ...props }
-            routes={ route.children }
-            onEnter={ this.enterRouteHandle() } />
-        )}
+        render={ props => {
+          console.log(this.props)
+          return (
+            <this.props.route.component
+              { ...props }
+              routes={ route.children }
+              onEnter={ this.enterRouteHandle() } >
+              { Breadcrumb && <Breadcrumb /> }
+            </this.props.route.component>
+          )
+        }}
         exact={route.path === '/'} />
     )
   }

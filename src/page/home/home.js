@@ -43,8 +43,8 @@ class Home extends Component {
             <div className="user-info-error-tip">
               用户信息加载失败
             </div>
-            <div className="user-info-reload-btn" onClick={ this.getUserInfo }>
-              <TheButton type="small">重新加载</TheButton>
+            <div className="user-info-reload-btn">
+              <TheButton type="small" click={ this.getUserInfo }>重新加载</TheButton>
             </div>
           </div>
         }

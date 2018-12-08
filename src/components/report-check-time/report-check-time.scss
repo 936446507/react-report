@@ -1,0 +1,55 @@
+.report-check-fill-time {
+  margin: 0 auto;
+  width: 84%;
+  position: relative;
+  font-size: 0;
+  .date-check {
+    display: inline-block;
+    width: 20%;
+    min-width: 66px;
+    font-size: 15px;
+    color: #333;
+    line-height: 30px;
+    text-align: left;
+    margin-top: 20px;
+  }
+  .block {
+    display: inline-block;
+    width: 78%;
+    max-width: calc(98% - 66px);
+    font-size: 15px;
+    input {
+      width: 100%;
+      font-size: 15px;
+      background: transparent;
+      padding: 0 0 0 20px;
+      border: none;
+      outline: none;
+    }
+  }
+  .el-input__inner {
+    font-size: 15px;
+    background-color: #eee;
+    border: 0;
+  }
+  .el-input__prefix {
+    right: 0;
+    text-align: right;
+  }
+  .el-input__icon {
+    text-align: right;
+  }
+  .el-input__icon::before {
+    font-size: 20px;
+    color: #333;
+    font-weight: bold;
+  }
+  .el-input__icon,
+  .el-date-editor.el-input,
+  .el-date-editor.el-input__inner {
+    width: 100%;
+  }
+}
+.bord {
+  border-bottom: 1px solid #afafaf;
+}
