@@ -1,5 +1,7 @@
-import { action, observable, } from 'mobx'
+import { action, observable, computed } from 'mobx'
+
 import { getPermission } from '../request/public'
+import { menuListConfig } from '../config/menu-list-config'
 
 class PermissionStore {
   // 代理权限
@@ -64,6 +66,43 @@ class PermissionStore {
           reject(err)
         })
     })
+  }
+
+  @computed get homePermissionMenu() {
+    return menuListConfig.filter(item => {
+      if (item.reportField && item.isShow) {
+        // 各个报表菜单入口
+        return this.report[item.reportField]
+      } else if (item.agentField && item.isShow) {
+        // 会员管理菜单入口
+        // 会员管理入口显示只有当前端权限与后台权限有一对都为true时才显示
+        let isHadSetRouteName = false
+        for (let childrenItem of item.children) {
+          if (
+            childrenItem.isShow &&
+            this.agent[childrenItem.agentField] &&
+            !isHadSetRouteName
+            ) {
+              item.menuRouteName = childrenItem.menuRouteName
+              isHadSetRouteName = true
+              return true
+          }
+        }
+      }
+      return false
+    })
+  }
+
+  @computed get agentPermissionMenu() {
+    return menuListConfig.filter(item => (
+      item.agentField && item.isShow ? this.agent[item.agentField] : false
+    ))
+  }
+
+  @computed get reportPermissionMenu() {
+    return menuListConfig.filter(item => (
+      item.reportField && item.isShow ? this.report[item.reportField] : false
+    ))
   }
 }
 

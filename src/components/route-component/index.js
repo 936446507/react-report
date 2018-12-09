@@ -23,45 +23,63 @@ class RouteComponent extends Component {
 
   getPermission() {
     const routeMeta = this.props.route.meta
+
     if (routeMeta.requirePermission) {
       if (toJS(this.props.UserInfoStore.userInfo).id === '') {
         this.getUserInfo()
       }
-      if (this.props.PermissionStore.isFirstLoadPermision) {
+      if (this.props.PermissionStore.isFirstLoadPermission) {
         this.props.PermissionStore.getPermission()
           .then(e => {
-            // this.goHome(routeMeta)
+            this.checkPermission(routeMeta)
           })
           .catch(err => {
             throw err
           })
       } else {
-        // this.goHome(routeMeta)
+        this.checkPermission(routeMeta)
       }
     }
     this.setDocTitle()
   }
+
+  checkPermission(routeMeta) {
+    if (
+      (
+        routeMeta.reportField &&
+        !this.props.PermissionStore.reportPermissionMenu.some(item => (
+          item.reportField === routeMeta.reportField
+        ))
+      ) ||
+      (
+        routeMeta.agentField &&
+        !this.props.PermissionStore.agentPermissionMenu.some(item => (
+          item.agentField === routeMeta.agentField
+        ))
+      )
+    ) {
+      this.goHome()
+    }
+  }
+
   getUserInfo() {
     this.props.route.meta.isRequiedLogin &&
     this.props.UserInfoStore.getUserInfo()
   }
-  goHome(routeMeta) {
-    const reportPermission = toJS(this.props.PermissionStore.report)
-    const agentPermission = toJS(this.props.PermissionStore.agent)
-    if (
-      (routeMeta.reportField && !reportPermission[routeMeta.reportField]) ||
-      (routeMeta.agentField && !agentPermission[routeMeta.agentField])
-    ) {
-      routePush({ name: 'home' })
-    }
+
+  goHome() {
+    routePush({ name: 'home' })
   }
+
   setDocTitle() {
     let docTitle = this.props.route.meta.title || window.baseName
     setDocTitle(docTitle)
   }
+
   scrollToUp() {
     this.props.route.meta.isScrollTop && scrollToUp()
   }
+
   enterRouteHandle() {
     this.scrollToUp()
     this.getPermission()
@@ -75,7 +93,6 @@ class RouteComponent extends Component {
       <Route
         path={ route.path }
         render={ props => {
-          console.log(this.props)
           return (
             <this.props.route.component
               { ...props }
