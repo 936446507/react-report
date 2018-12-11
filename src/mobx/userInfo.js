@@ -9,6 +9,7 @@ class UserInfoStore {
 
   @action.bound
   getUserInfo() {
+    console.log(this.userInfo)
     if (this.isLoadingUserInfo) return
     this.isLoadingUserInfo = true
     return new Promise((resolve, reject) => {

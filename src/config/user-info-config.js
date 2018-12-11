@@ -22,10 +22,22 @@ const userInfoConfig = {
   id: 'AgentID'       // 代理id
 }
 
+const numberKeys = {
+  balance: 'BALANCE',
+  equity: 'EQUITY',
+  marginFree: 'MARGIN_FREE',
+  agentSum: 'agentSum',
+  userSum: 'userSum',
+  formalUserSum: 'formalUserSum',
+  totalSettling: 'totalSettling',     // 待结算金额
+  totalProfitloss: 'totalProfitloss',  // 盈亏
+  agentNumber: 'number',
+}
+
 export const creatDefaultUserinfo = () => {
   const data = {}
   for (let key in userInfoConfig) {
-    data[key] = ''
+    data[key] = Object.keys(numberKeys).some(item => item === key) ? 0 : ''
   }
   return data
 }

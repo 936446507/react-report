@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { withRouter } from 'react-router'
 import { Route } from 'react-router-dom'
 import { inject, observer } from "mobx-react"
 import { toJS } from 'mobx'
@@ -107,4 +108,4 @@ class RouteComponent extends Component {
   }
 }
 
-export default RouteComponent
+export default withRouter(RouteComponent)

@@ -1,5 +1,6 @@
 import React, { Component } from'react'
-import { inject, observer } from "mobx-react"
+import { inject, observer } from 'mobx-react'
+import { NavLink } from 'react-router-dom'
 
 @inject('PermissionStore')
 @observer
@@ -13,7 +14,6 @@ class MenuList extends Component {
     const boxItemWidth = 75
     const menuItemList = this.props.PermissionStore.homePermissionMenu
     const boxWidth = menuItemList.length * boxItemWidth
-    const locationOrigin = window.location.origin
 
     return (
       <div className="menu-box-out">
@@ -25,11 +25,11 @@ class MenuList extends Component {
               <div
                 className="menu-box--content"
                 key={ index }>
-                <a
+                <NavLink
                   className={ 'menu-box--item menu-box--' + item.menuRouteName }
-                  href={ `${locationOrigin}/${item.parentRouteName}/${item.menuRouteName}` }>
+                  to={'/' + item.parentRouteName + '/' + item.menuRouteName}>
                   <span>{ item.menuText }</span>
-                </a>
+                </NavLink>
               </div>
             ))
           }
