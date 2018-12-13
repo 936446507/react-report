@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-import { getCurRoutePath } from '../../utils'
+import { getCurRoutePath, getStyle } from '../../utils'
 import './nav-menu.scss'
 
 class NavMenu extends Component {
@@ -18,6 +18,7 @@ class NavMenu extends Component {
     this.state = {}
 
     this.getIsCurRoute = this.getIsCurRoute.bind(this)
+    this.setMenuListWidth = this.setMenuListWidth.bind(this)
   }
 
   render() {
@@ -25,8 +26,8 @@ class NavMenu extends Component {
 
     return (
       <div className="report-menu-wrapper">
-        <div className="report-menu-wrap" routename="monthly">
-          <ul className="report-menu-list" style={{ width: '836px'}}>
+        <div className="report-menu-wrap" ref="reportMenuWrap">
+          <ul className="report-menu-list" ref="reportMenuList" style={{ width: '817px'}}>
             {
               menuList.map((item, index) => {
                 const path = '/' + item.parentRouteName + '/' + item.menuRouteName
@@ -53,7 +54,20 @@ class NavMenu extends Component {
   }
 
   setMenuListWidth() {
-    
+    const clientWidth = document.body.clientWidth
+    console.log(this.refs.reportMenuList)
+    const menuItem = this.refs.reportMenuList.children
+    const reportMenuListPadding = getStyle(this.refs.reportMenuWrap, 'padding-left')
+    let width = 0
+    for (let item of menuItem) {
+      let marginLeft = getStyle(item, 'margin-left')
+      width += Math.ceil(item.getBoundingClientRect().width) + marginLeft
+    }
+    if (reportMenuListPadding + width <= clientWidth) {
+      return false
+    }
+
+    this.refs.reportMenuList.style.width = width + 'px'
   }
 }
 

@@ -1,6 +1,6 @@
 import axios from 'axios'
 import errorHandeler from './error.js'
-import { routePush } from '../utils'
+// import { routePush } from '../utils'
 
 axios.defaults.withCredentials = true
 axios.defaults.timeout = 90000
