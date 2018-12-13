@@ -1,7 +1,8 @@
 import {
   setDocTitle,
   scrollToUp,
-  routePush
+  routePush,
+  getCurRoutePath
 } from './routes'
 
 import { checkDataType } from './check-data-type'
@@ -24,10 +25,13 @@ import {
 
 import { setClassName } from './set-class-name'
 
+import { getStyle } from './get-style'
+
 export {
   setDocTitle,
   scrollToUp,
   routePush,
+  getCurRoutePath,
   checkDataType,
   formateDate,
   formateNum,
@@ -36,5 +40,6 @@ export {
   showMessageBox,
   objectUtils,
   arrayUtils,
-  setClassName
+  setClassName,
+  getStyle
 }

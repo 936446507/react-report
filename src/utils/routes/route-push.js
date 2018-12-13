@@ -27,5 +27,9 @@ export function routePush({ name }) {
   return 'not find route'
 }
 
-export function getRoutePath({ name }) {
+export function getCurRoutePath() {
+  const location = window.location
+  const isHashRoute = !!location.hash
+
+  return isHashRoute ? location.hash.replace('#', '') : location.pathname
 }

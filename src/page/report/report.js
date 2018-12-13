@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { inject, observer } from "mobx-react"
 
 import RouteComponent from '../../components/route-component/index'
 import Search from '../../components/search/search'
@@ -7,16 +8,19 @@ import Breadcrumb from '../../components/breadcrumb/breadcrumb'
 
 import './report.scss'
 
+@inject('PermissionStore')
+@observer
 class Report extends Component {
   constructor(props) {
     super(props)
     this.state = {}
   }
   render() {
+    const menuList = this.props.PermissionStore.reportPermissionMenu
     return (
       <div className="report">
         <Search></Search>
-        <NavMenu></NavMenu>
+        <NavMenu menuList={ menuList }></NavMenu>
         {
           this.props.routes.map((route, i) => (
             <RouteComponent key={ i } route={{ ...route }} Breadcrumb={ Breadcrumb } />

@@ -1,35 +1,59 @@
 import React, { Component } from 'react'
-import { inject, observer } from "mobx-react"
+import { NavLink } from 'react-router-dom'
 import PropTypes from 'prop-types'
-// import { toJS } from 'mobx'
 
+import { getCurRoutePath } from '../../utils'
 import './nav-menu.scss'
 
-@inject('PermissionStore')
-@observer
 class NavMenu extends Component {
   static propTypes = {
     menuList: PropTypes.array
   }
+  static defaultProps = {
+    menuList: []
+  }
+
+  constructor(props) {
+    super(props)
+    this.state = {}
+
+    this.getIsCurRoute = this.getIsCurRoute.bind(this)
+  }
+
   render() {
-    console.log(this.props.PermissionStore.reportPermissionMenu)
+    const { menuList } = this.props
+
     return (
       <div className="report-menu-wrapper">
         <div className="report-menu-wrap" routename="monthly">
           <ul className="report-menu-list" style={{ width: '836px'}}>
-            <li className="report-menu-item"><a href="#/report/monthly" className="menu-item-link router-link-exact-active active"> 月结报表 </a></li>
-            <li className="report-menu-item"><a href="#/report/profit-loss" className="menu-item-link"> 盈亏报表 </a></li>
-            <li className="report-menu-item"><a href="#/report/equity" className="menu-item-link"> 净值报表 </a></li>
-            <li className="report-menu-item"><a href="#/report/open" className="menu-item-link"> 未平仓报表 </a></li>
-            <li className="report-menu-item"><a href="#/report/close" className="menu-item-link"> 已平仓报表 </a></li>
-            <li className="report-menu-item"><a href="#/report/deposit" className="menu-item-link"> 存取款报表 </a></li>
-            <li className="report-menu-item"><a href="#/report/turnover" className="menu-item-link"> 交易量报表 </a></li>
-            <li className="report-menu-item"><a href="#/report/settle" className="menu-item-link"> 结算报表 </a></li>
-            <li className="report-menu-item"><a href="#/report/intermedie" className="menu-item-link"> 中介商报表 </a></li>
+            {
+              menuList.map((item, index) => {
+                const path = '/' + item.parentRouteName + '/' + item.menuRouteName
+                return (
+                  <li className="report-menu-item" key={ index }>
+                    <NavLink
+                      className="menu-item-link"
+                      activeClassName="active"
+                      to={ path }
+                      isActive={ _ => this.getIsCurRoute(path) }>{ item.menuText }
+                    </NavLink>
+                  </li>
+                )
+              })
+            }
           </ul>
         </div>
       </div>
     )
+  }
+
+  getIsCurRoute(path) {
+    return getCurRoutePath() === path
+  }
+
+  setMenuListWidth() {
+    
   }
 }
 
