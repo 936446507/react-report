@@ -15,20 +15,23 @@ class Report extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      isShowTree: false
+      isShowTree: false,
+      searchText: ''
     }
 
     this.setTreeState = this.setTreeState.bind(this)
+    this.getSearchText = this.getSearchText.bind(this)
   }
   render() {
-    const { isShowTree } = this.state
+    const { isShowTree, searchText } = this.state
     const menuList = this.props.PermissionStore.reportPermissionMenu
 
     return (
       <div className="report">
         <Search
           isShowTree={ isShowTree }
-          setTreeState={ this.setTreeState }>
+          setTreeState={ this.setTreeState }
+          getSearchText={ this.getSearchText }>
         </Search>
         <NavMenu menuList={ menuList }></NavMenu>
         {
@@ -37,7 +40,7 @@ class Report extends Component {
           ))
         }
         {
-          isShowTree && <Tree></Tree>
+          isShowTree && <Tree searchText={ searchText }></Tree>
         }
       </div>
     )
@@ -46,6 +49,11 @@ class Report extends Component {
   setTreeState(state = false) {
     this.setState({
       isShowTree: state
+    })
+  }
+  getSearchText(searchText) {
+    this.setState({
+      searchText
     })
   }
 }

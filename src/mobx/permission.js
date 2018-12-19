@@ -94,9 +94,17 @@ class PermissionStore {
   }
 
   @computed get agentPermissionMenu() {
-    return menuListConfig.filter(item => (
-      item.agentField && item.isShow ? this.agent[item.agentField] : false
-    ))
+    let agentConfig = null
+    for (let item of menuListConfig) {
+      if (item.agentField && item.isShow) {
+        agentConfig = item
+      }
+    }
+    return agentConfig.children.filter(item => {
+      return item.agentField && item.isShow ?
+        this.agent[item.agentField] :
+        false
+    })
   }
 
   @computed get reportPermissionMenu() {

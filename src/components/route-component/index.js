@@ -61,6 +61,13 @@ class RouteComponent extends Component {
     ) {
       this.goHome()
     }
+    // if (routeMeta.agentField) {
+    //   if (!this.props.PermissionStore.agentPermissionMenu.some(item => (
+    //     item.agentField === routeMeta.agentField
+    //   ))) {
+    //     this.goHome(0)
+    //   }
+    // }
   }
 
   getUserInfo() {

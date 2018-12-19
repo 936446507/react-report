@@ -27,7 +27,7 @@ class NavMenu extends Component {
     return (
       <div className="report-menu-wrapper">
         <div className="report-menu-wrap" ref="reportMenuWrap">
-          <ul className="report-menu-list" ref="reportMenuList" style={{ width: '817px'}}>
+          <ul className="report-menu-list" ref="reportMenuList" >
             {
               menuList.map((item, index) => {
                 const path = '/' + item.parentRouteName + '/' + item.menuRouteName
@@ -55,7 +55,6 @@ class NavMenu extends Component {
 
   setMenuListWidth() {
     const clientWidth = document.body.clientWidth
-    console.log(this.refs.reportMenuList)
     const menuItem = this.refs.reportMenuList.children
     const reportMenuListPadding = getStyle(this.refs.reportMenuWrap, 'padding-left')
     let width = 0
@@ -68,6 +67,10 @@ class NavMenu extends Component {
     }
 
     this.refs.reportMenuList.style.width = width + 'px'
+  }
+
+  componentDidUpdate() {
+    this.setMenuListWidth()
   }
 }
 

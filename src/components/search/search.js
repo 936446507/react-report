@@ -6,7 +6,8 @@ import './search.scss'
 class Search extends Component {
   static propTypes = {
     isShowTree: PropTypes.bool,
-    setTreeState: PropTypes.func
+    setTreeState: PropTypes.func,
+    setSearchText: PropTypes.func
   }
   static defaultProps = {
     isShowTree: false
@@ -16,23 +17,33 @@ class Search extends Component {
     super(props)
 
     this.state = {
-      isShowAgentTreeBtn: true
+      isShowAgentTreeBtn: true,
+      searchText: ''
     }
+
+    this.setAgentTreeBtnState = this.setAgentTreeBtnState.bind(this)
+    this.clearSearchText = this.clearSearchText.bind(this)
+    this.handleInput = this.handleInput.bind(this)
   }
 
   render() {
-    const { isShowAgentTreeBtn } = this.state
+    const { isShowAgentTreeBtn, searchText } = this.state
     const { isShowTree, setTreeState } = this.props
 
     return (
       <div className="search-wrap">
-        <div className="search-input-wrap">
+        <div className={ !isShowAgentTreeBtn ? 'search-input-wrap input-focus' : 'search-input-wrap'}>
           <i className="search-icon"></i>
           <input
             type="text"
             placeholder="搜索"
-            className={ isShowAgentTreeBtn ? 'search-input max-width' : 'search-input' } />
-          <span className="search-btn"> 清空 </span>
+            name="searchText"
+            className={ isShowAgentTreeBtn ? 'search-input max-width' : 'search-input' }
+            value={ searchText }
+            onChange={ this.handleInput }
+            onFocus={ _ => this.setAgentTreeBtnState(false) }
+            onBlur={ _ => this.setAgentTreeBtnState(true) } />
+          <span className="search-btn" onClick={ this.clearSearchText }> 清空 </span>
         </div>
         {
           isShowAgentTreeBtn && (
@@ -51,6 +62,25 @@ class Search extends Component {
   setAgentTreeBtnState(state = true) {
     this.setState({
       isShowAgentTreeBtn: state
+    })
+    !state && this.props.setTreeState(!state)
+  }
+
+  clearSearchText() {
+    this.setState(() => {
+      return {
+        searchText: ''
+      }
+    })
+  }
+
+  handleInput(event) {
+    const target = event.target
+    const value = target.type === 'checkbox' ? target.checked : target.value
+    const name = target.name
+
+    this.setState({
+      [name]: value
     })
   }
 }
