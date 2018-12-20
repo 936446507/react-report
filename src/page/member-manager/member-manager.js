@@ -1,27 +1,34 @@
 import React, { Component } from 'react'
 import { inject, observer } from "mobx-react"
+import { toJS } from 'mobx'
 
 import RouteComponent from '@/components/route-component/index'
 import Search from '@/components/search/search'
 import NavMenu from '@/components/nav-menu/nav-menu'
 import Breadcrumb from '@/components/breadcrumb/breadcrumb'
 
-@inject('PermissionStore')
+@inject('UserInfoStore', 'PermissionStore')
 @observer
 class MemberManager extends Component {
   constructor(props) {
     super(props)
     this.state = {
       isShowTree: false,
-      searchText: ''
+      searchText: '',
+      agentTipData: []
     }
 
     this.setTreeState = this.setTreeState.bind(this)
     this.getSearchText = this.getSearchText.bind(this)
   }
   render() {
-    const { isShowTree } = this.state
+    const { isShowTree, agentTipData } = this.state
     const menuList = this.props.PermissionStore.agentPermissionMenu
+    const curAgentTipData = agentTipData[agentTipData.length - 1]
+
+    const agentInfo = curAgentTipData && curAgentTipData.id ?
+      curAgentTipData :
+      toJS(this.props.UserInfoStore.userInfo)
 
     return (
       <div className="member-manager">
@@ -35,7 +42,11 @@ class MemberManager extends Component {
         <div className="member-manage--view">
           {
             this.props.routes.map((route, i) => (
-              <RouteComponent key={ i } route={{ ...route }} Breadcrumb={ Breadcrumb } />
+              <RouteComponent
+                key={ i }
+                route={{ ...route }}
+                agentInfo={ agentInfo }
+                Breadcrumb={ Breadcrumb } />
             ))
           }
         </div>

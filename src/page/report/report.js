@@ -36,7 +36,10 @@ class Report extends Component {
         <NavMenu menuList={ menuList }></NavMenu>
         {
           this.props.routes.map((route, i) => (
-            <RouteComponent key={ i } route={{ ...route }} Breadcrumb={ Breadcrumb } />
+            <RouteComponent
+              key={ i }
+              route={{ ...route }}
+              Breadcrumb={ Breadcrumb } />
           ))
         }
         {

@@ -1,0 +1,76 @@
+.hint-block {
+  background: #A8941C;
+  display: inline-block;
+  width: 5px;
+  height: 20px;
+  border-radius: 2.5px;
+  vertical-align: middle;
+  font-size: 12px;
+  margin-right: 7px;
+}
+.ib-manager {
+  padding-top: 17px;
+  padding-left: 10px;
+  padding-bottom: 20px;
+  background-color: #fff;
+  .el-form {
+    margin-left: 12px;
+    margin-right: 29px;
+  }
+  .el-form-item {
+    border-bottom: 1px solid #ddd;
+    height: 32px;
+    line-height: 32px;
+    margin: 12px 0;
+  }
+  .el-form-item__label {
+    line-height: 32px;
+  }
+  .el-form-item__label {
+    color: #333;
+    font-size: 14px;
+  }
+  .el-input__inner {
+    color: #999;
+    font-size: 14px;
+    height: 32px;
+    line-height: 1;
+    background-color: transparent;
+    border: none;
+  }
+  .el-form-item__content {
+    line-height: 32px;
+  }
+  .el-form-item.is-required .el-form-item__label:before {
+    display: none;
+  }
+  .el-form-item__error {
+    line-height: 0;
+    padding-top: 6px;
+  }
+  .button-row {
+    display: flex;
+    justify-content: space-around;
+  }
+  .btn {
+    background-image: linear-gradient(-29deg, rgb(227,211,106), rgb(243,212,0));
+    box-shadow: 1.878px 3.532px 5px 0px rgba(181,155,11,0.27);
+    width: 103px;
+    height: 31px;
+    line-height: 31px;
+    border-radius: 15px;
+    text-align: center;
+    color: #666;
+    font-size: 15px;
+  }
+  .el-input {
+    height: 31px;
+    overflow: hidden;
+  }
+}
+.login-state {
+  margin-left: 12px;
+  font-size: 12px;
+  line-height: 52px;
+  color: #333;
+}

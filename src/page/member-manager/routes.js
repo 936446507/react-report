@@ -5,19 +5,17 @@ import UserInfo from './user-info/user-info'
 
 export const routes = [
   {
-    path: '/memberManager/agentInfo',
+    path: '/memberManager',
     name: 'memberManager',
     component: MemberManager,
     meta: {
       title: window.baseName + '-管理账号',
       isScrollTop: true,
-      requirePermission: true,
-      agentField: 'AgentInfo',
       isRequiedLogin: true
     },
     children: [
       {
-        path: 'agentInfo',
+        path: '/memberManager/agentInfo',
         name: 'agentInfo',
         component: AgentInfo,
         meta: {
@@ -28,7 +26,7 @@ export const routes = [
         }
       },
       {
-        path: 'userInfo',
+        path: '/memberManager/userInfo',
         name: 'userInfo',
         component: UserInfo,
         meta: {
@@ -39,7 +37,7 @@ export const routes = [
         }
       },
       {
-        path: 'addAgent',
+        path: '/memberManager/addAgent',
         name: 'addAgent',
         component: AddAgent,
         meta: {

@@ -3,12 +3,21 @@ import { withRouter } from 'react-router'
 import { Route } from 'react-router-dom'
 import { inject, observer } from "mobx-react"
 import { toJS } from 'mobx'
+import PropTypes from 'prop-types'
 
 import { setDocTitle, scrollToUp, routePush } from '../../utils'
 
 @inject('UserInfoStore', 'PermissionStore')
 @observer
 class RouteComponent extends Component {
+  static propTypes = {
+    route: PropTypes.object,
+    Breadcrumb: PropTypes.any,
+    agentInfo: PropTypes.object
+  }
+  static defaultProps = {
+    agentInfo: {}
+  }
   constructor(props) {
     super(props)
 
@@ -22,7 +31,7 @@ class RouteComponent extends Component {
     this.enterRouteHandle = this.enterRouteHandle.bind(this)
   }
 
-  getPermission() {
+  async getPermission() {
     const routeMeta = this.props.route.meta
 
     if (routeMeta.requirePermission) {
@@ -30,6 +39,13 @@ class RouteComponent extends Component {
         this.getUserInfo()
       }
       if (this.props.PermissionStore.isFirstLoadPermission) {
+        console.log(this.props.PermissionStore.isFirstLoadPermission, this.props.PermissionStore)
+        // try {
+        //   await this.props.PermissionStore.getPermission()
+        //   this.checkPermission(routeMeta)
+        // } catch(err) {
+        //   throw err
+        // }
         this.props.PermissionStore.getPermission()
           .then(e => {
             this.checkPermission(routeMeta)
@@ -61,13 +77,6 @@ class RouteComponent extends Component {
     ) {
       this.goHome()
     }
-    // if (routeMeta.agentField) {
-    //   if (!this.props.PermissionStore.agentPermissionMenu.some(item => (
-    //     item.agentField === routeMeta.agentField
-    //   ))) {
-    //     this.goHome(0)
-    //   }
-    // }
   }
 
   getUserInfo() {
@@ -89,14 +98,13 @@ class RouteComponent extends Component {
   }
 
   enterRouteHandle() {
+    console.log(this.props.route.name)
     this.scrollToUp()
     this.getPermission()
-    // this.setDocTitle()
-    // this.getUserInfo()
   }
 
   render() {
-    const { route, Breadcrumb } = this.props
+    const { route, Breadcrumb, agentInfo } = this.props
     return (
       <Route
         path={ route.path }
@@ -105,6 +113,7 @@ class RouteComponent extends Component {
             <this.props.route.component
               { ...props }
               routes={ route.children }
+              agentInfo={ agentInfo }
               onEnter={ this.enterRouteHandle() } >
               { Breadcrumb && <Breadcrumb /> }
             </this.props.route.component>
