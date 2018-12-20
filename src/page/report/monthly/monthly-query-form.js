@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-import ReportCheckTime from '../../../components/report-check-time/report-check-time'
+import ReportCheckTime from '@//components/report-check-time/report-check-time'
 
 class MonthlyQueryForm extends Component {
   render() {

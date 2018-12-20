@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import { inject, observer } from "mobx-react"
 
-import RouteComponent from '../../components/route-component/index'
-import Search from '../../components/search/search'
-import NavMenu from '../../components/nav-menu/nav-menu'
-import Breadcrumb from '../../components/breadcrumb/breadcrumb'
-import Tree from '../../components/tree/tree'
+import RouteComponent from '@/components/route-component/index'
+import Search from '@/components/search/search'
+import NavMenu from '@/components/nav-menu/nav-menu'
+import Breadcrumb from '@/components/breadcrumb/breadcrumb'
+import Tree from '@/components/tree/tree'
 
-import './report.scss'
+// import './report.scss'
 
 @inject('PermissionStore')
 @observer

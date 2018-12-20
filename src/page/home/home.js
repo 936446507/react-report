@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { inject, observer } from "mobx-react"
 
-import TheButton from '../../components/button/the-button'
-import GoBackButton from '../../components/button/go-back-button'
+import TheButton from '@/components/button/the-button'
+import GoBackButton from '@/components/button/go-back-button'
 import UserHeader from './user-header/user-header'
 import MenuList from './menu-box/menu-box'
 import UserPannel from './user-pannel/user-pannel'
@@ -10,7 +10,7 @@ import HistoryList from './history-list/history-list'
 
 import { FLOATTING_BUTTON_SHOW_HEIGHT } from '../../config'
 import { scrollToUp } from '../../utils'
-import './style.scss'
+// import './style.scss'
 
 @inject('UserInfoStore', 'PermissionStore')
 @observer
