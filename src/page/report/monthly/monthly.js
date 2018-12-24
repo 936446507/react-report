@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import { Pagination } from 'element-react'
-import ListState from '@//components/list-state/list-state'
+import ListState from '@/components/list-state/list-state'
 import MonthlyQueryForm from './monthly-query-form'
 import MonthlyListHeader from './monthly-list-header'
 import MonthlyListCell from './monthly-list-cell'

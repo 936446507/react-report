@@ -15,3 +15,10 @@ export function changeAgentInfoData(params) {
     qs.stringify(params)
   )
 }
+
+export function getAgentInvestorListData(params) {
+  return http.get(
+    api.getAgentInvestorList,
+    { params }
+  )
+}

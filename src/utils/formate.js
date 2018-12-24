@@ -7,6 +7,12 @@
   * HH: 24小时进制, hh: 12小时进制
 */
 const formateDate = ({date = new Date(), fmt = 'yyyy-MM-dd HH:mm:ss'}) => {
+  if (
+    typeof date === 'string' &&
+    date.replace(/[^\d]/g, '') !== ''
+  ) {
+    date = new Date(date)
+  }
   let o = {
     'M+': date.getMonth() + 1, // 月份
     'd+': date.getDate(), // 日
@@ -97,6 +103,20 @@ const formateNum = ({num, isSeparate = true, decPlace, isSymbol}) => {
   return result
 }
 
+const toSuperNumber = (n, plusSymBol = false, decimalNums = 2) => {
+  var num = Number(n)
+  if (Number.isNaN(num) || n === '') return ''
+  if (num === 0) return '0.00'
+  // 判断正负，分离并保留符号
+  var flag = num > 0 ? '+' : ''
+  var arr = num.toFixed(decimalNums).split('.')
+  // 千分号替换
+  var commaExp = /(\d)(?=(\d{3})+$)/g
+  arr[0] = arr[0].replace(commaExp, function($1) {
+    return $1 + ','
+  })
+  return plusSymBol ? flag + arr.join('.') : arr.join('.')
+}
 
 const integerNum = num => {
   num = typeof num === 'number' ? num : Number(num)
@@ -107,5 +127,6 @@ const integerNum = num => {
 export {
   formateDate,
   formateNum,
+  toSuperNumber,
   integerNum
 }

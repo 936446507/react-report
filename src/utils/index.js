@@ -10,6 +10,7 @@ import { checkDataType } from './check-data-type'
 import {
   formateDate,
   formateNum,
+  toSuperNumber,
   integerNum
 } from './formate'
 
@@ -35,6 +36,7 @@ export {
   checkDataType,
   formateDate,
   formateNum,
+  toSuperNumber,
   integerNum,
   showMessage,
   showMessageBox,
