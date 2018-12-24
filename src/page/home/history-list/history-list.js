@@ -5,10 +5,10 @@ import { Switch } from 'element-react'
 import HistoryListItem from './history-list-item'
 
 import { historyListState } from '../entity'
-import { getHistoryData } from '../../../request/home'
+import { getHistoryData } from '@/request/home'
 import { getCancelSource } from '../../../api/http'
 import { dateConfig, CANCEL_MSG } from '../../../config'
-import { objectUtils } from '../../../utils'
+import { objectUtils } from '@/utils'
 
 const defaultListNowDay = 'today'
 const defaultListLastDay = 'yesterday'

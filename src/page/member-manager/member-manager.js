@@ -1,13 +1,14 @@
 import React, { Component } from 'react'
 import { inject, observer } from "mobx-react"
-import { toJS } from 'mobx'
 
 import RouteComponent from '@/components/route-component/index'
 import Search from '@/components/search/search'
 import NavMenu from '@/components/nav-menu/nav-menu'
 import Breadcrumb from '@/components/breadcrumb/breadcrumb'
 
-@inject('UserInfoStore', 'PermissionStore')
+import './member-manager.scss'
+
+@inject('PermissionStore')
 @observer
 class MemberManager extends Component {
   constructor(props) {
@@ -26,27 +27,22 @@ class MemberManager extends Component {
     const menuList = this.props.PermissionStore.agentPermissionMenu
     const curAgentTipData = agentTipData[agentTipData.length - 1]
 
-    const agentInfo = curAgentTipData && curAgentTipData.id ?
-      curAgentTipData :
-      toJS(this.props.UserInfoStore.userInfo)
-
     return (
       <div className="member-manager">
-        MemberManager
         <Search
           isShowTree={ isShowTree }
           setTreeState={ this.setTreeState }
           getSearchText={ this.getSearchText }>
         </Search>
         <NavMenu menuList={ menuList }></NavMenu>
+        <Breadcrumb></Breadcrumb>
         <div className="member-manage--view">
           {
             this.props.routes.map((route, i) => (
               <RouteComponent
                 key={ i }
                 route={{ ...route }}
-                agentInfo={ agentInfo }
-                Breadcrumb={ Breadcrumb } />
+                agent={ curAgentTipData } />
             ))
           }
         </div>

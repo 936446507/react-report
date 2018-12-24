@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import { setClassName } from '../../utils'
+import { setClassName } from '@/utils'
 
 import './floating-button.scss'
 

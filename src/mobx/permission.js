@@ -1,6 +1,6 @@
 import { action, observable, computed } from 'mobx'
 
-import { getPermission } from '../request/public'
+import { getPermission } from '@/request/public'
 import { menuListConfig } from '../config/menu-list-config'
 
 class PermissionStore {
@@ -46,7 +46,6 @@ class PermissionStore {
     if (this.isLoadingPermission) return
     this.isLoadingPermission = true
     return new Promise((resolve, reject) => {
-      console.log(getPermission())
       getPermission()
         .then(e => {
           this.isLoadingPermission = false
@@ -60,12 +59,10 @@ class PermissionStore {
               this.report = data.report
             }
           }
-          console.log('succ', this.isFirstLoadPermission)
           resolve(e)
         })
         .catch(err => {
           this.isLoadingPermission = false
-          console.log('err', this.isFirstLoadPermission)
           reject(err)
         })
     })

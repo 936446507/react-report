@@ -3,7 +3,7 @@ import {
   RECEIVE_PERMISSION
 } from '../constants/action-typs'
 
-import { getPermission } from '../../request/public'
+import { getPermission } from '@/request/public'
 
 export const requestPermission = data => ({
   type: REQUEST_PERMISSION,

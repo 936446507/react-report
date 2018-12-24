@@ -2,8 +2,8 @@ import React, { Component } from 'react'
 import { inject, observer } from 'mobx-react'
 import { toJS } from 'mobx'
 
-import { showMessageBox } from '../../../utils'
-import * as request from '../../../request/home'
+import { showMessageBox } from '@/utils'
+import * as request from '@/request/home'
 
 @inject('UserInfoStore')
 @observer

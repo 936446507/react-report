@@ -7,18 +7,21 @@ export const menuListConfig = [
     isShow: true,
     children: [
       {
+        parentRouteName: 'memberManager',
         menuRouteName: 'agentInfo',
         menuText: '代理商管理信息',
         agentField: 'AgentInfo',
         isShow: true
       },
       {
+        parentRouteName: 'memberManager',
         menuRouteName: 'userInfo',
         menuText: '投资者管理',
         agentField: 'AgentInvestorList',
         isShow: true
       },
       {
+        parentRouteName: 'memberManager',
         menuRouteName: 'addAgent',
         menuText: '新建代理商',
         agentField: 'AddAgent',

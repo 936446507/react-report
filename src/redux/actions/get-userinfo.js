@@ -3,7 +3,7 @@ import {
   RECEIVE_USERINFO
 } from '../constants/action-typs'
 
-import { getUserInfo } from '../../request/public'
+import { getUserInfo } from '@/request/public'
 
 export const requestUserInfo = info => ({
   type: REQUEST_USERINFO,

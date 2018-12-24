@@ -5,7 +5,7 @@ import { inject, observer } from "mobx-react"
 import { toJS } from 'mobx'
 import PropTypes from 'prop-types'
 
-import { setDocTitle, scrollToUp, routePush } from '../../utils'
+import { setDocTitle, scrollToUp, routePush } from '@/utils'
 
 @inject('UserInfoStore', 'PermissionStore')
 @observer
@@ -39,13 +39,6 @@ class RouteComponent extends Component {
         this.getUserInfo()
       }
       if (this.props.PermissionStore.isFirstLoadPermission) {
-        console.log(this.props.PermissionStore.isFirstLoadPermission, this.props.PermissionStore)
-        // try {
-        //   await this.props.PermissionStore.getPermission()
-        //   this.checkPermission(routeMeta)
-        // } catch(err) {
-        //   throw err
-        // }
         this.props.PermissionStore.getPermission()
           .then(e => {
             this.checkPermission(routeMeta)
@@ -98,7 +91,6 @@ class RouteComponent extends Component {
   }
 
   enterRouteHandle() {
-    console.log(this.props.route.name)
     this.scrollToUp()
     this.getPermission()
   }

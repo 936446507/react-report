@@ -9,8 +9,8 @@ import UserPannel from './user-pannel/user-pannel'
 import HistoryList from './history-list/history-list'
 
 import { FLOATTING_BUTTON_SHOW_HEIGHT } from '../../config'
-import { scrollToUp } from '../../utils'
-// import './style.scss'
+import { scrollToUp } from '@/utils'
+import './style.scss'
 
 @inject('UserInfoStore', 'PermissionStore')
 @observer

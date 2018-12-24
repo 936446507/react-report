@@ -7,7 +7,7 @@ import NavMenu from '@/components/nav-menu/nav-menu'
 import Breadcrumb from '@/components/breadcrumb/breadcrumb'
 import Tree from '@/components/tree/tree'
 
-// import './report.scss'
+import './report.scss'
 
 @inject('PermissionStore')
 @observer

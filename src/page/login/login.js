@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import { MessageBox  } from 'element-react'
 
-import * as request from '../../request/login'
-import { routePush } from '../../utils'
+import * as request from '@/request/login'
+import { routePush } from '@/utils'
 // import './login.scss'
 
 class Login extends Component {

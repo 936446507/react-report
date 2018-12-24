@@ -4,7 +4,7 @@ import { toJS } from 'mobx'
 
 import { Loading } from 'element-react'
 
-import { formateNum, integerNum } from '../../../utils'
+import { formateNum, integerNum } from '@/utils'
 
 @inject('UserInfoStore')
 @observer

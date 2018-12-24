@@ -1,6 +1,6 @@
 import { action, observable, } from 'mobx'
 
-import { getUserInfo } from '../request/public'
+import { getUserInfo } from '@/request/public'
 import { creatUserInfo } from '../config'
 
 class UserInfoStore {
