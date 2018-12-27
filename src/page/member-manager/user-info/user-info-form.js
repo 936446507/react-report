@@ -1,7 +1,12 @@
 import React, { Component } from 'react'
 
 import { DatePicker, TimePicker } from 'element-react'
+
+import { objectUtils } from '@/utils'
 import {
+  DEFAULT_RANGE_TYPE,
+  DEFAULT_ACCOUNT_TYPE,
+  DEFAULT_AGENT_TYPE,
   RANGE_TYPES,
   ACCOUNT_TYPES,
   AGENT_STATES
@@ -18,17 +23,23 @@ export class UserInfoForm extends Component {
         startTime: '00:00:00',              // 注册开始时分秒
         endDate: '',                // 注册结束日期
         endTime: '00:00:00',                // 注册结束时分秒
-        rangeType: '0',             // '0'全部，'1'直属
-        accountType: '0',           // '0'全部，'1'普通用户，'2'代理用户
-        agentState: '-1'           //  -1所有 0拒绝 1正式 5欠资料 10待审核
+        rangeType: DEFAULT_RANGE_TYPE,             // '0'全部，'1'直属
+        accountType: DEFAULT_ACCOUNT_TYPE,           // '0'全部，'1'普通用户，'2'代理用户
+        agentState: DEFAULT_AGENT_TYPE           //  -1所有 0拒绝 1正式 5欠资料 10待审核
       },
       startTimeRange: '00:00:00 - 23:59:59',
       endTimeRange: '00:00:00 - 23:59:59',
       isSearching: false
     }
+
+    this.setType = this.setType.bind(this)
   }
   render() {
-    const { name, account, startDate, startTime, endDate, endTime } = this.state.info
+    const {
+      name, account,
+      startDate, startTime, endDate, endTime,
+      rangeType, accountType, agentState
+    } = this.state.info
     const { startTimeRange, endTimeRange, isSearching } = this.state
 
     return (
@@ -93,47 +104,71 @@ export class UserInfoForm extends Component {
             <div className="userInfo-check-range-button">
               <div className="include">
                 {
-                  Object.keys[RANGE_TYPES].map((item, index) => (
-                    <button key={ index }>{RANGE_TYPES[item]}</button>
+                  Object.keys(RANGE_TYPES).map((item, index) => (
+                    <button key={ index }
+                    className={ rangeType === +item ? 'active-directly-bg' : 'active-directly'}
+                    onClick={ _ => this.setType('rangeType', +item)}>
+                    { RANGE_TYPES[item] }
+                    </button>
                   ))
                 }
               </div>
             </div>
           </li>
-          <li class="userInfo-check-content-cell">
-            <div class="userInfo-account-type">账号类型:</div>
-            <div class="userInfo-account-type-button">
-              <div class="include">
+          <li className="userInfo-check-content-cell">
+            <div className="userInfo-account-type">账号类型:</div>
+            <div className="userInfo-account-type-button">
+              <div className="include">
               {
-                Object.keys[ACCOUNT_TYPES].map((item, index) => (
-                  <button key={ index }>{ACCOUNT_TYPES[item]}</button>
+                Object.keys(ACCOUNT_TYPES).map((item, index) => (
+                  <button
+                    key={ index }
+                    className={ accountType === +item ? 'active-user-bg' : 'active-user' }
+                    onClick={ _ => this.setType('accountType', +item)}>
+                    { ACCOUNT_TYPES[item] }
+                  </button>
                 ))
               }
               </div>
             </div>
           </li>
-          <li class="userInfo-check-content-cell">
-          <div class="userInfo-agent-state">用户状态:</div>
-          <div class="userInfo-agent-state-button">
-            <div class="include">
+          <li className="userInfo-check-content-cell">
+          <div className="userInfo-agent-state">用户状态:</div>
+          <div className="userInfo-agent-state-button">
+            <div className="include">
             {
-              Object.keys[AGENT_STATES].map((item, index) => (
-                <button key={ index }>{AGENT_STATES[item]}</button>
+              Object.keys(AGENT_STATES).sort().map((item, index) => (
+                <button
+                  key={ index }
+                  className={
+                    agentState === +item ?
+                    'short-word active-agent-bg' :
+                    'short-word active-agent'
+                  }
+                  onClick={ _ => this.setType('agentState', +item)}>
+                  {AGENT_STATES[item]}
+                </button>
               ))
             }
             </div>
           </div>
         </li>
         </ul>
-        <div class="userInfo-button-line">
-          <div class="userInfo-reset-button" click="reset">重置</div>
+        <div className="userInfo-button-line">
+          <div className="userInfo-reset-button" click="reset">重置</div>
           <div
-            class="userInfo-check-button">
+            className="userInfo-check-button">
             { isSearching ? '查询中...' : '查询'}
           </div>
         </div>
       </div>
     )
+  }
+
+  setType(type, typeValue) {
+    this.setState({
+      info: objectUtils.modifyItem(this.state.info, { type: typeValue})
+    })
   }
 
   onChange(key, value) {

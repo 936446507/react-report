@@ -9,7 +9,7 @@ import UserInfoListCell from './user-info-list-cell'
 import { getAgentInvestorListData } from '@/request/member-manager'
 import { formateDate } from '@/utils'
 
-// import './user-info.scss'
+import './user-info.scss'
 
 export class UserInfo extends Component {
   constructor(props) {
@@ -42,6 +42,7 @@ export class UserInfo extends Component {
 
     return (
       <div className="userInfo">
+        <UserInfoForm />
         <div className="Isolation-fence"></div>
         <Loading loading={ isGettingListData }>
           <div className="userInfo-data-content">

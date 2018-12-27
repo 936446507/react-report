@@ -1,3 +1,247 @@
+.userInfo {
+  &-check {
+    background: #fff;
+    margin-bottom: 38px;
+    &-content {
+      width: 90%;
+      padding-top: 0.1px;
+      margin: 0 auto;
+      .userInfo-check-content-cell {
+        width: 100%;
+        font-size: 0;
+        color: #333;
+        margin-top: 16px;
+        &::after {
+          display: block;
+          content: '-';
+          font-size: 0;
+          clear: both;
+        }
+      }
+    }
+  }
+}
+.userInfo-name,
+.userInfo-account {
+  width: 45%;
+  line-height: 26px;
+  border-bottom: 1px solid #ddd;
+  &-table {
+    display: table;
+    width: 100%;
+  }
+  span {
+    display: table-cell;
+    font-size: 14px;
+    white-space:nowrap;
+  }
+  input {
+    -webkit-appearance: none;
+    display: table-cell;
+    width: 100%;
+    font-size: 14px;
+    padding-left: 10px;
+    border: none;
+    outline: none;
+  }
+}
+.userInfo-name {
+  float: left;
+}
+.userInfo-account {
+  float: right;
+}
+.userInfo-check-content-from {
+  float: left;
+  width: calc(50% + 24px);
+}
+.userInfo-check-content-to {
+  float: left;
+  width: calc(50% - 24px);
+}
+.userInfo-register-time {
+  display: inline-block;
+  font-size: 14px;
+  width: 66px;
+  line-height: 26px;
+}
+.userInfo-up {
+  display: inline-block;
+  font-size: 14px;
+  width: 18px;
+  line-height: 26px;
+}
+.userInfo-check-content-buttom-border {
+  &::after {
+    display: block;
+    content: '-';
+    font-size: 0;
+    clear: both;
+  }
+  .userInfo-start-time {
+    width: calc(50% - 45px);
+    margin-left: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  .userInfo-end-time {
+    width: calc(50% - 21px);
+    margin-left: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  .el-input--suffix .el-input__inner {
+    padding: 0;
+    text-align: center;
+  }
+  .el-input__inner {
+    height: 26px;
+    line-height: 26px;
+    border: none;
+  }
+  .el-input__icon {
+    display: none;
+  }
+}
+@media screen and (max-width: 490px) {
+  .userInfo-check-content-buttom-border {
+    border: none;
+    .userInfo-check-content-from,
+    .userInfo-check-content-to {
+      width: 100%;
+    }
+    .userInfo-start-time,
+    .userInfo-end-time {
+      border-bottom: 1px solid #ddd;
+    }
+    .userInfo-check-content-to {
+      margin-top: 10px;
+    }
+    .el-date-editor.el-input {
+      width: calc(50% - 45px);
+    }
+    .userInfo-up {
+      width: 66px;
+      text-align: center;
+    }
+  }
+}
+.userInfo-check-range,
+.userInfo-account-type,
+.userInfo-agent-state {
+  display: inline-block;
+  width: 80px;
+  height: 27px;
+  font-size: 14px;
+  line-height: 27px;
+  vertical-align: top;
+}
+.userInfo-check-range-button,
+.userInfo-account-type-button,
+.userInfo-agent-state-button {
+  display: inline-block;
+  width: calc(100% - 80px);
+  .include {
+    font-size: 0;
+    // display: flex;
+    // justify-content: space-around;
+  }
+  button {
+    height: 25px;
+    font-size: 13px;
+    text-align: center;
+    // line-height: 26px;
+    background: #fff;
+    // box-sizing: border-box;
+    border-radius: 5px;
+    border: none;
+    outline: none;
+    user-select: none;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
+.userInfo-check-range-button {
+  button {
+    width: 76px;
+  }
+  button:not(:first-of-type) {
+    margin-left: 25px;
+  }
+}
+.userInfo-account-type-button {
+  button:not(:first-of-type) {
+    width: 71px;
+    margin-left: 20px;
+  }
+  button:first-of-type {
+    width: 62px;
+    background-position: 44px 11px;
+  }
+}
+@media screen and (max-width: 374px) {
+  .userInfo-check-range,
+  .userInfo-account-type,
+  .userInfo-agent-state {
+    width: 100%;
+    text-align: left;
+  }
+  .userInfo-check-range-button,
+  .userInfo-account-type-button,
+  .userInfo-agent-state-button {
+    width: 100%;
+    margin-top: 10px;
+  }
+}
+.userInfo-check-range-button {
+  .active-directly {
+    color: #999;
+    border: 1px solid #ccc;
+  }
+  .active-directly-bg {
+    color: #A8941C;
+    background: url(../../../assets/images/member-manager/directly.png) no-repeat;
+    background-size: 20px 14px;
+    background-position: 53px 8px;
+    border: 2px solid #A89417;
+  }
+}
+.userInfo-account-type-button {
+  .active-user {
+    color: #999;
+    border: 1px solid #ccc;
+  }
+  .active-user-bg {
+    color: #A8941C;
+    background: url(../../../assets/images/member-manager/user.png) no-repeat;
+    background-size: 15px 11px;
+    background-position: 53px 11px;
+    border: 2px solid #A89417;
+  }
+}
+.userInfo-button-line {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 20px;
+  .userInfo-check-button,
+  .userInfo-reset-button {
+    margin: 0 20px 16px 0;
+    width: 104px;
+    height: 32px;
+    font-size: 15px;
+    color: #666;
+    text-align: center;
+    line-height: 32px;
+    border-radius: 16px;
+    cursor: pointer;
+    background-image: linear-gradient( -29deg, rgb(227,211,106) 0%, rgb(243,212,0) 100%);
+    background-image: -moz-linear-gradient( -29deg, rgb(227,211,106) 0%, rgb(243,212,0) 100%);
+    background-image: -webkit-linear-gradient( -29deg, rgb(227,211,106) 0%, rgb(243,212,0) 100%);
+    background-image: -ms-linear-gradient( -29deg, rgb(227,211,106) 0%, rgb(243,212,0) 100%);
+    box-shadow: 1.878px 3.532px 5px 0px rgba(181, 155, 11, 0.27);
+  }
+}
+
 .userInfo-out {
   margin-bottom: 20px;
   background: #fff;

@@ -2,6 +2,10 @@ export const CANCEL_MSG = '---axios cancel a request, another request ready---'
 export const FLOATTING_BUTTON_SHOW_HEIGHT = 320
 export const HEADQUARTERS_ID = 1
 
+export const DEFAULT_RANGE_TYPE = 0
+export const DEFAULT_ACCOUNT_TYPE = 0
+export const DEFAULT_AGENT_TYPE = -1
+
 // '0'全部，'1'直属
 export const RANGE_TYPES = {
   0: '全部',
