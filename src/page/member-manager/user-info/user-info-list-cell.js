@@ -19,6 +19,8 @@ export class UserInfoListCell extends Component {
 
     return (
       <div className="userInfo-list--cell">
+        {/* MT4名称 */}
+        <div>{ data.MT4AccountNum }</div>
         {/* 姓名 */}
         <div>{ data.AgentInvestorName }</div>
         {/* 所属代理商 */}

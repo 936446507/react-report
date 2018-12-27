@@ -19,10 +19,10 @@ export class UserInfoForm extends Component {
       info: {
         name: '',                   // 姓名
         account: '',                // MT4账号
-        startDate: '',              // 注册开始日期
-        startTime: '00:00:00',              // 注册开始时分秒
-        endDate: '',                // 注册结束日期
-        endTime: '00:00:00',                // 注册结束时分秒
+        startDate: null,              // 注册开始日期
+        startTime:  null, //'00:00:00',              // 注册开始时分秒
+        endDate: null,                // 注册结束日期
+        endTime:  null, // '00:00:00',                // 注册结束时分秒
         rangeType: DEFAULT_RANGE_TYPE,             // '0'全部，'1'直属
         accountType: DEFAULT_ACCOUNT_TYPE,           // '0'全部，'1'普通用户，'2'代理用户
         agentState: DEFAULT_AGENT_TYPE           //  -1所有 0拒绝 1正式 5欠资料 10待审核
@@ -137,7 +137,9 @@ export class UserInfoForm extends Component {
           <div className="userInfo-agent-state-button">
             <div className="include">
             {
-              Object.keys(AGENT_STATES).sort().map((item, index) => (
+              Object.keys(AGENT_STATES)
+              .sort((a, b) => a - b)
+              .map((item, index) => (
                 <button
                   key={ index }
                   className={
@@ -146,7 +148,7 @@ export class UserInfoForm extends Component {
                     'short-word active-agent'
                   }
                   onClick={ _ => this.setType('agentState', +item)}>
-                  {AGENT_STATES[item]}
+                  { AGENT_STATES[item] }
                 </button>
               ))
             }
@@ -167,7 +169,7 @@ export class UserInfoForm extends Component {
 
   setType(type, typeValue) {
     this.setState({
-      info: objectUtils.modifyItem(this.state.info, { type: typeValue})
+      info: objectUtils.modifyItem(this.state.info, { [type]: typeValue })
     })
   }
 
