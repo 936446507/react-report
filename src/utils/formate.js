@@ -7,11 +7,12 @@
   * HH: 24小时进制, hh: 12小时进制
 */
 const formateDate = ({date = new Date(), fmt = 'yyyy-MM-dd HH:mm:ss'}) => {
+  if (!date) return ''
   if (
     typeof date === 'string' &&
     date.replace(/[^\d]/g, '') !== ''
   ) {
-    date = new Date(date)
+    date = new Date(+date.replace(/[^\d]/g, ''))
   }
   let o = {
     'M+': date.getMonth() + 1, // 月份

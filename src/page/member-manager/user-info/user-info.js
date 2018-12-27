@@ -1,13 +1,15 @@
 import React, { Component } from 'react'
 
-import { Pagination } from 'element-react'
+import { Pagination, Loading } from 'element-react'
 import ListState from '@/components/list-state/list-state'
+import UserInfoForm from './user-info-form'
 import UserInfoListHeader from './user-info-list-header'
 import UserInfoListCell from './user-info-list-cell'
 
 import { getAgentInvestorListData } from '@/request/member-manager'
+import { formateDate } from '@/utils'
 
-import './user-info.scss'
+// import './user-info.scss'
 
 export class UserInfo extends Component {
   constructor(props) {
@@ -36,28 +38,41 @@ export class UserInfo extends Component {
     this.getAgentInvestorListData = this.getAgentInvestorListData.bind(this)
   }
   render() {
-    const { pageNum, pageSize, records } = this.state
+    const { pageNum, pageSize, records, list, state, isGettingListData } = this.state
+
     return (
       <div className="userInfo">
         <div className="Isolation-fence"></div>
-        <div className="userInfo-data-content" v-loading="isLoading">
-          <div className="userInfo-out">
-            <div className="userInfo-in">
-            <UserInfoListHeader></UserInfoListHeader>
-              <div className="userInfo-scroll">
-                <div className="userInfo-contain">
-                <UserInfoListCell></UserInfoListCell>
-                </div>
+        <Loading loading={ isGettingListData }>
+          <div className="userInfo-data-content">
+            <div className="userInfo-out">
+              <div className="userInfo-in">
+                <UserInfoListHeader></UserInfoListHeader>
+                {
+                  list.length > 0 && (
+                    <div className="userInfo-scroll">
+                      <div className="userInfo-contain">
+                      {
+                        list.map((item, index) => (
+                          <UserInfoListCell key={ index } data={ item } />
+                        ))
+                      }
+                      </div>
+                    </div>
+                  )
+                }
+                <ListState state={ state } reload={ this.getAgentInvestorListData } />
+                <p className="userInfo-last-show" v-if="list.length > 0">当前第{ pageNum }页,共{ Math.ceil(records/pageSize) }页</p>
+                <Pagination
+                  layout="prev, pager, next"
+                  small
+                  total={ records }
+                  pageSize={ pageSize }
+                  onCurrentChange={ this.getAgentInvestorListData }/>
               </div>
-              <ListState />
-              <p className="userInfo-last-show" v-if="list.length > 0">当前第{ pageNum }页,共{ Math.ceil(records/pageSize) }页</p>
-              <Pagination
-                layout="prev, pager, next"
-                small
-                total={ 50 }/>
             </div>
           </div>
-        </div>
+        </Loading>
         <div className="Isolation-fence"></div>
       </div>
     )
@@ -69,11 +84,13 @@ export class UserInfo extends Component {
       account: mt4code,
       rangeType: range,
       accountType: userType,
-      agentState: userState
+      agentState: userState,
+      startDate, endDate,
+      startTime, endTime
     } = this.state
     if (isGettingListData) return
-    const startDateCopy = ''
-    const endDateCopy = ''
+    const startDateCopy = formateDate({date: startDate, fmt: 'yyyy-MM-dd'}) + ' ' + startTime
+    const endDateCopy = formateDate({date: endDate, fmt: 'yyyy-MM-dd'}) + ' ' + endTime
     const params = {
       AgentID: this.agentId,
       page,
@@ -89,27 +106,20 @@ export class UserInfo extends Component {
     this.setState({
       isGettingListData: true
     })
-    getAgentInvestorListData({
+    getAgentInvestorListData(
       params
-    }).then(e => {
+    ).then(e => {
       let [ state, list, records, pageSize ] = [ '', null, 0, 0 ]
-      if (e.state === 'ok') {
-        if (e.rows && e.rows.length > 0) {
-          state = 'success'
-          list = e.rows // 数据列表
-          records = e.records
-          pageSize = e.pageSize
-        } else {
-          state = 'nodata'
-          list = []
-          records = 0
-        }
-      } else {
-        state = e.state === 'error' ? 'error' : 'nodata'
-        list = []
-        records = 0
-      }
-      this.state({ state, list, records, pageSize })
+      const isSuccStataData = e.state === 'ok' && e.records > 0
+
+      state = isSuccStataData ?
+        'success' :
+        e.state === 'error' ? 'error' : 'nodata'
+      list = isSuccStataData ? e.rows : []
+      records = isSuccStataData ? e.records : 0
+      pageSize = isSuccStataData ? e.pageSize : pageSize
+
+      this.setState({ state, list, records, pageSize })
     }).catch(err => {
       throw err
     }).finally(_ => {
@@ -117,6 +127,10 @@ export class UserInfo extends Component {
         isGettingListData: false
       })
     })
+  }
+
+  componentDidMount() {
+    this.getAgentInvestorListData()
   }
 }
 

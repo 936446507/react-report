@@ -10,7 +10,7 @@ import HistoryList from './history-list/history-list'
 
 import { FLOATTING_BUTTON_SHOW_HEIGHT } from '../../config'
 import { scrollToUp } from '@/utils'
-import './style.scss'
+// import './style.scss'
 
 @inject('UserInfoStore', 'PermissionStore')
 @observer
