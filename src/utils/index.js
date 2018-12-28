@@ -11,7 +11,8 @@ import {
   formateDate,
   formateNum,
   toSuperNumber,
-  integerNum
+  integerNum,
+  toFix
 } from './formate'
 
 import {
@@ -38,6 +39,7 @@ export {
   formateNum,
   toSuperNumber,
   integerNum,
+  toFix,
   showMessage,
   showMessageBox,
   objectUtils,

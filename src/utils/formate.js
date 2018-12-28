@@ -66,19 +66,17 @@ const formateNum = ({num, isSeparate = true, decPlace, isSymbol}) => {
     return 0
   }
   // 判断正负数
-  if (stringNum > 0) {
-    isplus = true
-    minLength = 3
-  } else {
-    isplus = false
-    minLength = 4
-  }
+  isplus = stringNum > 0
+  minLength = stringNum > 0 ? 3 : 4
+
   // 处理小数位数
-  if (decPlace || decPlace === 0) {
-    stringNum = stringNum.toFixed(decPlace)
-  } else {
-    stringNum = stringNum.toFixed(2)
-  }
+  stringNum = stringNum.toFixed(decPlace || decPlace === 0 ? decPlace : 2)
+
+  // if (decPlace || decPlace === 0) {
+  //   stringNum = stringNum.toFixed(decPlace)
+  // } else {
+  //   stringNum = stringNum.toFixed(2)
+  // }
   // 需要分隔符则循环添加
   if (isSeparate) {
     const numArr = stringNum.split('.')
@@ -125,9 +123,16 @@ const integerNum = num => {
   return isNaN(num) || num <= 0 ? 0 : parseInt(num, 10)
 }
 
+const toFix = (value, place = 2) => {
+  const num = +value
+
+  return !num && num !== 0 ? value : num.toFixed(place)
+}
+
 export {
   formateDate,
   formateNum,
   toSuperNumber,
-  integerNum
+  integerNum,
+  toFix
 }

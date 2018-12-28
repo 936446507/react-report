@@ -9,7 +9,7 @@ import UserInfoListCell from './user-info-list-cell'
 import { getAgentInvestorListData } from '@/request/member-manager'
 import { formateDate } from '@/utils'
 
-import './user-info.scss'
+// import './user-info.scss'
 
 export class UserInfo extends Component {
   constructor(props) {
