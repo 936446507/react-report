@@ -16,11 +16,11 @@ class MonthlyListCell extends Component {
     super(props)
     this.state = {}
 
-    this.filter = this.filter.bind(this)
+    this.formateData = this.formateData.bind(this)
   }
   render() {
     let { data, isDetail } = this.props
-    data = this.filter(data)
+    data = this.formateData(data)
 
     return (
       <div className="monthly-list--cell">
@@ -57,28 +57,30 @@ class MonthlyListCell extends Component {
         {/* 差价返佣/0 */}
         { !isDetail && <div>{ data.commissionRebate }</div> }
         {/* 操作(详细)/0 */}
-        <div class="report-directly-all">
-          <button class="directly">直属</button>
-          <span class="interval">|</span>
-          <button class="all">全部</button>
+        <div className="report-directly-all">
+          <button className="directly">直属</button>
+          <span className="interval">|</span>
+          <button className="all">全部</button>
         </div>
       </div>
     )
   }
 
-  filter(data) {
-    data.prequity = toSuperNumber(data.prequity)
-    data.equity = toSuperNumber(data.equity)
-    data.commissionRebateSum = toSuperNumber(data.commissionRebateSum)
-    data.commissionRebate = toSuperNumber(data.commissionRebate)
-    data.withdr = toSuperNumber(data.withdr)
-    data.credit = toSuperNumber(data.credit)
-    data.profitloss = toSuperNumber(data.profitloss)
-    data.gold = toFix(data.gold)
-    data.silver = toFix(data.silver)
-    data.turnover = toFix(data.turnover)
-    data.commission = toSuperNumber(data.commission)
-    data.commissionRebate = toSuperNumber(toFix(data.commissionRebate))
+  formateData(data) {
+    [
+      'prequity', 'equity', 'commissionRebateSum', 'commissionRebate',
+       'withdr', 'credit', 'profitloss', 'commission'
+    ].forEach(key => {
+      data[key] = toSuperNumber(data[key])
+    });
+
+    [ 'gold', 'silver', 'turnover' ].forEach(key => {
+      data[key] = toFix(data[key])
+    });
+
+    [ 'commissionRebate' ].forEach(key => {
+      data[key] = toSuperNumber(toFix(data[key]))
+    });
 
     return data
   }

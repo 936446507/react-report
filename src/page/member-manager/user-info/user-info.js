@@ -9,7 +9,7 @@ import UserInfoListCell from './user-info-list-cell'
 import { getAgentInvestorListData } from '@/request/member-manager'
 import { formateDate } from '@/utils'
 
-// import './user-info.scss'
+import './user-info.scss'
 
 export class UserInfo extends Component {
   constructor(props) {
@@ -36,13 +36,17 @@ export class UserInfo extends Component {
     }
 
     this.getAgentInvestorListData = this.getAgentInvestorListData.bind(this)
+    this.onUserInfoFormRef = this.onUserInfoFormRef.bind(this)
   }
   render() {
     const { pageNum, pageSize, records, list, state, isGettingListData } = this.state
 
     return (
       <div className="userInfo">
-        <UserInfoForm />
+        <UserInfoForm
+          onRef={ this.onUserInfoFormRef }
+          isSearching={ isGettingListData }
+          getAgentInvestorListData={ this.getAgentInvestorListData } />
         <div className="Isolation-fence"></div>
         <Loading loading={ isGettingListData }>
           <div className="userInfo-data-content">
@@ -79,30 +83,27 @@ export class UserInfo extends Component {
     )
   }
 
-  getAgentInvestorListData() {
-    const {
-      pageNum: page, pageSize, name, isGettingListData,
-      account: mt4code,
-      rangeType: range,
-      accountType: userType,
-      agentState: userState,
-      startDate, endDate,
-      startTime, endTime
-    } = this.state
+  getAgentInvestorListData(infoFormData) {
+    // const {
+    //   pageNum: page, pageSize, name, isGettingListData,
+    //   account: mt4code,
+    //   rangeType: range,
+    //   accountType: userType,
+    //   agentState: userState,
+    //   startDate, endDate,
+    //   startTime, endTime
+    // } = this.state
+
+    // const startDateCopy = formateDate({date: startDate, fmt: 'yyyy-MM-dd'}) + ' ' + startTime
+    // const endDateCopy = formateDate({date: endDate, fmt: 'yyyy-MM-dd'}) + ' ' + endTime
+
+    const { pageNum: page, pageSize, isGettingListData } = this.state
     if (isGettingListData) return
-    const startDateCopy = formateDate({date: startDate, fmt: 'yyyy-MM-dd'}) + ' ' + startTime
-    const endDateCopy = formateDate({date: endDate, fmt: 'yyyy-MM-dd'}) + ' ' + endTime
     const params = {
       AgentID: this.agentId,
       page,
       pageSize,
-      name,
-      mt4code,
-      startDate: startDateCopy,
-      endDate: endDateCopy,
-      range,
-      userType,
-      userState
+      ...infoFormData
     }
     this.setState({
       isGettingListData: true
@@ -130,8 +131,12 @@ export class UserInfo extends Component {
     })
   }
 
+  onUserInfoFormRef(ref) {
+    this.userInfoFormRef = ref
+  }
+
   componentDidMount() {
-    this.getAgentInvestorListData()
+    this.userInfoFormRef.getAgentInvestorListData()
   }
 }
 

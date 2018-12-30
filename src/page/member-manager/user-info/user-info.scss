@@ -79,11 +79,13 @@
     clear: both;
   }
   .userInfo-start-time {
+    display: inline-block;
     width: calc(50% - 45px);
     margin-left: 10px;
     border-bottom: 1px solid #ddd;
   }
   .userInfo-end-time {
+    display: inline-block;
     width: calc(50% - 21px);
     margin-left: 10px;
     border-bottom: 1px solid #ddd;
@@ -115,9 +117,9 @@
     .userInfo-check-content-to {
       margin-top: 10px;
     }
-    .el-date-editor.el-input {
-      width: calc(50% - 45px);
-    }
+    // .el-date-editor.el-input {
+    //   width: calc(50% - 45px);
+    // }
     .userInfo-up {
       width: 66px;
       text-align: center;

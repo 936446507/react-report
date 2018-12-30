@@ -9,7 +9,7 @@ import { getAgentInfoData, changeAgentInfoData } from '@/request/member-manager'
 import { showMessageBox, objectUtils } from '@/utils'
 import { HEADQUARTERS_ID } from '@/config'
 
-// import './agent-info.scss'
+import './agent-info.scss'
 
 @inject('UserInfoStore')
 @observer
