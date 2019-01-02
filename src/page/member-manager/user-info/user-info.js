@@ -7,27 +7,15 @@ import UserInfoListHeader from './user-info-list-header'
 import UserInfoListCell from './user-info-list-cell'
 
 import { getAgentInvestorListData } from '@/request/member-manager'
-import { formateDate } from '@/utils'
 
-import './user-info.scss'
+// import './user-info.scss'
 
 export class UserInfo extends Component {
   constructor(props) {
     super(props)
     this.state = {
       state: 'nodata',
-      startTimeRange: '00:00:00 - 23:59:59',
-      endTimeRange: '00:00:00 - 23:59:59',
       needRefresh: false,
-      rangeType: '0',             // '0'全部，'1'直属
-      accountType: '0',           // '0'全部，'1'普通用户，'2'代理用户
-      agentState: '-1',           //  -1所有 0拒绝 1正式 5欠资料 10待审核
-      startDate: '',              // 注册开始日期
-      startTime: '00:00:00',              // 注册开始时分秒
-      endDate: '',                // 注册结束日期
-      endTime: '00:00:00',                // 注册结束时分秒
-      name: '',                   // 姓名
-      account: '',                // MT4账号
       pageNum: 1,
       pageSize: 7,
       records: 0,
@@ -84,20 +72,8 @@ export class UserInfo extends Component {
   }
 
   getAgentInvestorListData(infoFormData) {
-    // const {
-    //   pageNum: page, pageSize, name, isGettingListData,
-    //   account: mt4code,
-    //   rangeType: range,
-    //   accountType: userType,
-    //   agentState: userState,
-    //   startDate, endDate,
-    //   startTime, endTime
-    // } = this.state
-
-    // const startDateCopy = formateDate({date: startDate, fmt: 'yyyy-MM-dd'}) + ' ' + startTime
-    // const endDateCopy = formateDate({date: endDate, fmt: 'yyyy-MM-dd'}) + ' ' + endTime
-
     const { pageNum: page, pageSize, isGettingListData } = this.state
+
     if (isGettingListData) return
     const params = {
       AgentID: this.agentId,
@@ -105,9 +81,7 @@ export class UserInfo extends Component {
       pageSize,
       ...infoFormData
     }
-    this.setState({
-      isGettingListData: true
-    })
+    this.setState({ isGettingListData: true })
     getAgentInvestorListData(
       params
     ).then(e => {
@@ -125,9 +99,7 @@ export class UserInfo extends Component {
     }).catch(err => {
       throw err
     }).finally(_ => {
-      this.setState({
-        isGettingListData: false
-      })
+      this.setState({ isGettingListData: false })
     })
   }
 

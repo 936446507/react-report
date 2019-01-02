@@ -103,7 +103,7 @@ class RouteComponent extends Component {
         render={ props => {
           return (
             <this.props.route.component
-              { ...props }
+              { ...this.props }
               routes={ route.children }
               agentInfo={ agentInfo }
               onEnter={ this.enterRouteHandle() } >

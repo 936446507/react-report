@@ -4,7 +4,7 @@ import { Switch } from 'element-react'
 
 import HistoryListItem from './history-list-item'
 
-import { historyListState } from '../entity'
+import { historyListState } from '../init-state'
 import { getHistoryData } from '@/request/home'
 import { getCancelSource } from '../../../api/http'
 import { dateConfig, CANCEL_MSG } from '../../../config'

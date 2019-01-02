@@ -6,7 +6,8 @@ import { toSuperNumber, toFix } from '@/utils'
 class MonthlyListCell extends Component {
   static propTypes = {
     data: PropTypes.object,
-    isDetail: PropTypes.bool
+    isDetail: PropTypes.bool,
+    changeReportListType: PropTypes.func
   }
   static defaultProps = {
     data: {},
@@ -16,6 +17,7 @@ class MonthlyListCell extends Component {
     super(props)
     this.state = {}
 
+    this.changeReportListType = this.changeReportListType.bind(this)
     this.formateData = this.formateData.bind(this)
   }
   render() {
@@ -57,13 +59,27 @@ class MonthlyListCell extends Component {
         {/* 差价返佣/0 */}
         { !isDetail && <div>{ data.commissionRebate }</div> }
         {/* 操作(详细)/0 */}
-        <div className="report-directly-all">
-          <button className="directly">直属</button>
-          <span className="interval">|</span>
-          <button className="all">全部</button>
-        </div>
+        {
+          isDetail &&
+          <div className="report-directly-all">
+            <button
+              className="directly"
+              onClick={ _ => this.changeReportListType(true) }>直属
+            </button>
+            <span className="interval">|</span>
+            <button
+              className="all"
+              onClick={ _ => this.changeReportListType(false) }>全部
+            </button>
+          </div>
+        }
       </div>
     )
+  }
+
+  changeReportListType(isDirect = false) {
+    const { data, changeReportListType } = this.props
+    changeReportListType(data.aid, isDirect)
   }
 
   formateData(data) {

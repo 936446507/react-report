@@ -6,7 +6,7 @@ import Search from '@/components/search/search'
 import NavMenu from '@/components/nav-menu/nav-menu'
 import Breadcrumb from '@/components/breadcrumb/breadcrumb'
 
-import './member-manager.scss'
+// import './member-manager.scss'
 
 @inject('PermissionStore')
 @observer
