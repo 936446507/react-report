@@ -24,6 +24,7 @@ class ReportCheckTime extends Component {
         <div className="block">
           <DatePicker
             value={ modelDataNew }
+            isShowTrigger={ false }
             onChange={date => {
               this.setState({ modelDataNew: date })
             }}

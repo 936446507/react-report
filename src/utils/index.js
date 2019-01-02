@@ -29,6 +29,8 @@ import { setClassName } from './set-class-name'
 
 import { getStyle } from './get-style'
 
+import { getUrlParams } from './get-url-params'
+
 export {
   setDocTitle,
   scrollToUp,
@@ -45,5 +47,6 @@ export {
   objectUtils,
   arrayUtils,
   setClassName,
-  getStyle
+  getStyle,
+  getUrlParams
 }

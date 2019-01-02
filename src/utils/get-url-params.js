@@ -9,7 +9,7 @@ export const getUrlParams = function() {
     })
     return params
   }
-  return null
+  return {}
 }
 
 export default getUrlParams

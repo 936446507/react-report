@@ -7,13 +7,17 @@ import MonthlyListHeader from './monthly-list-header'
 import MonthlyListCell from './monthly-list-cell'
 
 import { getMonthlyReportListData } from '@/request/report'
-import { objectUtils } from '@/utils'
+import { objectUtils, getUrlParams } from '@/utils'
 
 import './monthly.scss'
 
 class MonthlyReport extends Component {
   constructor(props) {
     super(props)
+
+    const isDetail = getUrlParams().queryType === 'detail' &&
+      props.route.name === 'monthly'
+
     this.state = {
       info: {
         startTime: '2019-01-01',
@@ -22,7 +26,7 @@ class MonthlyReport extends Component {
       },
 
       isGettingReportListData: false,
-      isDetail: false,
+      isDetail,
       isDirect: false, // 是否直属
 
       // 汇总页数据
@@ -49,6 +53,7 @@ class MonthlyReport extends Component {
     this.changeReportListType = this.changeReportListType.bind(this)
     this.setListItemData = this.setListItemData.bind(this)
     this.getListItemData = this.getListItemData.bind(this)
+    this.handleIsDetailSetter = this.handleIsDetailSetter.bind(this)
   }
   render() {
     const { isDetail, summaryData, detailData } = this.state
@@ -61,7 +66,7 @@ class MonthlyReport extends Component {
         <div className="Isolation-fence"></div>
         <div className="monthly-out">
           <div className="monthly">
-            <MonthlyListHeader isDetail={ isDetail }></MonthlyListHeader>
+            { listData.records > 0 && <MonthlyListHeader isDetail={ isDetail } /> }
             <div className="monthly-scroll">
               <div className="monthly-contain">
                 {
@@ -77,18 +82,23 @@ class MonthlyReport extends Component {
             </div>
             <ListState state={ listData.state } reload={ this.getReportListData }/>
           </div>
-          <p
-            className="monthly-last-show">
+          {
+            listData.records > 0 &&
+            <p className="monthly-last-show">
             当前第{ listData.page }页,共{ Math.ceil(listData.records/listData.pageSize) }页
-          </p>
-          <div className="report-pagination-content">
-            <Pagination
-              layout="prev, pager, next"
-              small
-              total={ listData.records }
-              pageSize={ listData.pageSize }
-              onCurrentChange={this.getReportListData } />
-          </div>
+            </p>
+          }
+          {
+            listData.records > 0 &&
+            <div className="report-pagination-content">
+              <Pagination
+                layout="prev, pager, next"
+                small
+                total={ listData.records }
+                pageSize={ listData.pageSize }
+                onCurrentChange={this.getReportListData } />
+            </div>
+          }
         </div>
         <div className="Isolation-fence"></div>
       </div>
@@ -185,12 +195,22 @@ class MonthlyReport extends Component {
     return Object.keys(listData).includes(key) ? listData[key] : ''
   }
 
+  handleIsDetailSetter(newState) {
+    const preState = this.state.isDetail
+    // const queryType = newState ? 'detail' : 'summary'
+    if (preState !== newState && !newState) {
+      // this.props.history.go(-1)
+    } else {
+      // this.props.history.push(this.props.route.path + '?queryType=' + queryType)
+    }
+  }
+
   componentDidMount() {
     this.getReportListData()
   }
 
   componentWillUpdate(nextProps, nextState) {
-    console.log(nextProps, nextState)
+    // this.handleIsDetailSetter(nextState.isDetail)
   }
 }
 
