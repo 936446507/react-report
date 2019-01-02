@@ -60,7 +60,7 @@ class MonthlyListCell extends Component {
         { !isDetail && <div>{ data.commissionRebate }</div> }
         {/* 操作(详细)/0 */}
         {
-          isDetail &&
+          !isDetail &&
           <div className="report-directly-all">
             <button
               className="directly"

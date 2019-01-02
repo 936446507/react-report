@@ -16,9 +16,9 @@ class MonthlyReport extends Component {
     super(props)
     this.state = {
       info: {
-        startTime: '',
-        endTime: '',
-        AgentID: ''
+        startTime: '2019-01-01',
+        endTime: '2019-01-02',
+        AgentID: 1
       },
 
       isGettingReportListData: false,
@@ -46,6 +46,7 @@ class MonthlyReport extends Component {
 
     this.getReportListData = this.getReportListData.bind(this)
     this.requestReportListData = this.requestReportListData.bind(this)
+    this.changeReportListType = this.changeReportListType.bind(this)
     this.setListItemData = this.setListItemData.bind(this)
     this.getListItemData = this.getListItemData.bind(this)
   }
@@ -95,8 +96,13 @@ class MonthlyReport extends Component {
   }
 
   getReportListData() {
-    const { isDetail, isDirect } = this.state
-    let params = this.state.info
+    const { isDetail, isDirect, info, summaryData, detailData } = this.state
+    const listData = isDetail ? detailData : summaryData
+    let params = {
+      ...info,
+      page: listData.page,
+      pageSize: listData.pageSize
+    }
 
     if (isDetail) {
       params = {
@@ -113,7 +119,7 @@ class MonthlyReport extends Component {
   }
 
   requestReportListData(isDetail, params) {
-    this.setState = { isGettingReportListData: true }
+    this.setState({ isGettingReportListData: true })
 
     getMonthlyReportListData(
       isDetail,
@@ -143,7 +149,7 @@ class MonthlyReport extends Component {
     }).catch(err => {
       throw err
     }).finally(_ => {
-      this.setState = { isGettingReportListData: false }
+      this.setState({ isGettingReportListData: false })
     })
   }
 
@@ -180,7 +186,7 @@ class MonthlyReport extends Component {
   }
 
   componentDidMount() {
-    // this.getReportListData()
+    this.getReportListData()
   }
 
   componentWillUpdate(nextProps, nextState) {
