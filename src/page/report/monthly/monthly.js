@@ -7,9 +7,9 @@ import MonthlyListHeader from './monthly-list-header'
 import MonthlyListCell from './monthly-list-cell'
 
 import { getMonthlyReportListData } from '@/request/report'
-import { objectUtils, getUrlParams } from '@/utils'
+import { objectUtils, getUrlParams, showMessageBox } from '@/utils'
 
-import './monthly.scss'
+// import './monthly.scss'
 
 class MonthlyReport extends Component {
   constructor(props) {
@@ -48,6 +48,7 @@ class MonthlyReport extends Component {
       }
     }
 
+    this.detailQuery = this.detailQuery.bind(this)
     this.getReportListData = this.getReportListData.bind(this)
     this.requestReportListData = this.requestReportListData.bind(this)
     this.changeReportListType = this.changeReportListType.bind(this)
@@ -61,7 +62,9 @@ class MonthlyReport extends Component {
 
     return (
       <div className="monthly-report">
-        <MonthlyQueryForm></MonthlyQueryForm>
+        <MonthlyQueryForm
+          isDetail={ isDetail }
+          detailQuery={ this.detailQuery } />
         { this.props.children }
         <div className="Isolation-fence"></div>
         <div className="monthly-out">
@@ -103,6 +106,25 @@ class MonthlyReport extends Component {
         <div className="Isolation-fence"></div>
       </div>
     )
+  }
+
+  detailQuery(urlType, params = {}) {
+    let info = this.state.info
+    if (!(info.startTime && info.endTime)) {
+      showMessageBox({ message: '请选择月份' })
+      return
+    }
+    const isDetail = urlType === 'monthlyDetail'
+    this.setState({
+      isDetail
+    }, async _ => {
+      await Promise.all([
+        this.setListItemData('page', 1),
+        this.setLtisItemData('detailParams', params)
+      ])
+
+      this.getReportListData()
+    })
   }
 
   getReportListData() {
