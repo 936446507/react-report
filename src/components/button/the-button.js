@@ -6,14 +6,18 @@ import './the-button.scss'
 class TheButton extends Component {
   static propTypes = {
     type: PropTypes.string,
+    position: PropTypes.string,
     click: PropTypes.func
   }
   static defaultProps = {
-    type: 'normal'
+    type: 'normal',
+    position: 'left'    // left, right, center
   }
   render() {
+    const { position } = this.props
+
     return (
-      <div className="the-btn-wrap">
+      <div className={'the-btn-wrap ' + position}>
         <div
           className={ 'the-btn ' + this.props.type }
           onClick={ this.props.click }>

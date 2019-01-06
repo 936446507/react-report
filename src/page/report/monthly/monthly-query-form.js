@@ -2,15 +2,17 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
 import ReportCheckTime from '@/components/report-check-time/report-check-time'
+import TheButton from '@/components/button/the-button'
 
-import { objectUtils } from '@/utils'
+import { objectUtils, formateDate } from '@/utils'
 
 class MonthlyQueryForm extends Component {
   static propTypes = {
     isDetail: PropTypes.bool,
     startTime: PropTypes.string,
     endTime: PropTypes.string,
-    detailQuery: PropTypes.func
+    detailQuery: PropTypes.func,
+    setQueryTime: PropTypes.func
   }
   static defaultProps = {
     isDetail: false
@@ -29,6 +31,8 @@ class MonthlyQueryForm extends Component {
     }
 
     this.getReportDetailListData = this.getReportDetailListData.bind(this)
+    this.changeTime = this.changeTime.bind(this)
+    this.setMonthState = this.setMonthState.bind(this)
     this.handleInput = this.handleInput.bind(this)
     this.returnSummary = this.returnSummary.bind(this)
     this.init = this.init.bind(this)
@@ -36,17 +40,24 @@ class MonthlyQueryForm extends Component {
   }
   render() {
     const { isDetail } = this.props
+    const { month } = this.state
+
     return (
       <div className="report-check">
         <div className="report-check-box">
           <div className="report-check-first-type">
-            <ReportCheckTime></ReportCheckTime>
+            <ReportCheckTime
+              title="月份"
+              timeType="month"
+              formate="yyyy-MM"
+              changeTime={ this.changeTime }
+              setMonthState={ this.setMonthState } />
             <button className="report-check-first-type-button">查询</button>
           </div>
           {
             isDetail &&
             <div className="report-check-first-type">
-              <p className="report-check-first-title">月份：</p>
+                <p className="report-check-first-title">月份：{ month }</p>
               <ul className="report-check-first-content">
                 <li>
                   <h3>账号：</h3>
@@ -78,7 +89,21 @@ class MonthlyQueryForm extends Component {
                 </li>
               </ul>
               <div className="report-check-container">
-                <button onClick={ this.getReportDetailListData }>查询</button>
+                <TheButton
+                  type="small"
+                  position="right"
+                  onClick={ this.reset }>重置
+                </TheButton>
+                <TheButton
+                  type="small"
+                  position="right"
+                  onClick={ this.getReportDetailListData }>查询
+              </TheButton>
+                <TheButton
+                  type="small"
+                  position="right"
+                  onClick={ this.returnSummary }>返回
+                </TheButton>
               </div>
             </div>
           }
@@ -96,6 +121,40 @@ class MonthlyQueryForm extends Component {
     } = this.state.monthlyData
 
     this.props.detailQuery('monthlyDetail', { login, cname, group, agentname })
+  }
+
+  async changeTime(time) {
+    const { setQueryTime, getReportDetailListData } = this.props
+
+    const date = new Date(time)
+    const dateYear = date.getFullYear()
+    const dateMonth = date.getMonth() + 1
+
+    const endDate = new Date(dateYear, dateMonth, 0)
+    const curDate = new Date()
+    const endTimeDate = endDate.getTime() > curDate.getTime() ? curDate : endDate
+
+    const startTime = formateDate({ date: date.setDate(1), fmt: 'yyyy-MM-dd' })
+    const endTime = formateDate({ date: endTimeDate, fmt: 'yyyy-MM-dd' })
+
+    try {
+      await Promise.all([
+        setQueryTime('startTime', startTime),
+        setQueryTime('endTime', endTime)
+      ])
+      if (!this.state.isInit) {
+        this.setMonthState(date)
+        getReportDetailListData()
+      } else {
+        this.setState({ isInit: false })
+      }
+    } catch(error) {
+      throw error
+    }
+  }
+
+  setMonthState(date) {
+    this.setState({ month: formateDate({ date, fmt: 'yyyy年MM月' }) })
   }
 
   handleInput(event) {

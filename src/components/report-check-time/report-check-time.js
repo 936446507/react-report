@@ -7,16 +7,26 @@ import './report-check-time.scss'
 
 class ReportCheckTime extends Component {
   static propTypes = {
-    title: PropTypes.string
+    title: PropTypes.string,
+    timeType: PropTypes.string,
+    formate: PropTypes.string,
+    setMonthState: PropTypes.func
+  }
+  static defaultProps = {
+    timeType: 'day',
+    formate: 'yyyy-MM-dd'
   }
   constructor(props) {
     super(props)
     this.state = {
+      modelDataNew: null
     }
+
+    this.changeTime = this.changeTime.bind(this)
   }
   render() {
     const { modelDataNew } = this.state
-    const { title } = this.props
+    const { title, timeType, formate } = this.props
 
     return (
       <div className="bord report-check-fill-time">
@@ -25,12 +35,19 @@ class ReportCheckTime extends Component {
           <DatePicker
             value={ modelDataNew }
             isShowTrigger={ false }
-            onChange={date => {
-              this.setState({ modelDataNew: date })
-            }}
-            selectionMode="month" />
+            selectionMode={ timeType }
+            formate={ formate }
+            disabledDate={ time => time.getTime() > Date.now() }
+            onChange={ date => _ => this.changeTime(date) } />
         </div>
       </div>
+    )
+  }
+
+  changeTime(date) {
+    this.setState(
+      { modelDataNew: date },
+      _ => { this.props.setMonthState(this.state.modelDataNew) }
     )
   }
 }
