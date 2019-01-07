@@ -12,7 +12,7 @@ class MonthlyQueryForm extends Component {
     startTime: PropTypes.string,
     endTime: PropTypes.string,
     detailQuery: PropTypes.func,
-    setQueryTime: PropTypes.func
+    changeQueryTime: PropTypes.func
   }
   static defaultProps = {
     isDetail: false
@@ -30,6 +30,7 @@ class MonthlyQueryForm extends Component {
       isInit: false
     }
 
+    this.getReportSummaryListData = this.getReportSummaryListData.bind(this)
     this.getReportDetailListData = this.getReportDetailListData.bind(this)
     this.changeTime = this.changeTime.bind(this)
     this.setMonthState = this.setMonthState.bind(this)
@@ -39,7 +40,7 @@ class MonthlyQueryForm extends Component {
     this.reset = this.reset.bind(this)
   }
   render() {
-    const { isDetail } = this.props
+    const { isDetail, changeQueryTime } = this.props
     const { month } = this.state
 
     return (
@@ -50,8 +51,8 @@ class MonthlyQueryForm extends Component {
               title="月份"
               timeType="month"
               formate="yyyy-MM"
-              changeTime={ this.changeTime }
-              setMonthState={ this.setMonthState } />
+              onRef={ this.onRefReportCheckTime }
+              changeQueryTime={ changeQueryTime } />
             <button className="report-check-first-type-button">查询</button>
           </div>
           {
@@ -112,6 +113,10 @@ class MonthlyQueryForm extends Component {
     )
   }
 
+  getReportSummaryListData() {
+
+  }
+
   getReportDetailListData() {
     const {
       account: login,
@@ -124,7 +129,7 @@ class MonthlyQueryForm extends Component {
   }
 
   async changeTime(time) {
-    const { setQueryTime, getReportDetailListData } = this.props
+    const { setQueryTime } = this.props
 
     const date = new Date(time)
     const dateYear = date.getFullYear()
@@ -144,7 +149,7 @@ class MonthlyQueryForm extends Component {
       ])
       if (!this.state.isInit) {
         this.setMonthState(date)
-        getReportDetailListData()
+        this.getReportDetailListData()
       } else {
         this.setState({ isInit: false })
       }

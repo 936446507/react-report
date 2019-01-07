@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 
 import { getCurRoutePath, getStyle } from '@/utils'
 
-// import './nav-menu.scss'
+import './nav-menu.scss'
 
 class NavMenu extends Component {
   static propTypes = {

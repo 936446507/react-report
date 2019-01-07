@@ -7,7 +7,7 @@ import MonthlyListHeader from './monthly-list-header'
 import MonthlyListCell from './monthly-list-cell'
 
 import { getMonthlyReportListData } from '@/request/report'
-import { objectUtils, getUrlParams, showMessageBox } from '@/utils'
+import { objectUtils, getUrlParams, showMessageBox, formateDate } from '@/utils'
 
 import './monthly.scss'
 
@@ -54,6 +54,7 @@ class MonthlyReport extends Component {
     this.changeReportListType = this.changeReportListType.bind(this)
     this.setListItemData = this.setListItemData.bind(this)
     this.getListItemData = this.getListItemData.bind(this)
+    this.changeQueryTime = this.changeQueryTime.bind(this)
     this.setQueryTime = this.setQueryTime.bind(this)
     this.handleIsDetailSetter = this.handleIsDetailSetter.bind(this)
   }
@@ -66,7 +67,7 @@ class MonthlyReport extends Component {
         <MonthlyQueryForm
           isDetail={ isDetail }
           detailQuery={ this.detailQuery }
-          setQueryTime={ this.setQueryTime } />
+          changeQueryTime={ this.changeQueryTime } />
         { this.props.children }
         <div className="Isolation-fence"></div>
         <Loading loading={ isGettingReportListData }>
@@ -219,6 +220,23 @@ class MonthlyReport extends Component {
     const listData = isDetail ? detailData : summaryData
 
     return Object.keys(listData).includes(key) ? listData[key] : ''
+  }
+
+  changeQueryTime(time) {
+    const date = new Date(time)
+    const dateYear = date.getFullYear()
+    const dateMonth = date.getMonth() + 1
+
+    const endDate = new Date(dateYear, dateMonth, 0)
+    const curDate = new Date()
+    const endTimeDate = endDate.getTime() > curDate.getTime() ? curDate : endDate
+
+    const startTime = formateDate({ date: new Date(date.setDate(1)), fmt: 'yyyy-MM-dd' })
+    const endTime = formateDate({ date: endTimeDate, fmt: 'yyyy-MM-dd' })
+
+    this.setState({
+      info: objectUtils.modifyItem(this.state.info, { startTime, endTime })
+    })
   }
   /*
       * type: startTime, endTime
